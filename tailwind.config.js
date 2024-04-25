@@ -7,13 +7,13 @@ module.exports = {
     theme: {
         extend: {
             fontSize: {
-                sm: '0.800rem',
-                base: '1rem',
-                xl: '1.250rem',
-                '2xl': '1.563rem',
-                '3xl': '1.954rem',
-                '4xl': '2.442rem',
-                '5xl': '3.053rem',
+                sm: '0.800rem', // use for tiny text (DONT USE UNLESS NECESSARY)
+                base: '1rem', // use for body text (paragraphs, etc.)
+                xl: '1.250rem', // use for subheadings (if a subheading is needed)
+                '2xl': '1.563rem', // use for headings 
+                '3xl': '1.954rem', // use for titles only!!!
+                '4xl': '2.442rem', // DONT USE UNLESS NECESSARY
+                '5xl': '3.053rem', // DONT USE UNLESS NECESSARY
             },
             fontFamily: {
                 heading: 'Montserrat Alternates',
@@ -24,8 +24,9 @@ module.exports = {
                 bold: '700',
             },
             colors: {
-                'text': '#333333',
-                'background': '#F2F2F2',
+                'text': '#333333', 
+                'background-main': '#F2F2F2',
+				'background-dark': '#EAEAEA',
                 'primary': '#799693',
                 'secondary': '#a298ae',
                 'accent': '#a5d5d3',
