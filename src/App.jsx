@@ -1,17 +1,24 @@
-import ReactDOM from "react-dom/client";
-import "./index.css";
-
-const entryPoint = document.getElementById("root");
-ReactDOM.createRoot(entryPoint).render(<App />);
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home/Home';
+import Admin from './pages/Admin/Admin';
+import Organization from './pages/Organization/Organization';
+import Donor from './pages/Donor/Donor';
 
 export default function App() {
-	return (
-		<div className="bg-background-main h-full">
-			<h1 className="text-3xl font-bold font-heading text-text bg-background-dark">
-				Hello world!
-			</h1>
-		</div>
-	);
+  return (
+    <Router>
+      <div className="bg-background-main h-full">
+        <Navbar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/organization" element={<Organization />}></Route>
+            <Route path="/donor" element={<Donor />}></Route>
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
-
