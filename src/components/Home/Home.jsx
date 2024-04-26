@@ -1,40 +1,15 @@
 const Home = () => {
   return (
     <div>
-      <h1
-        style={{
-          color: 'black',
-          fontSize: '2rem',
-          textAlign: 'center',
-          padding: '1rem',
-        }}
-      >
-        Hello to our beautiful app!!!
+      <h1 className="text-4xl font-bold text-center py-4 px-6">
+        Waza3ly, for donations and more!!!
       </h1>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '1rem',
-          padding: '1rem',
-        }}
-      >
-        <button
-          style={{
-            backgroundColor: 'black',
-            color: 'white',
-            padding: '0.5rem',
-          }}
-        >
+      <div className="flex justify-center items-center py-4 px-6 gap-1 padding-1 shadow-sm">
+        <button className="bg-accent text-text p-2 e-round-corner">
           Login
         </button>
-        <button
-          style={{
-            backgroundColor: 'black',
-            color: 'white',
-            padding: '0.5rem',
-          }}
-        >
+
+        <button className="bg-accent text-text p-2 e-round-corner shadow-sm">
           Register
         </button>
       </div>
