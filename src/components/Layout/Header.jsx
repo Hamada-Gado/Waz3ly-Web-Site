@@ -8,32 +8,24 @@ const Header = ({ currentPage }) => {
     { name: "Logout", to: "/" },
   ];
   return (
-    <header className="h-full flex justify-between items-center bg-background-dark py-4 px-6 shadow-md">
-      <div className="img">
-        <Link to="/">
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: "20%", height: "20%" }}
-          ></img>
-        </Link>
-      </div>
+    <header className="h-full flex justify-between items-center bg-background-main py-4 px-6 shadow-md">
+      <Link to="/">
+        <img src={logo} alt="Logo" className="h-10" />
+      </Link>
 
-      <div className="flex">
-        <nav className="space-x-4">
-          {navigationLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.to}
-              className={`text-text hover:text-primary font-base ${
-                currentPage === link.name ? "underline text-secondary" : ""
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-      </div>
+      <nav className="flex space-x-4">
+        {navigationLinks.map((link) => (
+          <Link
+            key={link.name}
+            to={link.to}
+            className={`text-text hover:text-primary font-base ${
+              currentPage === link.name ? "underline text-secondary" : ""
+            }`}
+          >
+            {link.name}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 };
