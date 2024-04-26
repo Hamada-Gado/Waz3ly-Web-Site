@@ -19,7 +19,7 @@ const Header = ({ currentPage }) => {
       </div>
 
       <div className="flex text-2xl font-bold center">
-        Team 92 (The Key_Strokes) _
+        Team 92 (The Key_Strokes)
       </div>
 
       <div className="flex">
