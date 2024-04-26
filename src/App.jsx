@@ -8,17 +8,13 @@ import Header from './components/Layout/Header';
 export default function App() {
   return (
     <Router>
-      <div className="bg-background-main h-full">
-        <Header />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/admin" element={<Admin />}></Route>
-            <Route path="/organization" element={<Organization />}></Route>
-            <Route path="/donor" element={<Donor />}></Route>
-          </Routes>
-        </div>
-      </div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/admin/*" element={<Admin />}></Route>
+        <Route path="/organization/*" element={<Organization />}></Route>
+        <Route path="/donor/*" element={<Donor />}></Route>
+      </Routes>
     </Router>
   );
 }
