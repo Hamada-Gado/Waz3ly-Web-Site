@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Admin from "./pages/Admin/Admin";
-import Organization from "./pages/Organization/Organization";
-import Donor from "./pages/Donor/Donor";
-import Header from "./components/Layout/Header";
-import Footer from "./components/Layout/Footer";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home/Home';
+import Admin from './pages/Admin/Admin';
+import Organization from './pages/Organization/Organization';
+import Donor from './pages/Donor/Donor';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 
 export default function App() {
   return (
