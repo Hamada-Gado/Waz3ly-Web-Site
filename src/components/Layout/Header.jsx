@@ -1,25 +1,26 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = ({ currentPage }) => {
   const navigationLinks = [
-    { name: "Home", href: "/" },
-    { name: "Settings", href: "/settings" },
-    { name: "Logout", href: "/logout" },
+    { name: 'Home', to: '/' },
+    { name: 'Settings', to: '/settings' },
+    { name: 'Logout', to: '/logout' },
   ];
   return (
     <header className="flex justify-between items-center bg-background-dark py-4 px-6 shadow-md">
       <div className="text-2xl font-bold">Team 92 (The Key_Strokes)</div>
       <nav className="flex space-x-4">
         {navigationLinks.map((link) => (
-          <a
+          <Link
             key={link.name}
-            href={link.href}
+            to={link.to}
             className={`text-text hover:text-primary font-base ${
-              currentPage === link.name ? "underline text-secondary" : ""
+              currentPage === link.name ? 'underline text-secondary' : ''
             }`}
           >
             {link.name}
-          </a>
+          </Link>
         ))}
       </nav>
     </header>
