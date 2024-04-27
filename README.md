@@ -15,13 +15,15 @@ src/
 ├── pages/  # Individual route components
 │   ├── Admin/
 │   │   └── ...
+│   ├── Auth/
+│   │   └── ...
 │   ├── Organization/
 │   │   └── ...
 │   ├── Donor/
 │   │   └── ...
 │   └── ...  # Other page components
 ├── App.jsx  # Main application component
-├── index.js  # Entry point for the application
+├── main.js  # Entry point for the application
 └── utils/  # Utility functions (optional)
     └── routing.js  # Routing configuration file
 ```
