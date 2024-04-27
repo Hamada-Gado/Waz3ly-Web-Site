@@ -12,15 +12,16 @@ export default function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/admin/*" element={<Admin />}></Route>
-        <Route path="/organization/*" element={<Organization />}></Route>
-        <Route path="/donor/*" element={<Donor />}></Route>
-        <Route path="/login/*" element={<Login />}></Route>
-        <Route path="/register/*" element={<RegisterForm />}></Route>
-      </Routes>
-      <div className="clear-both h-16"></div>
+      <div className="flex-1 p-6">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/organization/*" element={<Organization />}></Route>
+          <Route path="/donor/*" element={<Donor />}></Route>
+          <Route path="/login/*" element={<Login />}></Route>
+          <Route path="/register/*" element={<RegisterForm />}></Route>
+        </Routes>
+      </div>
       <Footer />
     </Router>
   );
