@@ -1,12 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "/src/assets/Logo.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '/src/assets/Logo.png';
 
-const Header = ({ currentPage }) => {
-  const navigationLinks = [
-    { name: "Settings", to: "/settings" },
-    { name: "Logout", to: "/" },
-  ];
+const Header = () => {
   return (
     <header className="h-full flex justify-between items-center bg-background-main py-4 px-6 shadow-md">
       <Link to="/">
@@ -14,17 +10,21 @@ const Header = ({ currentPage }) => {
       </Link>
 
       <nav className="flex space-x-4">
-        {navigationLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.to}
-            className={`text-text hover:text-primary font-base ${
-              currentPage === link.name ? "underline text-secondary" : ""
-            }`}
-          >
-            {link.name}
-          </Link>
-        ))}
+        <Link
+          to={'/settings'}
+          className="text-text hover:text-primary font-base"
+          onClick={() => localStorage.removeItem('userData')}
+        >
+          Settings
+        </Link>
+        <Link
+          to={'/'}
+          replace={true}
+          className="text-text hover:text-primary font-base"
+          onClick={() => localStorage.removeItem('userData')}
+        >
+          Logout
+        </Link>
       </nav>
     </header>
   );

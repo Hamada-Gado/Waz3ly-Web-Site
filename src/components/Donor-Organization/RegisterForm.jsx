@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from './Input';
 
 const RegisterForm = () => {
@@ -14,9 +15,12 @@ const RegisterForm = () => {
     organizationName: '',
     organizationType: '',
     organizationAddress: '',
+    isOrganization: false,
   });
 
   const [isOrganization, setIsOrganization] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +32,9 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Registering Form data: ', formData);
-    // Perform registration logic here
+    localStorage.setItem('userData', JSON.stringify(formData));
+    const path = isOrganization ? '/organization' : '/donor';
+    navigate(path, { replace: true });
   };
 
   return (
@@ -111,7 +116,13 @@ const RegisterForm = () => {
         labelClassName={'text-center'}
         inputClassName={'border-none accent-accent m-2'}
         type="checkbox"
-        onChange={(e) => setIsOrganization(e.target.checked)}
+        onChange={(e) => {
+          setIsOrganization(e.target.checked);
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            isOrganization: e.target.checked,
+          }));
+        }}
       />
       <br />
       {isOrganization && (
