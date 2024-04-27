@@ -6,7 +6,7 @@ const Home = () => {
         Waza3ly, for donations and more!!!
       </h1>
       <div className="flex justify-center items-center py-4 px-6 gap-1 padding-1 shadow-sm">
-        <Link to="/auth/Login">
+        <Link to="/Login">
           <button className="bg-accent text-text p-2 e-round-corner font-body">
             Login
           </button>
