@@ -7,11 +7,11 @@ const Donor = () => {
       className="space-y-4 overflow-y-auto"
       style={{
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "90vh",
+        height: "100%",
         fontSize: "2rem",
+        border: "2px solid red",
       }}
     >
       <h1 className="text-4xl font-bold text-orange-500 text-center">
