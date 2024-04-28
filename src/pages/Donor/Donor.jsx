@@ -1,6 +1,6 @@
 import React from "react";
 import DonationsList from "/src/components/Donor/DonationsList";
-
+import SidePanel from "/src/components/Donor/SidePanel";
 const Donor = () => {
   return (
     <div
