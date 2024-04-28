@@ -1,18 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 import Admin from './pages/Admin/Admin';
 import Organization from './pages/Organization/Organization';
 import Donor from './pages/Donor/Donor';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
 import Login from './pages/Auth/Login';
-import RegisterForm from './components/Donor-Organization/RegisterForm';
+import RegisterForm from './pages/Auth/RegisterForm';
+import useExpandTFooter from './hooks/useExpandToFooter';
 
 export default function App() {
+  const ref = useExpandTFooter();
   return (
     <Router>
       <Header />
-      <div className="flex-1 p-6">
+      <div id="main-content" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/admin/*" element={<Admin />}></Route>

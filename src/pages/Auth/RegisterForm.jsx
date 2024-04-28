@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from './Input';
+import Input from '/src/components/Auth/Input';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -37,88 +37,112 @@ const RegisterForm = () => {
     navigate(path, { replace: true });
   };
 
+  const labelClassName =
+    'flex flex-col text-center text-xl font-body text-gray-700';
+  const inputClassName =
+    'text-center text-base mx-8 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
+
   return (
     <div>
       <h1 className="text-center text-3xl font-heading font-bold text-primary">
         Register
       </h1>
-      <form className="flex flex-col gap-1 py-3" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-1 py-6" onSubmit={handleSubmit}>
         <Input
           label="First Name:"
-          type="text"
           name="firstName"
+          type="text"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.firstName}
           onChange={handleChange}
         />
         <br />
         <Input
           label="Last Name:"
-          type="text"
           name="lastName"
+          type="text"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.lastName}
           onChange={handleChange}
         />
         <br />
-        <Input
-          label="Gender:"
-          type="text"
-          name="gender"
-          required={true}
-          value={formData.gender}
-          onChange={handleChange}
-        />
+        <label className={labelClassName}>
+          Gender:
+          <select
+            className={inputClassName}
+            name="gender"
+            required={true}
+            value={formData.gender}
+            onChange={handleChange}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </label>
         <br />
         <Input
           label="Email:"
-          type="email"
           name="email"
+          type="email"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.email}
           onChange={handleChange}
         />
         <br />
         <Input
           label="Password:"
-          type="password"
           name="password"
+          type="password"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.password}
           onChange={handleChange}
         />
         <br />
         <Input
           label="Contact Number:"
-          type="tel"
           name="contactNumber"
+          type="tel"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.contactNumber}
           onChange={handleChange}
         />
         <br />
         <Input
           label="Area:"
-          type="text"
           name="area"
+          type="text"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.area}
           onChange={handleChange}
         />
         <br />
         <Input
           label="Governorate:"
-          type="text"
           name="governorate"
+          type="text"
           required={true}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           value={formData.governorate}
           onChange={handleChange}
         />
         <br /> <br />
         <Input
           label="Are you an organization?"
-          labelClassName={'text-center'}
-          inputClassName={'border-none accent-accent m-2'}
+          labelClassName={labelClassName}
+          inputClassName={inputClassName}
           type="checkbox"
           onChange={(e) => {
             setIsOrganization(e.target.checked);
@@ -133,27 +157,33 @@ const RegisterForm = () => {
           <>
             <Input
               label="Organization Name:"
-              type="text"
               name="organizationName"
+              type="text"
               required={true}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
               value={formData.organizationName}
               onChange={handleChange}
             />
             <br />
             <Input
               label="Organization Type:"
-              type="text"
               name="organizationType"
+              type="text"
               required={true}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
               value={formData.organizationType}
               onChange={handleChange}
             />
             <br />
             <Input
               label="Organization Address:"
-              type="text"
               name="organizationAddress"
+              type="text"
               required={true}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
               value={formData.organizationAddress}
               onChange={handleChange}
             />
