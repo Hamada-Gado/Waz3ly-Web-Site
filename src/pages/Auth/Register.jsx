@@ -4,45 +4,19 @@ import { Link } from "react-router-dom";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [category, setCategory] = useState("donor"); // Default category
-  const [subcategory, setSubcategory] = useState(""); // Selected subcategory
-  const [document, setDocument] = useState(""); // Document for teacher/doctor
-
-  const categories = [
-    { value: "donor", label: "Donor" },
-    { value: "donor_receiver", label: "Donor Receiver" },
-    { value: "organization", label: "Organization" },
-  ];
-
-  const subcategories = {
-    donor: ["Teacher", "Doctor", "Normal Donor"],
-    donor_receiver: [], // No subcategories for this category
-    organization: [
-      "Charity",
-      "Hospital",
-      "Place of Worship",
-      "Orphanage",
-      "Public School",
-    ],
-  };
-
-  const handleCategoryChange = (e) => {
-    const selectedCategory = e.target.value;
-    setCategory(selectedCategory);
-    setSubcategory(""); // Reset subcategory when category changes
-  };
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle registration logic here (e.g., send data to backend)
     console.log(
-      `Username: ${username}, Password: ${password}, Category: ${category}, Subcategory: ${subcategory}, Document: ${document}`
+      `Username: ${username}, Password: ${password}, Email: ${email}, First Name: ${firstName}, Last Name: ${lastName}`
     );
+    // Clear form fields after submission
     setUsername("");
     setPassword("");
-    setCategory("donor"); // Reset category after submission
-    setSubcategory("");
-    setDocument("");
+    setEmail("");
+    setName("");
   };
 
   return (
@@ -85,76 +59,40 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label
-              htmlFor="category"
-              className="text-sm font-body text-gray-700"
-            >
-              Category
+            <label htmlFor="email" className="text-sm font-body text-gray-700">
+              Email
             </label>
-            <select
-              id="category"
-              value={category}
-              onChange={handleCategoryChange}
+            <input
+              id="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
               required
-            >
-              {categories.map((cat) => (
-                <option key={cat.value} value={cat.value}>
-                  {cat.label}
-                </option>
-              ))}
-            </select>
+            />
           </div>
-          {category != "Donor Receiver" && (
-            <div className="flex flex-col">
-              <label
-                htmlFor="subcategory"
-                className="text-sm font-body text-gray-700"
-              >
-                Subcategory
-              </label>
-              <select
-                id="subcategory"
-                value={subcategory}
-                onChange={(e) => setSubcategory(e.target.value)}
-                className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
-                required
-              >
-                <option value="">Select Subcategory</option>
-                {subcategories[category].map((sub) => (
-                  <option key={sub} value={sub}>
-                    {sub}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-          {(subcategory === "Teacher" || subcategory === "Doctor") && (
-            <div className="flex flex-col">
-              <label
-                htmlFor="document"
-                className="text-sm font-body text-gray-700"
-              >
-                Upload{" "}
-                {subcategory === "Teacher"
-                  ? "Teaching Credential"
-                  : "Medical Certificate"}
-              </label>
-              <input
-                id="document"
-                type="file" // Use file input for document upload
-                onChange={(e) => setDocument(e.target.value)}
-                className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
-                required
-              />
-            </div>
-          )}
-          <button
-            type="submit"
-            className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md shadow-sm w-full"
-          >
-            Register
-          </button>
+          <div className="flex flex-col">
+            <label htmlFor="name" className="text-sm font-body text-gray-700">
+              Name
+            </label>
+            <input
+              id="first_name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+              required
+            />
+          </div>
+
+          <Link to="/furtherregister" className="">
+            <button
+              type="submit"
+              className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md shadow-sm w-full"
+            >
+              Next Step
+            </button>
+          </Link>
         </form>
         <div className="text-sm text-gray-700 text-center">
           Already have an account?{" "}
