@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Assuming you use React Router for navigation
 import React from "react";
 
 const Login = () => {
@@ -57,6 +58,12 @@ const Login = () => {
             Login
           </button>
         </form>
+        <div className="text-sm text-gray-700 text-center">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-primary underline">
+            Register here
+          </Link>
+        </div>
       </div>
     </div>
   );
