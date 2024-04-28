@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import React from 'react';
+import { useState } from "react";
+import { Link } from "react-router-dom"; // Assuming you use React Router for navigation
+import React from "react";
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -15,8 +16,10 @@ const Login = () => {
 
   return (
     <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <h1 className="text-3xl font-heading font-bold text-primary">Login</h1>
+      <div className="bg-white shadow-md rounded-lg px-8 pb-8 max-w-md w-full space-y-8">
+        <h1 className="text-3xl font-heading font-bold text-primary text-center">
+          Login
+        </h1>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label
@@ -50,11 +53,17 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md shadow-sm"
+            className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md shadow-sm w-full"
           >
             Login
           </button>
         </form>
+        <div className="text-sm text-gray-700 text-center">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-primary underline">
+            Register here
+          </Link>
+        </div>
       </div>
     </div>
   );

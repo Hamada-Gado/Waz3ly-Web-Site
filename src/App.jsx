@@ -6,7 +6,8 @@ import Admin from './pages/Admin/Admin';
 import Organization from './pages/Organization/Organization';
 import Donor from './pages/Donor/Donor';
 import Login from './pages/Auth/Login';
-import RegisterForm from './pages/Auth/RegisterForm';
+import Register from './pages/Auth/Register';
+import FurtherRegister from './pages/Auth/FurtherRegister';
 import useExpandTFooter from './hooks/useExpandToFooter';
 
 export default function App() {
@@ -21,7 +22,11 @@ export default function App() {
           <Route path="/organization/*" element={<Organization />}></Route>
           <Route path="/donor/*" element={<Donor />}></Route>
           <Route path="/login/*" element={<Login />}></Route>
-          <Route path="/register/*" element={<RegisterForm />}></Route>
+          <Route path="/register/*" element={<Register />}></Route>
+          <Route
+            path="/furtherregister/*"
+            element={<FurtherRegister />}
+          ></Route>
         </Routes>
       </div>
       <Footer />
