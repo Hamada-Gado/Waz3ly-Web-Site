@@ -4,7 +4,10 @@ import logo from '/src/assets/Logo.png';
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center bg-background-main py-4 px-6 shadow-md">
+    <header
+      id="main-header"
+      className="flex justify-between items-center bg-background-main py-4 px-6 shadow-md"
+    >
       <Link to="/">
         <img src={logo} alt="Logo" className="h-10" />
       </Link>
