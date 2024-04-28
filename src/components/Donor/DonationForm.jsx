@@ -7,7 +7,11 @@ const DonationForm = ({ selectedDonation, setSelectedDonation }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4 space-y-2">
+    <form
+      style={{ width: "100%" }}
+      onSubmit={handleSubmit}
+      className="mt-4 space-y-2"
+    >
       <h2 className="text-2xl font-bold">{selectedDonation.title}</h2>
       <label className="block">
         Item:
