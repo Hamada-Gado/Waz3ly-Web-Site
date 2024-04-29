@@ -8,6 +8,7 @@ import Donor from './pages/Donor/Donor';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import FurtherRegister from './pages/Auth/FurtherRegister';
+import NewForm from './pages/Auth/NewForm';
 import useExpandTFooter from './hooks/useExpandToFooter';
 
 export default function App() {
@@ -22,7 +23,8 @@ export default function App() {
           <Route path="/organization/*" element={<Organization />}></Route>
           <Route path="/donor/*" element={<Donor />}></Route>
           <Route path="/login/*" element={<Login />}></Route>
-          <Route path="/register/*" element={<Register />}></Route>
+          <Route path="/register/" element={<Register />}></Route>
+          <Route path="/test/" element={<NewForm />}></Route>
           <Route
             path="/furtherregister/*"
             element={<FurtherRegister />}
