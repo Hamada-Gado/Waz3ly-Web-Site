@@ -9,24 +9,31 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import FurtherRegister from "./pages/Auth/FurtherRegister";
 import FinishedOrPending from "./pages/Donor/FinishedOrPending";
+import useExpandTFooter from "./hooks/useExpandToFooter";
 
 export default function App() {
+  const ref = useExpandTFooter();
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/admin/*" element={<Admin />}></Route>
-        <Route path="/organization/*" element={<Organization />}></Route>
-        <Route path="/donor/*" element={<Donor />}></Route>
-        <Route
-          path="/FinishedOrPendingDonations/*"
-          element={<FinishedOrPending />}
-        ></Route>
-        <Route path="/login/*" element={<Login />}></Route>
-        <Route path="/register/*" element={<Register />}></Route>
-        <Route path="/furtherregister/*" element={<FurtherRegister />}></Route>
-      </Routes>
+      <div id="main-content" ref={ref}>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/organization/*" element={<Organization />}></Route>
+          <Route path="/donor/*" element={<Donor />}></Route>
+          <Route path="/login/*" element={<Login />}></Route>
+          <Route path="/register/*" element={<Register />}></Route>
+          <Route
+            path="/FinishedOrPendingDonations/*"
+            element={<FinishedOrPending />}
+          ></Route>
+          <Route
+            path="/furtherregister/*"
+            element={<FurtherRegister />}
+          ></Route>
+        </Routes>
+      </div>
       <Footer />
     </Router>
   );
