@@ -1,0 +1,42 @@
+export const donationsTest = [
+  {
+    id: 1,
+    title: "Donation 1",
+    description: "This is donation request 1.",
+    pending: false,
+    completed: false,
+    category: "Category 1",
+  },
+  {
+    id: 2,
+    title: "Donation 2",
+    description: "This is donation request 2.",
+    pending: false,
+    completed: false,
+    category: "Category 2",
+  },
+  {
+    id: 3,
+    title: "Donation 3",
+    description: "This is donation request 3.",
+    pending: true,
+    completed: false,
+    category: "Category 2",
+  },
+  {
+    id: 4,
+    title: "Donation 4",
+    description: "This is donation request 4.",
+    pending: true,
+    completed: false,
+    category: "Category 1",
+  },
+  {
+    id: 5,
+    title: "Donation 5",
+    description: "This is donation request 5.",
+    pending: false,
+    completed: true,
+    category: "Category 2",
+  },
+];
