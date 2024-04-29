@@ -1,18 +1,14 @@
-import React from "react";
+import React from 'react';
 
-const DonationForm = ({ selectedDonation, setSelectedDonation }) => {
+const DonationForm = ({ selectedDonation }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission
   };
 
   return (
-    <form
-      style={{ width: "100%" }}
-      onSubmit={handleSubmit}
-      className="mt-4 space-y-2"
-    >
-      <h2 className="text-2xl font-bold">{selectedDonation.title}</h2>
+    <form onSubmit={handleSubmit} className="mt-4 space-y-2">
+      <h2 className="text-xl font-bold">{selectedDonation.title}</h2>
       <label className="block">
         Item:
         <input
@@ -40,19 +36,12 @@ const DonationForm = ({ selectedDonation, setSelectedDonation }) => {
           className="mt-1 p-2 border rounded-md w-full"
         />
       </label>
-      <div className="flex justify-between">
+      <div className="flex justify-center">
         <button
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded"
         >
           Submit
-        </button>
-        <button
-          type="button"
-          onClick={() => setSelectedDonation(null)}
-          className="px-4 py-2 bg-red-500 text-white rounded"
-        >
-          Cancel
         </button>
       </div>
     </form>
