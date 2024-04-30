@@ -1,24 +1,84 @@
-import './ListOfUsers.css';
+import './Dashboard.css';
 
-const Admin = () => {
+function SideBar() {
 	return (
-		<div className="min-h-full h-screen flex items-center justify-center"> 
-			<div className="container">
-				<h1 className="sub-title">
+		<div className="sidebar">
+			<div className="title">
+				<h2>
 					Admin
-				</h1>
-				<a
-						href="/admin/list-of-users"
-					className="text-base font-heading font-bold text-primary row-span-1"
-				>
+				</h2>
+			</div>
+			<div className="nav">
+				<a className="sidebar-item" href="/admin/users">
 					List of Users
+				</a>
+
+				<a className="sidebar-item" href="/admin/requests">
+					Manage Requests
+				</a>
+
+				<a className="sidebar-item" href="/admin/passwords">
+					Manage Passwords
+				</a>
+
+				<a className="sidebar-item" href="/admin/view-user">
+					View User Details
 				</a>
 			</div>
 		</div>
 	);
+}
+
+
+function AdminListOfUsers() {
+	return (
+		<div className="content-container">
+			<div className="title">
+				List of Users
+			</div>
+			<div className="content">
+				<table>
+					<tr>
+						<th>Username</th>
+						<th>Age</th>
+						<th>Role</th>
+					</tr>
+					<tr>
+						<td>John Doe</td>
+						<td>24</td>
+						<td>Donor</td>
+					</tr>
+					<tr>
+						<td>Jane Doe</td>
+						<td>36</td>
+						<td>Organisation</td>
+					</tr>
+					<tr>
+						<td>John Smith</td>
+						<td>42</td>
+						<td>Donor</td>
+					</tr>
+					<tr>
+						<td>Jane Smith</td>
+						<td>29</td>
+						<td>Organisation</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	);
+}
+
+
+export default function Admin() {
+	return (
+		<div className="root-container">
+			<SideBar />
+			<AdminListOfUsers />
+		</div>
+	);
 };
 
-export default Admin;
 
 
 /*
