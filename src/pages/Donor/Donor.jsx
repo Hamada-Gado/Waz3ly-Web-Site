@@ -5,8 +5,9 @@ const Donor = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '90vh',
+        height: '100%',
         fontSize: '2rem',
+        border: '2px solid red',
       }}
     >
       <h1>Donor</h1>
