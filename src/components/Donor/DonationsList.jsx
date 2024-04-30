@@ -1,56 +1,19 @@
 import React, { useState } from "react";
 import Filter from "./Filter";
 import DonationForm from "./DonationForm";
-
+import { donationsTest } from "/src/pages/Donor/data.js";
 const DonationsList = () => {
-  const [donations, setDonations] = useState([
-    {
-      id: 1,
-      title: "Donation 1",
-      description: "This is donation request 1.",
-      pending: false,
-      completed: false,
-      category: "Category 1",
-    },
-    {
-      id: 2,
-      title: "Donation 2",
-      description: "This is donation request 2.",
-      pending: false,
-      completed: true,
-      category: "Category 2",
-    },
-    {
-      id: 3,
-      title: "Donation 3",
-      description: "This is donation request 3.",
-      pending: true,
-      completed: false,
-      category: "Category 2",
-    },
-    {
-      id: 4,
-      title: "Donation 4",
-      description: "This is donation request 4.",
-      pending: true,
-      completed: false,
-      category: "Category 1",
-    },
-    {
-      id: 5,
-      title: "Donation 5",
-      description: "This is donation request 5.",
-      pending: false,
-      completed: false,
-      category: "Category 2",
-    },
-  ]);
+  const [donations, setDonations] = useState(donationsTest);
   const [filter, setFilter] = useState("");
   const [selectedDonation, setSelectedDonation] = useState(null);
 
-  const filteredDonations = filter
-    ? donations.filter((donation) => donation.category === filter)
-    : donations;
+  const filteredDonations = donations.filter((donation) => {
+    return (
+      !donation.pending &&
+      !donation.completed &&
+      (filter ? donation.category === filter : true)
+    );
+  });
 
   return (
     <div className="space-y-4">

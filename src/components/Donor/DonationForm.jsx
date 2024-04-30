@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
+import { donationsTest } from "/src/pages/Donor/data.js";
 
 const DonationForm = ({ selectedDonation }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission
+    console.log(donationsTest[selectedDonation.id - 1]);
+    donationsTest[selectedDonation.id - 1].pending = true;
+    donationsTest[selectedDonation.id - 1].completed =
+      new Date() > new Date(event.target.pickupTime.value);
   };
 
   return (
