@@ -8,10 +8,10 @@ import Donor from './pages/Donor/Donor';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import FurtherRegister from './pages/Auth/FurtherRegister';
-import useExpandTFooter from './hooks/useExpandToFooter';
+import useExpandToFooter from './hooks/useExpandToFooter';
 
 export default function App() {
-  const ref = useExpandTFooter();
+  const ref = useExpandToFooter();
   return (
     <Router>
       <Header />
