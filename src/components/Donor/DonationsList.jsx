@@ -14,6 +14,12 @@ const DonationsList = () => {
       (filter ? donation.category === filter : true)
     );
   });
+  const handleFormSubmit = (event) => {
+    setDonations(
+      donations.filter((donation) => donation.id !== selectedDonation.id)
+    );
+    setSelectedDonation(null);
+  };
 
   return (
     <div className="space-y-4">
@@ -43,7 +49,10 @@ const DonationsList = () => {
             Donate {selectedDonation !== donation ? "🔽" : "🔼"}
           </button>
           {selectedDonation === donation && (
-            <DonationForm selectedDonation={selectedDonation} />
+            <DonationForm
+              selectedDonation={selectedDonation}
+              onFormSubmit={handleFormSubmit}
+            />
           )}
         </div>
       ))}
