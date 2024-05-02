@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+	@apply 
+
+	w-1/2
+	m-auto
+
+	grid grid-rows-5 gap-4
+
+	place-items-center
+
+	bg-background-dark rounded-lg
+}
+
+.sub-title {
+	@apply
+
+	text-xl
+
+	font-heading
+
+	font-bold
+
+	text-primary
+
+	row-span-1
+}
