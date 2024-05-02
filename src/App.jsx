@@ -9,6 +9,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import FurtherRegister from "./pages/Auth/FurtherRegister";
 import useFitDiv from "./hooks/useFitDiv";
+import FinishedOrPending from "./pages/Donor/FinishedOrPending";
 
 export default function App() {
   const ref = useFitDiv();
