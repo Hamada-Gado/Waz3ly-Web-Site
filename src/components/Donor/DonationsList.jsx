@@ -6,6 +6,7 @@ const DonationsList = () => {
   const [donations, setDonations] = useState(donationsTest);
   const [filter, setFilter] = useState("");
   const [selectedDonation, setSelectedDonation] = useState(null);
+  console.log(donations);
 
   const filteredDonations = donations.filter((donation) => {
     return (
@@ -15,9 +16,9 @@ const DonationsList = () => {
     );
   });
   const handleFormSubmit = (event) => {
-    setDonations(
-      donations.filter((donation) => donation.id !== selectedDonation.id)
-    );
+    // setDonations(
+    //   donations.filter((donation) => donation.id !== selectedDonation.id)
+    // );
     setSelectedDonation(null);
   };
 
@@ -51,6 +52,7 @@ const DonationsList = () => {
           {selectedDonation === donation && (
             <DonationForm
               selectedDonation={selectedDonation}
+              setSelectedDonations={setSelectedDonation}
               onFormSubmit={handleFormSubmit}
             />
           )}

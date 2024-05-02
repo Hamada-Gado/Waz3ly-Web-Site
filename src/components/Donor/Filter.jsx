@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const Filter = ({ setFilter }) => {
   return (
     <div className="flex flex-col justify-center items-center ">
       <select
+        defaultValue={"default"}
         onChange={(e) => setFilter(e.target.value)}
         className="border-2 border-black bg-white text-center text-black py-2 px-4 rounded-md shadow-md"
       >
-        <option value="" selected={true} disabled={true}>
+        <option value="default" disabled={true} hidden={true}>
           Choose a Category
         </option>
         <option value="">All</option>
