@@ -1,10 +1,13 @@
 import { AccountType, OrganizationType } from "../../enums/Enums";
 
-const ThirdPage = (props) => {
+const ThirdPage = ({ ...props }) => {
   const labelClassName = props.labelClassName;
-  const handleChange = props.handleChange;
-  const curAccountType = props.curAccountType;
-  const curOrganizationType = props.curOrganizationType;
+  const curAccountType = props.formData.AccountType;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    props.onChange({ ...props.formData, [name]: value });
+    curAccountType = value;
+  };
   return (
     <>
       <label htmlFor="accountType" className={labelClassName}>
@@ -12,7 +15,8 @@ const ThirdPage = (props) => {
       </label>
       <select
         id="accountType"
-        onChange={handleChange}
+        onChange={(e) => props.onChange(e)}
+        // value={curAccountType}
         className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
         required
       >
@@ -22,7 +26,7 @@ const ThirdPage = (props) => {
           </option>
         ))}
       </select>
-      {curAccountType === AccountType.Organization && (
+      {props.formData.AccountType === AccountType.Organization && (
         <>
           <label htmlFor="organizationType" className={labelClassName}>
             Organization Type
@@ -73,6 +77,7 @@ const ThirdPage = (props) => {
               type="file"
               className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
               required
+              readOnly
             />
           </div>
         </>

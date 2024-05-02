@@ -121,8 +121,7 @@ const RegisterForm = () => {
             <ThirdPage
               onChange={handleChange}
               labelClassName={labelClassName}
-              curAccountType={formData.accountType}
-              curOrganizationType={formData.organizationType}
+              formData={formData}
             />
           )}
         </form>
