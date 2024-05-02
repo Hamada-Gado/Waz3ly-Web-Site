@@ -21,6 +21,9 @@ const RegisterForm = () => {
   });
 
   const [accountType, setAccountType] = useState(AccountType.Donor);
+  const [organizationType, setOrganizationType] = useState(
+    OrganizationType.Charity
+  );
   const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
 
@@ -30,10 +33,8 @@ const RegisterForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
 
   const handleSubmit = (e) => {
@@ -94,13 +95,10 @@ const RegisterForm = () => {
     <div className="h-full flex items-center justify-center px-4 ">
       <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
         {/* Constant Register Page */}
-
         <h1 className="text-3xl font-heading font-bold text-primary text-center">
-          Register
+          Register {pageNum}
         </h1>
-
         {/* First Page */}
-
         <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
           {pageNum === 0 && (
             <Page
@@ -123,12 +121,12 @@ const RegisterForm = () => {
             <ThirdPage
               onChange={handleChange}
               labelClassName={labelClassName}
+              curAccountType={formData.accountType}
+              curOrganizationType={formData.organizationType}
             />
           )}
         </form>
-
         {/* Buttons */}
-
         <div className="w-full flex items-center justify-between gap-1">
           {pageNum > 0 && (
             <button
@@ -157,7 +155,6 @@ const RegisterForm = () => {
             </button>
           )}
         </div>
-
         <div className="m-2 text-sm text-gray-700 text-center">
           Already have an account?
           <Link to="/login" className="mx-1 text-primary underline">
