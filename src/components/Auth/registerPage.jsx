@@ -1,4 +1,4 @@
-import Input from './Input';
+import Input from "./Input";
 
 const Page = ({ pageProps, ...props }) => {
   return (
@@ -6,6 +6,7 @@ const Page = ({ pageProps, ...props }) => {
       {pageProps.map((elem) => (
         <Input key={elem.name} {...elem} {...props} required={true} />
       ))}
+      <br />
     </>
   );
 };

@@ -6,29 +6,27 @@ import Donor from "./pages/Donor/Donor";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import FurtherRegister from "./pages/Auth/FurtherRegister";
+import RegisterForm from "./pages/Auth/RegisterForm";
 
 //very imp
-import useExpandTFooter from './hooks/useExpandToFooter';
+import useExpandTFooter from "./hooks/useExpandToFooter";
 
 export default function App() {
-	const ref = useExpandTFooter();
-	return (
-		<Router>
-			<Header />
-			<div id="main-content" ref={ref}>
-				<Routes>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="/admin/*" element={<Admin />}></Route>
-					<Route path="/organization/*" element={<Organization />}></Route>
-					<Route path="/donor/*" element={<Donor />}></Route>
-					<Route path="/login/*" element={<Login />}></Route>
-					<Route path="/register/*" element={<Register />}></Route>
-					<Route path="/furtherregister/*" element={<FurtherRegister />}></Route>
-				</Routes>
-			</div>
-			<Footer />
-		</Router>
-	);
+  const ref = useExpandTFooter();
+  return (
+    <Router>
+      <Header />
+      <div id="main-content" ref={ref}>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/organization/*" element={<Organization />}></Route>
+          <Route path="/donor/*" element={<Donor />}></Route>
+          <Route path="/login/*" element={<Login />}></Route>
+          <Route path="/registerform/*" element={<RegisterForm />}></Route>
+        </Routes>
+      </div>
+      <Footer />
+    </Router>
+  );
 }

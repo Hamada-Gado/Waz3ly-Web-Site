@@ -1,26 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Input from '/src/components/Auth/Input';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Page from "../../components/Auth/RegisterPage";
+import ThirdPage from "../../components/Auth/RegisterThirdPage";
+import { AccountType, OrganizationType } from "../../enums/Enums";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    gender: '',
-    email: '',
-    password: '',
-    contactNumber: '',
-    area: '',
-    governorate: '',
-    organizationName: '',
-    organizationType: '',
-    organizationAddress: '',
-    isOrganization: false,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    gender: "",
+    contactNumber: "",
+    area: "",
+    governorate: "",
+    accountType: AccountType.Donor,
+    organizationName: "",
+    organizationType: OrganizationType.Charity,
+    organizationAddress: "",
   });
 
-  const [isOrganization, setIsOrganization] = useState(false);
-
+  const [accountType, setAccountType] = useState(AccountType.Donor);
+  const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
+
+  const labelClassName = "flex flex-col text-sm font-body text-text font-base";
+  const inputClassName =
+    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1 text-primary";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,173 +38,133 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('userData', JSON.stringify(formData));
-    const path = isOrganization ? '/organization' : '/donor';
+    localStorage.setItem("userData", JSON.stringify(formData));
+
+    const path = isOrganization ? "/organization" : "/donor";
     navigate(path, { replace: true });
   };
 
-  const labelClassName =
-    'flex flex-col text-center text-xl font-body text-gray-700';
-  const inputClassName =
-    'text-center text-base mx-8 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
+  const firstPageProps = [
+    {
+      label: "First Name:",
+      name: "firstName",
+      type: "text",
+    },
+    {
+      label: "Last Name:",
+      name: "lastName",
+      type: "text",
+    },
+    {
+      label: "Email:",
+      name: "email",
+      type: "email",
+    },
+    {
+      label: "Password:",
+      name: "password",
+      type: "password",
+    },
+  ];
+
+  const secondPageProps = [
+    {
+      label: "Contact Number:",
+      name: "contactNumber",
+      type: "text",
+    },
+    {
+      label: "Area:",
+      name: "area",
+      type: "text",
+    },
+    {
+      label: "Gender",
+      name: "gender",
+      type: "text",
+    },
+    {
+      label: "Governorate:",
+      name: "governorate",
+      type: "text",
+    },
+  ];
 
   return (
-    <div>
-      <h1 className="text-center text-3xl font-heading font-bold text-primary">
-        Register
-      </h1>
-      <form className="flex flex-col gap-1 py-6" onSubmit={handleSubmit}>
-        <Input
-          label="First Name:"
-          name="firstName"
-          type="text"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        <br />
-        <Input
-          label="Last Name:"
-          name="lastName"
-          type="text"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-        <br />
-        <label className={labelClassName}>
-          Gender:
-          <select
-            className={inputClassName}
-            name="gender"
-            required={true}
-            value={formData.gender}
-            onChange={handleChange}
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </label>
-        <br />
-        <Input
-          label="Email:"
-          name="email"
-          type="email"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <br />
-        <Input
-          label="Password:"
-          name="password"
-          type="password"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <br />
-        <Input
-          label="Contact Number:"
-          name="contactNumber"
-          type="tel"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.contactNumber}
-          onChange={handleChange}
-        />
-        <br />
-        <Input
-          label="Area:"
-          name="area"
-          type="text"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.area}
-          onChange={handleChange}
-        />
-        <br />
-        <Input
-          label="Governorate:"
-          name="governorate"
-          type="text"
-          required={true}
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          value={formData.governorate}
-          onChange={handleChange}
-        />
-        <br /> <br />
-        <Input
-          label="Are you an organization?"
-          labelClassName={labelClassName}
-          inputClassName={inputClassName}
-          type="checkbox"
-          onChange={(e) => {
-            setIsOrganization(e.target.checked);
-            setFormData((prevFormData) => ({
-              ...prevFormData,
-              isOrganization: e.target.checked,
-            }));
-          }}
-        />
-        <br />
-        {isOrganization && (
-          <>
-            <Input
-              label="Organization Name:"
-              name="organizationName"
-              type="text"
-              required={true}
+    <div className="h-full flex items-center justify-center px-4 ">
+      <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
+        {/* Constant Register Page */}
+
+        <h1 className="text-3xl font-heading font-bold text-primary text-center">
+          Register
+        </h1>
+
+        {/* First Page */}
+
+        <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+          {pageNum === 0 && (
+            <Page
+              pageProps={firstPageProps}
+              onChange={handleChange}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
-              value={formData.organizationName}
-              onChange={handleChange}
             />
-            <br />
-            <Input
-              label="Organization Type:"
-              name="organizationType"
-              type="text"
-              required={true}
+          )}
+          {pageNum === 1 && (
+            <Page
+              pageProps={secondPageProps}
+              onChange={handleChange}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
-              value={formData.organizationType}
-              onChange={handleChange}
             />
-            <br />
-            <Input
-              label="Organization Address:"
-              name="organizationAddress"
-              type="text"
-              required={true}
+          )}
+
+          {pageNum === 2 && (
+            <ThirdPage
+              onChange={handleChange}
               labelClassName={labelClassName}
-              inputClassName={inputClassName}
-              value={formData.organizationAddress}
-              onChange={handleChange}
             />
-            <br />
-          </>
-        )}
-        <div className="w-full flex flex-col items-center">
-          <button
-            type="submit"
-            className="w-1/3 bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold mb-4 py-2 px-4 rounded-md shadow-sm"
-          >
-            Submit
-          </button>
+          )}
+        </form>
+
+        {/* Buttons */}
+
+        <div className="w-full flex items-center justify-between gap-1">
+          {pageNum > 0 && (
+            <button
+              type="button"
+              onClick={() => setPageNum(pageNum - 1)}
+              className="w-1/3 bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
+            >
+              Previous
+            </button>
+          )}
+          {pageNum < 2 && (
+            <button
+              type="button"
+              onClick={() => setPageNum(pageNum + 1)}
+              className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
+            >
+              Next
+            </button>
+          )}
+          {pageNum === 2 && (
+            <button
+              type="submit"
+              className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
+            >
+              Submit
+            </button>
+          )}
         </div>
-      </form>
+
+        <div className="m-2 text-sm text-gray-700 text-center">
+          Already have an account?
+          <Link to="/login" className="mx-1 text-primary underline">
+            Login here
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
