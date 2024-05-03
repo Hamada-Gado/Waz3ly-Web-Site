@@ -114,13 +114,15 @@ const RegisterForm = () => {
   ];
 
   return (
-    <div className="h-full overflow-auto flex flex-col items-center justify-center px-4 ">
-      <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
+    <div className="relative h-full w-full inline-flex justify-center items-center m-auto ">
+      <div
+        className="absolute bg-white shadow-md rounded-lg px-8 max-w-md w-full"
+        style={{ top: 'clamp(0px, 10vh, calc(100% - 10px)' }}
+      >
         {/* Constant Register Page */}
         <h1 className="text-3xl font-primary font-bold text-primary text-center">
           Register
         </h1>
-
         {/* First Page */}
         {pageNum === 0 && (
           <form
@@ -158,7 +160,6 @@ const RegisterForm = () => {
             <SubmitButton title="Next" prevButton={true} />
           </form>
         )}
-
         {pageNum === 2 && (
           <form className={formClassName} onSubmit={handleSubmit}>
             <ThirdPage
@@ -170,7 +171,6 @@ const RegisterForm = () => {
             <SubmitButton title="Submit" prevButton={true} />
           </form>
         )}
-
         {/* Page Indicator */}
         <PageIndicator currentPage={pageNum} totalPages={3} />
         {/* Login Link */}

@@ -8,7 +8,7 @@ const useFitDiv = () => {
     window.addEventListener('resize', handleResize);
 
     if (!ref.current) {
-      console.error('Ref not found');
+      console.warn('Ref not found');
       return;
     }
 

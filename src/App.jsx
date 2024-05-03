@@ -15,7 +15,7 @@ export default function App() {
   return (
     <Router>
       <Header />
-      <div id="main-content" className="h-full overflow-auto" ref={ref}>
+      <div id="main-content" className="h-full overflow-auto m-0" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/admin/*" element={<Admin />}></Route>
