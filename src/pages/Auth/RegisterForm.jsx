@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Page from "../../components/Auth/RegisterPage";
 import ThirdPage from "../../components/Auth/RegisterThirdPage";
 import { AccountType, OrganizationType } from "../../enums/Enums";
+import PageIndicator from "../../components/Layout/PageIndicator";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const RegisterForm = () => {
     contactNumber: "",
     area: "",
     governorate: "",
-    accountType: AccountType.Donor,
+    accountType: AccountType.Organization,
     organizationName: "",
     organizationType: OrganizationType.Charity,
     organizationAddress: "",
@@ -33,8 +34,13 @@ const RegisterForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (!name) {
+      const { id, value } = e.target;
+      setFormData({ ...formData, [id]: value });
+      return;
+    }
+
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
 
   const handleSubmit = (e) => {
@@ -96,13 +102,15 @@ const RegisterForm = () => {
       <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
         {/* Constant Register Page */}
         <h1 className="text-3xl font-heading font-bold text-primary text-center">
-          Register {pageNum}
+          Register
         </h1>
+
         {/* First Page */}
         <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
           {pageNum === 0 && (
             <Page
               pageProps={firstPageProps}
+              formData={formData}
               onChange={handleChange}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -111,6 +119,7 @@ const RegisterForm = () => {
           {pageNum === 1 && (
             <Page
               pageProps={secondPageProps}
+              formData={formData}
               onChange={handleChange}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -119,9 +128,10 @@ const RegisterForm = () => {
 
           {pageNum === 2 && (
             <ThirdPage
+              formData={formData}
               onChange={handleChange}
               labelClassName={labelClassName}
-              formData={formData}
+              inputClassName={inputClassName}
             />
           )}
         </form>
@@ -148,12 +158,17 @@ const RegisterForm = () => {
           {pageNum === 2 && (
             <button
               type="submit"
+              onSubmit={(e) => onSubmit(e)}
               className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
             >
               Submit
             </button>
           )}
         </div>
+
+        {/* Page Indicator */}
+        <PageIndicator currentPage={pageNum} totalPages={3} />
+        {/* Login Link */}
         <div className="m-2 text-sm text-gray-700 text-center">
           Already have an account?
           <Link to="/login" className="mx-1 text-primary underline">

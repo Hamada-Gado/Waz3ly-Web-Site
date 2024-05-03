@@ -1,12 +1,13 @@
 import { AccountType, OrganizationType } from "../../enums/Enums";
 
-const ThirdPage = ({ ...props }) => {
+const ThirdPage = ({ formData, ...props }) => {
   const labelClassName = props.labelClassName;
-  const curAccountType = props.formData.AccountType;
+  const inputClassName = props.inputClassName;
+  const selectClassName =
+    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1";
   const handleChange = (e) => {
     const { name, value } = e.target;
     props.onChange({ ...props.formData, [name]: value });
-    curAccountType = value;
   };
   return (
     <>
@@ -15,9 +16,9 @@ const ThirdPage = ({ ...props }) => {
       </label>
       <select
         id="accountType"
+        value={formData["accountType"]}
         onChange={(e) => props.onChange(e)}
-        // value={curAccountType}
-        className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+        className={selectClassName}
         required
       >
         {Object.values(AccountType).map((value) => (
@@ -26,15 +27,16 @@ const ThirdPage = ({ ...props }) => {
           </option>
         ))}
       </select>
-      {props.formData.AccountType === AccountType.Organization && (
+      {formData["accountType"] === AccountType.Organization && (
         <>
           <label htmlFor="organizationType" className={labelClassName}>
             Organization Type
           </label>
           <select
             id="organizationType"
-            onChange={handleChange}
-            className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+            onChange={(e) => props.onChange(e)}
+            value={formData["organizationType"]}
+            className={selectClassName}
             required
           >
             {Object.keys(OrganizationType).map((key) => (
@@ -50,7 +52,9 @@ const ThirdPage = ({ ...props }) => {
           <input
             id="organizationName"
             type="text"
-            className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+            value={formData["organizationName"]}
+            onChange={(e) => props.onChange(e)}
+            className={inputClassName}
             required
           />
           <label htmlFor="organizationAddress" className={labelClassName}>
@@ -59,13 +63,15 @@ const ThirdPage = ({ ...props }) => {
           <input
             id="organizationAddress"
             type="text"
-            className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+            value={formData["organizationAddress"]}
+            onChange={(e) => props.onChange(e)}
+            className={inputClassName}
             required
           />
         </>
       )}
-      {(AccountType === AccountType.Doctor ||
-        AccountType === AccountType.Teacher) && (
+      {(formData["accountType"] === AccountType.Doctor ||
+        formData["accountType"] === AccountType.Teacher) && (
         <>
           {/* Ask for credentials file upload */}
           <div className="flex flex-col">
@@ -75,9 +81,8 @@ const ThirdPage = ({ ...props }) => {
             <input
               id="credentials"
               type="file"
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+              className={inputClassName}
               required
-              readOnly
             />
           </div>
         </>
