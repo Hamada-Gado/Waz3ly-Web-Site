@@ -101,7 +101,7 @@ const RegisterForm = () => {
     <div className="h-full flex items-center justify-center px-4 ">
       <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
         {/* Constant Register Page */}
-        <h1 className="text-3xl font-heading font-bold text-primary text-center">
+        <h1 className="text-3xl font-primary font-bold text-primary text-center">
           Register
         </h1>
 
