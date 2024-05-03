@@ -13,7 +13,7 @@ const ThirdPage = ({ formData, ...props }) => {
     <>
       <div className="flex flex-col">
         <label htmlFor="accountType" className={labelClassName}>
-          Account Type
+          Account Type:
         </label>
         <select
           id="accountType"
@@ -34,7 +34,7 @@ const ThirdPage = ({ formData, ...props }) => {
         <>
           <div className="flex flex-col">
             <label htmlFor="organizationType" className={labelClassName}>
-              Organization Type
+              Organization Type:
             </label>
             <select
               id="organizationType"
@@ -66,7 +66,7 @@ const ThirdPage = ({ formData, ...props }) => {
           </div>
           <div className="flex flex-col">
             <label htmlFor="organizationAddress" className={labelClassName}>
-              Organization Address
+              Organization Address:
             </label>
             <input
               id="organizationAddress"
@@ -85,7 +85,7 @@ const ThirdPage = ({ formData, ...props }) => {
           {/* Ask for credentials file upload */}
           <div className="flex flex-col">
             <label htmlFor="credentials" className={labelClassName}>
-              Credentials
+              Credentials:
             </label>
             <input
               label="Credentials"

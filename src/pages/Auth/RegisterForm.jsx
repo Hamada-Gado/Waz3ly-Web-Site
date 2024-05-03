@@ -86,7 +86,7 @@ const RegisterForm = () => {
       type: "text",
     },
     {
-      label: "Gender",
+      label: "Gender:",
       name: "gender",
       type: "text",
     },
