@@ -1,11 +1,20 @@
 import Input from "./Input";
 
-const Page = ({ pageProps, ...props }) => {
+const Page = ({ pageProps, formData, ...props }) => {
+  // This will log the props object
   return (
     <>
-      {pageProps.map((elem) => (
-        <Input key={elem.name} {...elem} {...props} required={true} />
-      ))}
+      {pageProps.map((elem) => {
+        return (
+          <Input
+            key={elem.name}
+            {...elem}
+            {...props}
+            value={formData[elem.name]}
+            required={true}
+          />
+        );
+      })}
       <br />
     </>
   );
