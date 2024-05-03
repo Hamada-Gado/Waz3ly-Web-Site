@@ -34,12 +34,6 @@ const RegisterForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (!name) {
-      const { id, value } = e.target;
-      setFormData({ ...formData, [id]: value });
-      return;
-    }
-
     setFormData({ ...formData, [name]: value });
   };
 

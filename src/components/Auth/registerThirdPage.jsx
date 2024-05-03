@@ -16,7 +16,7 @@ const ThirdPage = ({ formData, ...props }) => {
           Account Type:
         </label>
         <select
-          id="accountType"
+          name="accountType"
           value={formData["accountType"]}
           onChange={(e) => props.onChange(e)}
           className={selectClassName}
@@ -37,7 +37,7 @@ const ThirdPage = ({ formData, ...props }) => {
               Organization Type:
             </label>
             <select
-              id="organizationType"
+              name="organizationType"
               onChange={(e) => props.onChange(e)}
               value={formData["organizationType"]}
               className={selectClassName}
@@ -56,7 +56,7 @@ const ThirdPage = ({ formData, ...props }) => {
               Organization Name
             </label>
             <input
-              id="organizationName"
+              name="organizationName"
               type="text"
               value={formData["organizationName"]}
               onChange={(e) => props.onChange(e)}
@@ -69,7 +69,7 @@ const ThirdPage = ({ formData, ...props }) => {
               Organization Address:
             </label>
             <input
-              id="organizationAddress"
+              name="organizationAddress"
               type="text"
               value={formData["organizationAddress"]}
               onChange={(e) => props.onChange(e)}
@@ -88,8 +88,7 @@ const ThirdPage = ({ formData, ...props }) => {
               Credentials:
             </label>
             <input
-              label="Credentials"
-              id="credentials"
+              name="credentials"
               type="file"
               className={inputClassName}
               required
