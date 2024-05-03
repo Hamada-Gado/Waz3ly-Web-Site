@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Page from "../../components/Auth/RegisterPage";
+import Page from "../../components/Auth/registerPage";
 import ThirdPage from "../../components/Auth/RegisterThirdPage";
 import { AccountType, OrganizationType } from "../../enums/Enums";
 import PageIndicator from "../../components/Layout/PageIndicator";
@@ -21,16 +21,12 @@ const RegisterForm = () => {
     organizationAddress: "",
   });
 
-  const [accountType, setAccountType] = useState(AccountType.Donor);
-  const [organizationType, setOrganizationType] = useState(
-    OrganizationType.Charity
-  );
   const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
 
   const labelClassName = "flex flex-col text-sm font-body text-text font-base";
   const inputClassName =
-    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1 text-primary";
+    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1 text-text";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
