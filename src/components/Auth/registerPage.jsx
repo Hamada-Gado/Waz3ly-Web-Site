@@ -1,4 +1,4 @@
-import Input from "./Input";
+import Input from './Input';
 
 const Page = ({ pageProps, formData, ...props }) => {
   // This will log the props object

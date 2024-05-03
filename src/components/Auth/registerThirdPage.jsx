@@ -1,10 +1,9 @@
-import { AccountType, OrganizationType } from "../../enums/Enums";
+import { AccountType, OrganizationType } from '../../enums/Enums';
 
 const ThirdPage = ({ formData, ...props }) => {
-  const labelClassName = props.labelClassName;
-  const inputClassName = props.inputClassName;
+  const { labelClassName, inputClassName, onChange } = { ...props };
   const selectClassName =
-    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1";
+    'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
   const handleChange = (e) => {
     const { name, value } = e.target;
     props.onChange({ ...props.formData, [name]: value });
@@ -12,25 +11,28 @@ const ThirdPage = ({ formData, ...props }) => {
   return (
     <>
       <div className="flex flex-col">
-        <label htmlFor="accountType" className={labelClassName}>
+        <label className={labelClassName}>
           Account Type:
-        </label>
-        <select
-          name="accountType"
-          value={formData["accountType"]}
-          onChange={(e) => props.onChange(e)}
-          className={selectClassName}
-          required
-        >
-          {Object.values(AccountType).map((value) => (
-            <option key={value} value={value}>
-              {value}
+          <select
+            name="accountType"
+            defaultValue=""
+            className={selectClassName}
+            onChange={onChange}
+            required={true}
+          >
+            <option value="" disabled>
+              -- Select an option --
             </option>
-          ))}
-        </select>
+            {Object.values(AccountType).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
-      {formData["accountType"] === AccountType.Organization && (
+      {formData['accountType'] === AccountType.Organization && (
         <>
           <div className="flex flex-col">
             <label htmlFor="organizationType" className={labelClassName}>
@@ -39,7 +41,7 @@ const ThirdPage = ({ formData, ...props }) => {
             <select
               name="organizationType"
               onChange={(e) => props.onChange(e)}
-              value={formData["organizationType"]}
+              value={formData['organizationType']}
               className={selectClassName}
               required
             >
@@ -58,7 +60,7 @@ const ThirdPage = ({ formData, ...props }) => {
             <input
               name="organizationName"
               type="text"
-              value={formData["organizationName"]}
+              value={formData['organizationName']}
               onChange={(e) => props.onChange(e)}
               className={inputClassName}
               required
@@ -71,7 +73,7 @@ const ThirdPage = ({ formData, ...props }) => {
             <input
               name="organizationAddress"
               type="text"
-              value={formData["organizationAddress"]}
+              value={formData['organizationAddress']}
               onChange={(e) => props.onChange(e)}
               className={inputClassName}
               required
@@ -79,8 +81,9 @@ const ThirdPage = ({ formData, ...props }) => {
           </div>
         </>
       )}
-      {(formData["accountType"] === AccountType.Doctor ||
-        formData["accountType"] === AccountType.Teacher) && (
+      {(formData['accountType'] === AccountType.Doctor ||
+        formData['accountType'] === AccountType.Teacher ||
+        formData['accountType'] === AccountType.Organization) && (
         <>
           {/* Ask for credentials file upload */}
           <div className="flex flex-col">

@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/organization/*" element={<Organization />}></Route>
           <Route path="/donor/*" element={<Donor />}></Route>
           <Route path="/login/*" element={<Login />}></Route>
-          <Route path="/registerform/*" element={<RegisterForm />}></Route>
+          <Route path="/registerForm/*" element={<RegisterForm />}></Route>
         </Routes>
       </div>
       <Footer />

@@ -1,94 +1,121 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Page from "../../components/Auth/registerPage";
-import ThirdPage from "../../components/Auth/RegisterThirdPage";
-import { AccountType, OrganizationType } from "../../enums/Enums";
-import PageIndicator from "../../components/Layout/PageIndicator";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Page from '/src/components/Auth/registerPage';
+import ThirdPage from '/src/components/Auth/registerThirdPage';
+import { AccountType } from '../../enums/Enums';
+import PageIndicator from '../../components/Layout/PageIndicator';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    gender: "",
-    contactNumber: "",
-    area: "",
-    governorate: "",
-    accountType: AccountType.Organization,
-    organizationName: "",
-    organizationType: OrganizationType.Charity,
-    organizationAddress: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    gender: '',
+    contactNumber: '',
+    area: '',
+    governorate: '',
+    accountType: null,
+    organizationName: '',
+    organizationType: '',
+    organizationAddress: '',
   });
 
   const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
 
-  const labelClassName = "flex flex-col text-sm font-body text-text font-base";
+  const SubmitButton = ({ title, prevButton }) => {
+    return (
+      <div className="w-full flex items-center justify-between gap-1">
+        {prevButton && (
+          <button
+            type="button"
+            onClick={() => setPageNum(pageNum - 1)}
+            className="w-1/3 bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
+          >
+            Previous
+          </button>
+        )}
+        <button
+          type="submit"
+          className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
+        >
+          {title}
+        </button>
+      </div>
+    );
+  };
+
+  const formClassName = 'flex flex-col space-y-4';
+  const labelClassName = 'flex flex-col text-sm font-body text-text font-base';
   const inputClassName =
-    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1 text-text";
+    'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1 text-text';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    console.log(name, value);
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("userData", JSON.stringify(formData));
+    localStorage.setItem('userData', JSON.stringify(formData));
 
-    const path = isOrganization ? "/organization" : "/donor";
+    const path =
+      formData.accountType === AccountType.Organization
+        ? '/organization'
+        : '/donor';
     navigate(path, { replace: true });
   };
 
   const firstPageProps = [
     {
-      label: "First Name:",
-      name: "firstName",
-      type: "text",
+      label: 'First Name:',
+      name: 'firstName',
+      type: 'text',
     },
     {
-      label: "Last Name:",
-      name: "lastName",
-      type: "text",
+      label: 'Last Name:',
+      name: 'lastName',
+      type: 'text',
     },
     {
-      label: "Email:",
-      name: "email",
-      type: "email",
+      label: 'Email:',
+      name: 'email',
+      type: 'email',
     },
     {
-      label: "Password:",
-      name: "password",
-      type: "password",
+      label: 'Password:',
+      name: 'password',
+      type: 'password',
     },
   ];
 
   const secondPageProps = [
     {
-      label: "Contact Number:",
-      name: "contactNumber",
-      type: "text",
+      label: 'Contact Number:',
+      name: 'contactNumber',
+      type: 'tel',
     },
     {
-      label: "Area:",
-      name: "area",
-      type: "text",
+      label: 'Area:',
+      name: 'area',
+      type: 'text',
     },
     {
-      label: "Gender:",
-      name: "gender",
-      type: "text",
+      label: 'Gender:',
+      name: 'gender',
+      type: 'text',
     },
     {
-      label: "Governorate:",
-      name: "governorate",
-      type: "text",
+      label: 'Governorate:',
+      name: 'governorate',
+      type: 'text',
     },
   ];
 
   return (
-    <div className="h-full flex items-center justify-center px-4 ">
+    <div className="h-full overflow-auto flex flex-col items-center justify-center px-4 ">
       <div className="bg-white shadow-md rounded-lg px-8 max-w-md w-full">
         {/* Constant Register Page */}
         <h1 className="text-3xl font-primary font-bold text-primary text-center">
@@ -96,8 +123,14 @@ const RegisterForm = () => {
         </h1>
 
         {/* First Page */}
-        <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-          {pageNum === 0 && (
+        {pageNum === 0 && (
+          <form
+            className={formClassName}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setPageNum(pageNum + 1);
+            }}
+          >
             <Page
               pageProps={firstPageProps}
               formData={formData}
@@ -105,8 +138,17 @@ const RegisterForm = () => {
               labelClassName={labelClassName}
               inputClassName={inputClassName}
             />
-          )}
-          {pageNum === 1 && (
+            <SubmitButton title="Next" />
+          </form>
+        )}
+        {pageNum === 1 && (
+          <form
+            className={formClassName}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setPageNum(pageNum + 1);
+            }}
+          >
             <Page
               pageProps={secondPageProps}
               formData={formData}
@@ -114,47 +156,21 @@ const RegisterForm = () => {
               labelClassName={labelClassName}
               inputClassName={inputClassName}
             />
-          )}
+            <SubmitButton title="Next" prevButton={true} />
+          </form>
+        )}
 
-          {pageNum === 2 && (
+        {pageNum === 2 && (
+          <form className={formClassName} onSubmit={handleSubmit}>
             <ThirdPage
               formData={formData}
               onChange={handleChange}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
             />
-          )}
-        </form>
-        {/* Buttons */}
-        <div className="w-full flex items-center justify-between gap-1">
-          {pageNum > 0 && (
-            <button
-              type="button"
-              onClick={() => setPageNum(pageNum - 1)}
-              className="w-1/3 bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
-            >
-              Previous
-            </button>
-          )}
-          {pageNum < 2 && (
-            <button
-              type="button"
-              onClick={() => setPageNum(pageNum + 1)}
-              className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
-            >
-              Next
-            </button>
-          )}
-          {pageNum === 2 && (
-            <button
-              type="submit"
-              onSubmit={(e) => onSubmit(e)}
-              className="flex-grow bg-primary hover:bg-secondary text-white hover:text-gray-50 font-bold py-2 px-4 rounded-md shadow-sm"
-            >
-              Submit
-            </button>
-          )}
-        </div>
+            <SubmitButton title="Submit" prevButton={true} />
+          </form>
+        )}
 
         {/* Page Indicator */}
         <PageIndicator currentPage={pageNum} totalPages={3} />
