@@ -7,7 +7,7 @@ const PageIndicator = ({ currentPage, totalPages }) => {
       <span
         key={i}
         className={`h-3 w-2 rounded-full ${
-          currentPage === i ? "bg-accent h-4 w-4" : "bg-secondary"
+          currentPage === i ? "bg-accent h-4 w-2.5" : "bg-secondary"
         }`}
       />
     );
