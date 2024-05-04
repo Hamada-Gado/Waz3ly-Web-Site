@@ -1,4 +1,3 @@
-import SidePanel from "/src/components/Donor/SidePanel";
 import React from "react";
 import DonationsList from "/src/components/Donor/DonationsList";
 

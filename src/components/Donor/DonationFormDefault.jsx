@@ -1,7 +1,7 @@
 import React from "react";
 import { donationsTest } from "/src/pages/Donor/data.js";
 
-const DonationForm = ({ selectedDonation, onFormSubmit }) => {
+const DonationFormDefault = ({ selectedDonation, onFormSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(donationsTest[selectedDonation.id - 1]);
@@ -42,6 +42,18 @@ const DonationForm = ({ selectedDonation, onFormSubmit }) => {
           className="mt-1 p-2 border rounded-md w-full"
         />
       </label>
+      <label className="block">
+        Type Of Transportation Depending On Donation Size:
+        <select
+          name="pickupVehicle"
+          required
+          className="mt-1 p-2 border rounded-md w-full"
+        >
+          <option value="car">Car</option>
+          <option value="truck">Truck (for bigger donations)</option>
+          <option value="motorcycle">Motorcycle (for small donations)</option>
+        </select>
+      </label>
       <div className="flex justify-center">
         <button
           type="submit"
@@ -54,4 +66,4 @@ const DonationForm = ({ selectedDonation, onFormSubmit }) => {
   );
 };
 
-export default DonationForm;
+export default DonationFormDefault;

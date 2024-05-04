@@ -10,6 +10,12 @@ import Register from "./pages/Auth/Register";
 import FurtherRegister from "./pages/Auth/FurtherRegister";
 import useFitDiv from "./hooks/useFitDiv";
 import FinishedOrPending from "./pages/Donor/FinishedOrPending";
+import FilterClothes from "./components/Donor/FilterClothes";
+import FilterToys from "./components/Donor/FilterToys";
+import FilterFood from "./components/Donor/FilterFood";
+import FilterMedicalSupplies from "./components/Donor/FilterMedicalSupplies";
+import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
+import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
 
 export default function App() {
   const ref = useFitDiv();
@@ -28,6 +34,23 @@ export default function App() {
             path="/FinishedOrPendingDonations/*"
             element={<FinishedOrPending />}
           ></Route>
+          <Route path="/filterClothes/*" element={<FilterClothes />}></Route>
+          <Route path="/filterToys/*" element={<FilterToys />}></Route>
+          <Route
+            path="/filterTeaching/*"
+            element={<FilterTeachingPosts />}
+          ></Route>
+          <Route
+            path="/filterMedicalCases/*"
+            element={<FilterMedicalCases />}
+          ></Route>
+
+          <Route path="/filterFood/*" element={<FilterFood />}></Route>
+          <Route
+            path="/filterMeds/*"
+            element={<FilterMedicalSupplies />}
+          ></Route>
+
           <Route
             path="/furtherregister/*"
             element={<FurtherRegister />}
