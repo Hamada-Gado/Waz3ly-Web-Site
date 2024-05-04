@@ -3,15 +3,15 @@ import { Link } from "react-router-dom"; // Assuming you use React Router for na
 import React from "react";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here (e.g., send data to backend)
     console.log(`Username: ${username}, Password: ${password}`);
-    setUsername('');
-    setPassword('');
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -60,7 +60,7 @@ const Login = () => {
         </form>
         <div className="text-sm text-gray-700 text-center">
           Don't have an account?{" "}
-          <Link to="/register" className="text-primary underline">
+          <Link to="/registerform" className="text-primary underline">
             Register here
           </Link>
         </div>
