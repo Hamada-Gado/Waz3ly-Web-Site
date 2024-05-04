@@ -114,7 +114,7 @@ const RegisterForm = () => {
   ];
 
   return (
-    <div className="relative h-full w-full inline-flex justify-center items-center m-auto ">
+    <div className="relative h-full w-full inline-flex justify-center items-center">
       <div
         className="absolute bg-white shadow-md rounded-lg px-8 max-w-md w-full"
         style={{ top: 'clamp(0px, 10vh, calc(100% - 10px)' }}
@@ -176,7 +176,7 @@ const RegisterForm = () => {
         {/* Login Link */}
         <div className="m-2 text-sm text-gray-700 text-center">
           Already have an account?
-          <Link to="/login" className="mx-1 text-primary underline">
+          <Link to="/login" className="mx-1 py-6 text-primary underline">
             Login here
           </Link>
         </div>
