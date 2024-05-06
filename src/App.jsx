@@ -7,6 +7,7 @@ import Footer from "./components/Layout/Footer";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import FurtherRegister from "./pages/Auth/FurtherRegister";
+import ChangePassword from "./pages/Auth/ChangePassword";
 
 //very imp
 import useExpandTFooter from './hooks/useExpandToFooter';
@@ -38,6 +39,7 @@ export default function App() {
 					<Route path="/login/*" element={<Login />}></Route>
 					<Route path="/register/*" element={<Register />}></Route>
 					<Route path="/furtherregister/*" element={<FurtherRegister />}></Route>
+					<Route path="/changepassword/*" element={<ChangePassword />}></Route>
 				</Routes>
 			</div>
 			<Footer />
