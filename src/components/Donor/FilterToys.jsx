@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "./styles.css";
 
 const FilterToys = ({ setFurtherFiltering }) => {
   const [age, setAge] = useState("");
