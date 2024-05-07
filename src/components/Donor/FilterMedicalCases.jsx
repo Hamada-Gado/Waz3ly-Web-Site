@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const FilterMedicalCases = () => {
-  const [specialty, setSpecialty] = useState("");
-  const [organization, setOrganization] = useState("");
-  const [area, setArea] = useState("");
-  const [government, setGorvernment] = useState("");
+  const [specialty, setSpecialty] = useState('');
+  const [organization, setOrganization] = useState('');
+  const [area, setArea] = useState('');
+  const [government, setGorvernment] = useState('');
 
   const handleSubmit = () => {
     const specialtyValue = specialty;
@@ -52,7 +52,7 @@ const FilterMedicalCases = () => {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded"
+          className="px-4 py-2 bg-primary text-white rounded"
         >
           Filter
         </button>

@@ -3,7 +3,7 @@ export const donationsTest = [
     id: 1,
     title: "Donation 1",
     description: "This is donation request 1.",
-    pending: false,
+    pending: true,
     completed: false,
     category: "Food",
     type: "Fruits",

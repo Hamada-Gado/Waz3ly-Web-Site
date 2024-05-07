@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const FilterTeachingPosts = () => {
-  const [subject, setSubject] = useState("");
-  const [area, setArea] = useState("");
-  const [government, setGovernorate] = useState("");
+  const [subject, setSubject] = useState('');
+  const [area, setArea] = useState('');
+  const [government, setGovernorate] = useState('');
 
   const handleSubjectChange = (event) => {
     setSubject(event.target.value);
@@ -55,7 +55,7 @@ const FilterTeachingPosts = () => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="px-4 py-2 bg-primary text-white rounded"
       >
         Filter
       </button>

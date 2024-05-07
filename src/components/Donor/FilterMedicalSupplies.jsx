@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import "./styles.css";
+import React from 'react';
+import { useState } from 'react';
+import './styles.css';
 
 const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
-  const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState('');
 
   const handleSubCategoryChange = (e) => {
     setSubCategory(e.target.value);
@@ -16,7 +16,7 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
 
     setFurtherFiltering({
       subCategoryValue,
-      type: "Medical Supplies",
+      type: 'Medical Supplies',
     });
 
     // Save the values into appropriate variables or perform any other logic
@@ -54,7 +54,7 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
         type="button"
         className="px-4 py-2 bg-red-500 text-black font-bold rounded"
         onClick={() => {
-          setSubCategory("");
+          setSubCategory('');
           setFurtherFiltering(null);
         }}
       >

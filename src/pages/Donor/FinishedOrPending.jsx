@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { donationsTest } from "./data.js";
+import React, { useState } from 'react';
+import { donationsTest } from './data.js';
 
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(donationsTest);
@@ -15,18 +15,18 @@ const FinishedOrPending = () => {
           .map((donation) => (
             <div
               key={donation.id}
-              className="border w-full  border-orange-500 bg-orange-100 p-6 rounded-md transform transition duration-500 ease-in-out hover:scale-100 "
-              style={{ minWidth: "500px" }} // Increase the width here
+              className="border w-full  border-accent bg-background-dark p-6 rounded-md transform transition duration-500 ease-in-out hover:scale-100 "
+              style={{ minWidth: '500px' }} // Increase the width here
             >
               <h2 className="text-3xl text-black">{donation.title}</h2>
               <p className="text-xl text-black">{donation.description}</p>
               {donation.pending && (
                 <div className="flex justify-between">
-                  <span className=" bottom-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-md">
+                  <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
                     <strong className="text-black">ETA: 2 days</strong>
                   </span>
                   <button
-                    className="bg-purple-950 text-white px-2 py-1 rounded-md"
+                    className="bg-secondary text-white px-2 py-1 rounded-md"
                     onClick={() => {
                       setShowDriverInfo(true);
                       setCurrDonation(donation);
@@ -37,7 +37,7 @@ const FinishedOrPending = () => {
                 </div>
               )}
               {donation.completed && (
-                <span className="bottom-2 right-2 bg-lime-400 text-black font-bold px-2 py-1 rounded-md">
+                <span className="bottom-2 right-2 bg-accent text-black font-bold px-2 py-1 rounded-md">
                   Completed
                 </span>
               )}
