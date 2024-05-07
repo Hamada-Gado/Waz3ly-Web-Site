@@ -7,7 +7,6 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
-import ChangePassword from "./pages/Auth/ChangePassword";
 
 import useFitDiv from "./hooks/useFitDiv";
 import FinishedOrPending from "./pages/Donor/FinishedOrPending";
@@ -17,13 +16,6 @@ import FilterFood from "./components/Donor/FilterFood";
 import FilterMedicalSupplies from "./components/Donor/FilterMedicalSupplies";
 import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
 import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
-
-// Admin imports
-import Admin from "./pages/Admin/Admin";
-import AdminListOfUsers from "./pages/Admin/ListOfUsers";
-import AdminRequests from "./pages/Admin/AdminRequest";
-import AdminPasswords from "./components/Admin/NotFound";
-import AdminViewUser from "./components/Admin/NotFound";
 
 export default function App() {
   const ref = useFitDiv();
@@ -38,7 +30,6 @@ export default function App() {
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/changepassword/*" element={<ChangePassword />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
