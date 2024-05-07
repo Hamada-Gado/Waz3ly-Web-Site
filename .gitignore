@@ -1,7 +1,6 @@
 # project
 node_modules
 dist
-db/
 
 # ides
 .vscode

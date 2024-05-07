@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { donationsTest } from './data.js';
+import { useState } from 'react';
+import useFetch from '../../hooks/useFetch';
 
 const FinishedOrPending = () => {
-  const [donations, setDonations] = useState(donationsTest);
+  const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
   const [currDonation, setCurrDonation] = useState(null);
+
+  useFetch('donations', setDonations);
 
   return (
     <div className="py-8 flex flex-col w-full h-full overflow-auto justify-center items-center">

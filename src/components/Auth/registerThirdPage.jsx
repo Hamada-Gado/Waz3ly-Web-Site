@@ -1,9 +1,9 @@
-import { AccountType, OrganizationType } from "../../enums/Enums";
+import { AccountType, OrganizationType } from '../../enums/Enums';
 
 const ThirdPage = ({ formData, ...props }) => {
   const { labelClassName, inputClassName, onChange } = { ...props };
   const selectClassName =
-    "px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1";
+    'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
   return (
     <>
       <div className="flex flex-col">
@@ -11,7 +11,6 @@ const ThirdPage = ({ formData, ...props }) => {
           Account Type:
           <select
             name="accountType"
-            value={formData["accountType"]}
             className={selectClassName}
             onChange={(e) => props.onChange(e)}
             required={true}
@@ -28,7 +27,7 @@ const ThirdPage = ({ formData, ...props }) => {
         </label>
       </div>
 
-      {formData["accountType"] === AccountType.Organization && (
+      {formData['accountType'] === AccountType.Organization && (
         <>
           <div className="flex flex-col">
             <label htmlFor="organizationType" className={labelClassName}>
@@ -36,7 +35,7 @@ const ThirdPage = ({ formData, ...props }) => {
               <select
                 name="organizationType"
                 onChange={(e) => props.onChange(e)}
-                value={formData["organizationType"]}
+                value={formData['organizationType']}
                 className={selectClassName}
                 required
               >
@@ -55,7 +54,7 @@ const ThirdPage = ({ formData, ...props }) => {
               <input
                 name="organizationName"
                 type="text"
-                value={formData["organizationName"]}
+                value={formData['organizationName']}
                 onChange={(e) => props.onChange(e)}
                 className={inputClassName}
                 required
@@ -68,7 +67,7 @@ const ThirdPage = ({ formData, ...props }) => {
               <input
                 name="organizationAddress"
                 type="text"
-                value={formData["organizationAddress"]}
+                value={formData['organizationAddress']}
                 onChange={(e) => props.onChange(e)}
                 className={inputClassName}
                 required
@@ -77,9 +76,9 @@ const ThirdPage = ({ formData, ...props }) => {
           </div>
         </>
       )}
-      {(formData["accountType"] === AccountType.Doctor ||
-        formData["accountType"] === AccountType.Teacher ||
-        formData["accountType"] === AccountType.Organization) && (
+      {(formData['accountType'] === AccountType.Doctor ||
+        formData['accountType'] === AccountType.Teacher ||
+        formData['accountType'] === AccountType.Organization) && (
         <>
           {/* Ask for credentials file upload */}
           <div className="flex flex-col">

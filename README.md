@@ -1,11 +1,20 @@
 # README
 
+## Run
+
+- run `npm install` to install all the dependencies.
+- run `npx json-server --watch db/static/db.json` to start the json server.
+  - note: you can choose another file to run as the database by changing the file path in the command.
+- copy the port number from the terminal and paste it in the `.env` file in the `VITE_PORT` variable.
+- run `npm start` to start the development server.
+
 ## Folder Structure
 
 ```
 src/
 ├── components/  # Reusable UI components
-│   ├── Admin/   # Admin specific components (optional)
+│   ├── Admin/
+  # Admin specific components (optional)
 │   │   └── ...
 │   ├── Donor/  # Donor specific components (optional)
 │   │   └── ...
