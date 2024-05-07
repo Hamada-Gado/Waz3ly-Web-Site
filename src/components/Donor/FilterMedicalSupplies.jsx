@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./styles.css";
 
 const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
   const [subCategory, setSubCategory] = useState("");
@@ -22,15 +23,18 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
   };
 
   return (
-    <form className="mt-4 space-y-2 max-w-56" onSubmit={handleSubmit}>
+    <form
+      className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
+      onSubmit={handleSubmit}
+    >
       <div className="filter-label">
-        <h2 className="filter-title ">
+        <h2 className="filter-title text-xl">
           <strong>
             <u>Filtering Options:</u>
           </strong>
         </h2>
         <select
-          className="filter-input"
+          className="filter-input bg-background-main "
           value={subCategory}
           onChange={handleSubCategoryChange}
         >
@@ -42,13 +46,13 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
       </div>
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="px-4 py-2 bg-primary  text-black font-bold rounded"
       >
         Apply Filter
       </button>
       <button
         type="button"
-        className="px-4 py-2 bg-red-500 text-white rounded"
+        className="px-4 py-2 bg-red-500 text-black font-bold rounded"
         onClick={() => {
           setSubCategory("");
           setFurtherFiltering(null);

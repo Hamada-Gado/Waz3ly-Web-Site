@@ -1,5 +1,5 @@
 import React from "react";
-import { donationsTest } from "/src/pages/Donor/data.js";
+import "./styles.css";
 
 const DonationFormDefault = ({
   selectedDonation,
@@ -64,7 +64,7 @@ const DonationFormDefault = ({
       <div className="flex justify-center">
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded"
+          className="px-4 py-2 bg-primary text-white rounded font-heading text-xl"
         >
           Submit
         </button>

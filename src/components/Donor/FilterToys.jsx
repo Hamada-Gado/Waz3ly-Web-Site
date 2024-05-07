@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./styles.css";
 
 const FilterToys = ({ setFurtherFiltering }) => {
   const [age, setAge] = useState("");
@@ -34,9 +35,12 @@ const FilterToys = ({ setFurtherFiltering }) => {
   };
 
   return (
-    <form className="mt-4 space-y-2 max-w-56" onSubmit={handleSubmit}>
-      <div className="filter-label">
-        <h2 className="filter-title ">
+    <form
+      className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
+      onSubmit={handleSubmit}
+    >
+      <div className="filter-label ">
+        <h2 className="filter-title text-xl">
           <strong>
             <u>Filtering Options:</u>
           </strong>
@@ -116,7 +120,7 @@ const FilterToys = ({ setFurtherFiltering }) => {
             <u>Gender:</u>
           </strong>
           <select
-            className="filter-input"
+            className="filter-input bg-background-main "
             value={gender}
             onChange={handleGenderChange}
             // onInput={(e) => console.log(e.target.value)}
@@ -214,13 +218,13 @@ const FilterToys = ({ setFurtherFiltering }) => {
       </div>
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="px-4 py-2 bg-primary font-bold text-black rounded"
       >
         Apply Filter
       </button>
       <button
         type="button"
-        className="px-4 py-2 bg-red-500 text-white rounded"
+        className="px-4 py-2 bg-red-500 font-bold text-black rounded"
         onClick={() => {
           //uncheck all checkboxes
           document.querySelectorAll('input[type="checkbox"]').forEach((el) => {

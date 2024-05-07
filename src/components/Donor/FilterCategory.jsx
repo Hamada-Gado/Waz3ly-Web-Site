@@ -1,5 +1,6 @@
 import React from "react";
 import { donationsTest } from "/src/pages/Donor/data.js";
+import "./styles.css";
 
 const FilterCategory = ({ setFilter, setFurtherFiltering }) => {
   const distinctCategories = [

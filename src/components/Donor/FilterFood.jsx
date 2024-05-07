@@ -1,26 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import "./styles.css";
 
 const FilterFood = ({ setFurtherFiltering }) => {
   const [type, setType] = useState("");
-
-  // const handleTypeChange = (e) => {
-  //   const value = e.target.value;
-  //   if (e.target.checked) {
-  //     setType((prevType) => [...prevType, value]); // Add the value to the array
-  //   } else {
-  //     setType((prevType) => prevType.filter((item) => item !== value)); // Remove the value from the array
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Save the values into appropriate variables or perform any other logic
-  //   setFurtherFiltering({
-  //     typeValue: type,
-  //     type: "Food",
-  //   });
-  // };
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -37,9 +20,12 @@ const FilterFood = ({ setFurtherFiltering }) => {
   };
 
   return (
-    <form className="mt-4 space-y-2 max-w-56" onSubmit={handleSubmit}>
-      <div className="filter-label">
-        <h2 className="filter-title ">
+    <form
+      className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
+      onSubmit={handleSubmit}
+    >
+      <div className="filter-label text-base font-body">
+        <h2 className="filter-title text-xl ">
           <strong>
             <u>Filtering Options:</u>
           </strong>
@@ -115,13 +101,13 @@ const FilterFood = ({ setFurtherFiltering }) => {
       </div>
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded"
+        className="px-4 py-2 font-bold bg-primary text-black rounded"
       >
         Apply Filter
       </button>
       <button
         type="button"
-        className="px-4 py-2 bg-red-500 text-white rounded"
+        className="px-4 py-2 font-bold bg-red-500 text-black rounded"
         onClick={() => {
           //uncheck all checkboxes
           document.querySelectorAll('input[type="checkbox"]').forEach((el) => {

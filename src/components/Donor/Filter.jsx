@@ -1,8 +1,9 @@
 import React from "react";
+import "./styles.css";
 
 const Filter = ({ setFilter }) => {
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex  flex-col justify-center items-center ">
       <select
         defaultValue={"default"}
         onChange={(e) => setFilter(e.target.value)}
