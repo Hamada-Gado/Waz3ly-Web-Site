@@ -1,12 +1,21 @@
-import './Dashboard.css';
+import "./Dashboard.css";
+
+const users = [
+	{ id: 1, name: 'John Doe', type: 'Donor' },
+	{ id: 2, name: 'Jane Smith', type: 'Organisation' },
+	{ id: 3, name: 'John Smith', type: 'Donor' },
+	{ id: 4, name: 'Jane Doe', type: 'Organisation' },
+	{ id: 5, name: 'michael', type: 'Donor' },
+	{ id: 6, name: 'Omolewa', type: 'Organisation' },
+	{ id: 7, name: 'kunle', type: 'Donor' },
+	{ id: 8, name: 'Seyi', type: 'Organisation' },
+]
 
 function SideBar() {
 	return (
 		<div className="sidebar">
 			<div className="title">
-				<h2>
-					Admin
-				</h2>
+				<h2>Admin</h2>
 			</div>
 			<div className="nav">
 				<a className="sidebar-item" href="/admin/users">
@@ -20,55 +29,72 @@ function SideBar() {
 				<a className="sidebar-item" href="/admin/passwords">
 					Manage Passwords
 				</a>
-
-				<a className="sidebar-item" href="/admin/view-user">
-					View User Details
-				</a>
 			</div>
 		</div>
 	);
 }
 
+function handleView(userId) {
+	// Implement edit functionality for the user
+	console.log(`View user: ${userId}`);
+}
+
+function handleDelete(userId) {
+	// Implement delete functionality for the user
+	console.log(`Delete user: ${userId}`);
+}
+
+function UserItem( {user, onView, onDelete} ) {
+	return (
+		<div className="flex items-center justify-between px-4 py-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200">
+			<div className="flex items-center space-x-3">
+				<span className="text-lg font-medium">{user.name}</span>
+				<span className="text-gray-500 text-sm">{user.type}</span>
+			</div>
+			<div className="flex space-x-2">
+				{onView && (
+					<button
+						type="button"
+						className="view-but"
+						onClick={() => onView(user.id)}
+					>
+						View
+					</button>
+				)}
+				{onDelete && (
+					<button
+						type="button"
+						className="delete-but"
+						onClick={() => onDelete(user.id)}
+					>
+						Delete
+					</button>
+				)}
+			</div>
+		</div>
+	);
+}
+
+function UserList ({ users , onView, onDelete }) {
+	return (
+		<div className="user-list">
+			{users.map((user) => (
+				<UserItem key={user.id} user={user} onView={onView} onDelete={onDelete} />
+			))}
+		</div>
+	);
+}
 
 function AdminListOfUsers() {
 	return (
 		<div className="content-container">
-			<div className="title">
-				List of Users
-			</div>
+			<div className="title">List of Users</div>
 			<div className="content">
-				<table>
-					<tr>
-						<th>Username</th>
-						<th>Age</th>
-						<th>Role</th>
-					</tr>
-					<tr>
-						<td>John Doe</td>
-						<td>24</td>
-						<td>Donor</td>
-					</tr>
-					<tr>
-						<td>Jane Doe</td>
-						<td>36</td>
-						<td>Organisation</td>
-					</tr>
-					<tr>
-						<td>John Smith</td>
-						<td>42</td>
-						<td>Donor</td>
-					</tr>
-					<tr>
-						<td>Jane Smith</td>
-						<td>29</td>
-						<td>Organisation</td>
-					</tr>
-				</table>
+			<UserList users={users} onView={handleView} onDelete={handleDelete} />
 			</div>
 		</div>
 	);
 }
-
 
 export default function Admin() {
 	return (
@@ -77,13 +103,18 @@ export default function Admin() {
 			<AdminListOfUsers />
 		</div>
 	);
-};
-
+}
 
 
 /*
- * link to the page of list of users (Create a page to for a list of all Organisation & Donors  #14)
- * link to the page for managing requests (Manage Organisation and Donor Requests #6)
- * link to the page for managing passwords (Create a page to manage the passwords #8)
- * link to the page for viewing user details (Create a Page to view a specific Organisation Details #13)
-*/ 
+	* FOR THE SIDE BAR:
+		* link to the page of list of users (Create a page to for a list of all Organisation & Donors	#14)
+		* link to the page for managing requests (Manage Organisation and Donor Requests #6)
+		* link to the page for managing passwords (Create a page to manage the passwords #8)
+		* link to the page for viewing user details (Create a Page to view a specific Organisation Details #13)
+	* FOR THE LIST OF USERS:
+		* view a list of all Donors
+		* View a list of all registered Organisations
+		* Filter the Organisations
+		* Delete Donors or Organisations
+ */
