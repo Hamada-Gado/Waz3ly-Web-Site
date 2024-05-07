@@ -5,7 +5,7 @@ import ThirdPage from '/src/components/Auth/registerThirdPage';
 import { AccountType } from '../../enums/Enums';
 import PageIndicator from '../../components/Layout/PageIndicator';
 
-const RegisterForm = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -185,4 +185,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default Register;

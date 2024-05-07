@@ -6,7 +6,7 @@ import Donor from './pages/Donor/Donor';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import Login from './pages/Auth/Login';
-import RegisterForm from './pages/Auth/RegisterForm';
+import Register from './pages/Auth/Register';
 
 import useFitDiv from './hooks/useFitDiv';
 import FinishedOrPending from './pages/Donor/FinishedOrPending';
@@ -26,28 +26,31 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/admin/*" element={<Admin />}></Route>
-          <Route path="/organization/*" element={<Organization />}></Route>
-          <Route path="/donor/*" element={<Donor />}></Route>
-          <Route path="/login/*" element={<Login />}></Route>
-          <Route path="/registerForm/*" element={<RegisterForm />}></Route>
+          <Route path="/organization" element={<Organization />}></Route>
+          <Route path="/donor" element={<Donor />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           <Route
-            path="/FinishedOrPendingDonations/*"
+            path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
           ></Route>
-          <Route path="/filterClothes/*" element={<FilterClothes />}></Route>
-          <Route path="/filterToys/*" element={<FilterToys />}></Route>
           <Route
-            path="/filterTeaching/*"
+            path="/donor/filterClothes"
+            element={<FilterClothes />}
+          ></Route>
+          <Route path="/donor/filterToys" element={<FilterToys />}></Route>
+          <Route
+            path="/donor/filterTeaching"
             element={<FilterTeachingPosts />}
           ></Route>
           <Route
-            path="/filterMedicalCases/*"
+            path="/donor/filterMedicalCases"
             element={<FilterMedicalCases />}
           ></Route>
 
-          <Route path="/filterFood/*" element={<FilterFood />}></Route>
+          <Route path="/donor/filterFood" element={<FilterFood />}></Route>
           <Route
-            path="/filterMeds/*"
+            path="/donor/filterMeds"
             element={<FilterMedicalSupplies />}
           ></Route>
         </Routes>
