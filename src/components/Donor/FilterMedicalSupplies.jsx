@@ -1,21 +1,20 @@
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
 const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
-  const [subCategory, setSubCategory] = useState('');
+  const [subCategory, setSubCategory] = useState("");
 
   const handleSubCategoryChange = (e) => {
     setSubCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
     const subCategoryValue = subCategory;
 
     setFurtherFiltering({
       subCategoryValue,
-      type: 'Medical Supplies',
+      type: "Medical Supplies",
     });
 
     // Save the values into appropriate variables or perform any other logic
@@ -24,7 +23,12 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!subCategory) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label">
         <h2 className="filter-title text-xl">
@@ -53,7 +57,7 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
         type="button"
         className="px-4 py-2 bg-red-500 text-black font-bold rounded"
         onClick={() => {
-          setSubCategory('');
+          setSubCategory("");
           setFurtherFiltering(null);
         }}
       >

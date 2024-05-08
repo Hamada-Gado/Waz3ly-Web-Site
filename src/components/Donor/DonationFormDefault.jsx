@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import useUpdate from "../../hooks/useUpdate";
 
 const DonationFormDefault = ({
   selectedDonation,
@@ -12,6 +13,9 @@ const DonationFormDefault = ({
       prevSelectedDonation.pending = true;
       prevSelectedDonation.completed =
         new Date() > new Date(event.target.pickupTime.value);
+
+      useUpdate("donations/" + prevSelectedDonation.id, prevSelectedDonation);
+
       return prevSelectedDonation;
     });
 
