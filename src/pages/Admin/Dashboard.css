@@ -30,7 +30,7 @@
 	.sidebar .nav {
 		@apply
 		grid
-		grid-rows-3
+		grid-rows-2
 		self-start
 		gap-6
 	}
@@ -48,6 +48,7 @@
 		h-full w-full
 		overflow-auto
 		pl-8
+		pr-4
 		grid
 		grid-rows-[15%_85%]
 	}

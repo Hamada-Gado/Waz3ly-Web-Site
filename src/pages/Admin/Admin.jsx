@@ -1,15 +1,6 @@
+import React, { useState, useEffect, Fragment } from 'react';
+import useFetch from '../../hooks/useFetch';
 import "./Dashboard.css";
-
-const users = [
-	{ id: 1, name: 'John Doe', type: 'Donor' },
-	{ id: 2, name: 'Jane Smith', type: 'Organisation' },
-	{ id: 3, name: 'John Smith', type: 'Donor' },
-	{ id: 4, name: 'Jane Doe', type: 'Organisation' },
-	{ id: 5, name: 'michael', type: 'Donor' },
-	{ id: 6, name: 'Omolewa', type: 'Organisation' },
-	{ id: 7, name: 'kunle', type: 'Donor' },
-	{ id: 8, name: 'Seyi', type: 'Organisation' },
-]
 
 function SideBar() {
 	return (
@@ -18,10 +9,6 @@ function SideBar() {
 				<h2>Admin</h2>
 			</div>
 			<div className="nav">
-				<a className="sidebar-item" href="/admin/users">
-					List of Users
-				</a>
-
 				<a className="sidebar-item" href="/admin/requests">
 					Manage Requests
 				</a>
@@ -86,6 +73,8 @@ function UserList ({ users , onView, onDelete }) {
 }
 
 function AdminListOfUsers() {
+	const [users, setUsers] = useState([]);
+	useFetch('list of users for admin', setUsers);
 	return (
 		<div className="content-container">
 			<div className="title">List of Users</div>
