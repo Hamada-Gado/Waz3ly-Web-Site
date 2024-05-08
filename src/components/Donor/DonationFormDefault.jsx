@@ -1,5 +1,5 @@
-import React from 'react';
-import useUpdate from '../../hooks/useUpdate';
+import React from "react";
+import useUpdate from "../../hooks/useUpdate";
 
 const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
   const handleSubmit = (event) => {
@@ -10,7 +10,7 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
       prevSelectedDonation.completed =
         new Date() > new Date(event.target.pickupTime.value);
 
-      useUpdate('donations/' + prevSelectedDonation?.id, prevSelectedDonation);
+      useUpdate("donations/" + prevSelectedDonation?.id, prevSelectedDonation);
       return null;
     });
   };
@@ -33,6 +33,7 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
           type="number"
           name="quantity"
           required
+          min="1"
           className="mt-1 p-2 border rounded-md w-full"
         />
       </label>

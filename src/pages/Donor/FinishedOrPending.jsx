@@ -13,7 +13,9 @@ const FinishedOrPending = () => {
       {!donations && <h1>Loading...</h1>}
       {donations && (
         <div className="py-8 flex flex-col w-full h-full overflow-auto justify-center items-center">
-          <h1 className="text-3xl font-bold">Pending/Completed Donations</h1>
+          <h1 className="text-3xl font-bold text-primary text-center">
+            Pending/Completed Donations
+          </h1>
           <div className="space-y-4">
             {donations
               .filter((donation) => donation.pending || donation.completed)
@@ -28,10 +30,12 @@ const FinishedOrPending = () => {
                   {donation.pending && (
                     <div className="flex justify-between">
                       <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
-                        <strong className="text-black">ETA: 2 days</strong>
+                        <strong className="text-black font-bold">
+                          ETA: 2 days
+                        </strong>
                       </span>
                       <button
-                        className="bg-secondary text-white px-2 py-1 rounded-md"
+                        className="bg-secondary text-black font-bold px-2 py-1 rounded-md"
                         onClick={() => {
                           setShowDriverInfo(true);
                           setCurrDonation(donation);

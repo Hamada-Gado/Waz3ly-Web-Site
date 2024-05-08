@@ -13,7 +13,7 @@
       "id": "2",
       "title": "Donation 2",
       "description": "This is donation request 2.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "category": "Toys",
       "age": "0-10",
@@ -84,7 +84,7 @@
       "id": "9",
       "title": "Donation 9",
       "description": "This is donation request 9.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "category": "Food",
       "type": "Vegetables"
