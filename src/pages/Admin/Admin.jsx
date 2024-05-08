@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import useDelete from '../../hooks/useDelete'; // takes an endpoint and the user id and a success callback and an error callback
 import useFetch from '../../hooks/useFetch';
 import "./Dashboard.css";
 
@@ -26,12 +27,13 @@ function handleView(userId) {
 	console.log(`View user: ${userId}`);
 }
 
-function handleDelete(userId) {
+function handleDelete(data, setData, userId) {
 	// Implement delete functionality for the user
 	console.log(`Delete user: ${userId}`);
+	useDelete('list_of_users_for_admin', data, setData, userId);
 }
 
-function UserItem( {user, onView, onDelete} ) {
+function UserItem( {user, onView, onDelete, data, setData} ) {
 	return (
 		<div className="flex items-center justify-between px-4 py-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200">
 			<div className="flex items-center space-x-3">
@@ -52,7 +54,7 @@ function UserItem( {user, onView, onDelete} ) {
 					<button
 						type="button"
 						className="delete-but"
-						onClick={() => onDelete(user.id)}
+						onClick={() => onDelete(data, setData, user.id)}
 					>
 						Delete
 					</button>
@@ -62,11 +64,11 @@ function UserItem( {user, onView, onDelete} ) {
 	);
 }
 
-function UserList ({ users , onView, onDelete }) {
+function UserList ({ users , onView, onDelete , data, setData }) {
 	return (
 		<div className="user-list">
 			{users.map((user) => (
-				<UserItem key={user.id} user={user} onView={onView} onDelete={onDelete} />
+				<UserItem key={user.id} user={user} onView={onView} onDelete={onDelete} data={data} setData={setData} />
 			))}
 		</div>
 	);
@@ -74,12 +76,18 @@ function UserList ({ users , onView, onDelete }) {
 
 function AdminListOfUsers() {
 	const [users, setUsers] = useState([]);
-	useFetch('list of users for admin', setUsers);
+	useFetch('list_of_users_for_admin', setUsers);
 	return (
 		<div className="content-container">
 			<div className="title">List of Users</div>
 			<div className="content">
-			<UserList users={users} onView={handleView} onDelete={handleDelete} />
+			<UserList
+				users={users}
+				onView={handleView}
+				onDelete={handleDelete}
+				data={users}
+				setData={setUsers}
+			/>
 			</div>
 		</div>
 	);
