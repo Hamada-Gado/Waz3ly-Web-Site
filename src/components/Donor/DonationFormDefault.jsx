@@ -1,10 +1,7 @@
 import React from 'react';
+import useUpdate from '../../hooks/useUpdate';
 
-const DonationFormDefault = ({
-  selectedDonation,
-  setSelectedDonations,
-  onFormSubmit,
-}) => {
+const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(selectedDonation);
@@ -12,10 +9,10 @@ const DonationFormDefault = ({
       prevSelectedDonation.pending = true;
       prevSelectedDonation.completed =
         new Date() > new Date(event.target.pickupTime.value);
-      return prevSelectedDonation;
-    });
 
-    onFormSubmit();
+      useUpdate('donations/' + prevSelectedDonation?.id, prevSelectedDonation);
+      return null;
+    });
   };
 
   return (

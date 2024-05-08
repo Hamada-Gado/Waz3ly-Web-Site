@@ -8,6 +8,8 @@ import FilterToys from './FilterToys';
 import FilterMedicalSupplies from './FilterMedicalSupplies';
 import FilterBloodDonations from './FilterBloodDonations';
 import FilterSchoolSupplies from './FilterSchoolSupplies';
+import FilterMedicalCases from './FilterMedicalCases';
+import FilterTeachingPosts from './FilterTeachingPosts';
 import useFetch from '../../hooks/useFetch';
 
 const DonationsList = () => {
@@ -79,6 +81,29 @@ const DonationsList = () => {
               donation.supplyType === furtherFiltering?.supplyValue
             );
           });
+        case 'Medical Cases':
+          return donations.filter((donation) => {
+            return (
+              !donation.pending &&
+              !donation.completed &&
+              donation.category === 'Medical Cases' &&
+              (donation.specialty === furtherFiltering?.specialtyValue ||
+                donation.organization === furtherFiltering?.organizationValue ||
+                donation.area === furtherFiltering?.areaValue ||
+                donation.governorate === furtherFiltering?.governmentValue)
+            );
+          });
+        case 'Teaching Posts':
+          return donations.filter((donation) => {
+            return (
+              !donation.pending &&
+              !donation.completed &&
+              donation.category === 'Teaching Posts' &&
+              (donation.subject === furtherFiltering?.subjectValue ||
+                donation.area === furtherFiltering?.areaValue ||
+                donation.governorate === furtherFiltering?.governorateValue)
+            );
+          });
         default:
           break;
       }
@@ -91,12 +116,6 @@ const DonationsList = () => {
         );
       });
     }
-  };
-  const handleFormSubmit = () => {
-    // setDonations(
-    //   donations.filter((donation) => donation.id !== selectedDonation.id)
-    // );
-    setSelectedDonation(null);
   };
 
   return (
@@ -121,6 +140,14 @@ const DonationsList = () => {
               )) ||
               (filter === 'Blood Donation' && (
                 <FilterBloodDonations
+                  setFurtherFiltering={setFurtherFiltering}
+                />
+              )) ||
+              (filter === 'Medical Cases' && (
+                <FilterMedicalCases setFurtherFiltering={setFurtherFiltering} />
+              )) ||
+              (filter === 'Teaching Posts' && (
+                <FilterTeachingPosts
                   setFurtherFiltering={setFurtherFiltering}
                 />
               )) ||
@@ -169,7 +196,6 @@ const DonationsList = () => {
                   <DonationFormDefault
                     selectedDonation={selectedDonation}
                     setSelectedDonations={setSelectedDonation}
-                    onFormSubmit={handleFormSubmit}
                   />
                 )}
               </div>

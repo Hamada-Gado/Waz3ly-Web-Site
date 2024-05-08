@@ -1,16 +1,16 @@
 {
   "donations": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Donation 1",
       "description": "This is donation request 1.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "category": "Food",
       "type": "Fruits"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Donation 2",
       "description": "This is donation request 2.",
       "pending": false,
@@ -21,7 +21,7 @@
       "subCategory": "Dolls"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Donation 3",
       "description": "This is donation request 3.",
       "pending": false,
@@ -32,7 +32,7 @@
       "season": "Winter"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Donation 4",
       "description": "This is donation request 4.",
       "pending": false,
@@ -43,7 +43,7 @@
       "season": "Summer"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Donation 5",
       "description": "This is donation request 5.",
       "pending": false,
@@ -54,7 +54,7 @@
       "subCategory": "Outdoor"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Donation 6",
       "description": "This is donation request 6.",
       "pending": false,
@@ -63,7 +63,7 @@
       "supplyType": "Stationary"
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Donation 7",
       "description": "This is donation request 7.",
       "pending": false,
@@ -72,7 +72,7 @@
       "subCategory": "Medication"
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Donation 8",
       "description": "This is donation request 8.",
       "pending": false,
@@ -81,7 +81,7 @@
       "organization": "Governorate"
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Donation 9",
       "description": "This is donation request 9.",
       "pending": false,
@@ -90,7 +90,7 @@
       "type": "Vegetables"
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Donation 10",
       "description": "This is donation request 10.",
       "pending": false,
@@ -99,13 +99,59 @@
       "organization": "Hospital"
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Donation 11",
       "description": "This is donation request 11.",
       "pending": false,
       "completed": false,
       "category": "School Supplies",
       "supplyType": "Books"
+    },
+    {
+      "id": "12",
+      "title": "Donation 12",
+      "description": "This is donation request 12.",
+      "pending": false,
+      "completed": false,
+      "category": "Medical Cases",
+      "specialty": "Surgeon",
+      "organization": "Org1",
+      "area": "Area1",
+      "governorate": "Gov1"
+    },
+    {
+      "id": "13",
+      "title": "Donation 13",
+      "description": "This is donation request 13.",
+      "pending": false,
+      "completed": false,
+      "category": "Medical Cases",
+      "specialty": "Dentists",
+      "organization": "Org2",
+      "area": "Area2",
+      "governorate": "Gov2"
+    },
+    {
+      "id": "14",
+      "title": "Donation 14",
+      "description": "This is donation request 14.",
+      "pending": false,
+      "completed": false,
+      "category": "Teaching Posts",
+      "subject": "Math",
+      "area": "Area1",
+      "governorate": "Gov1"
+    },
+    {
+      "id": "15",
+      "title": "Donation 15",
+      "description": "This is donation request 15.",
+      "pending": false,
+      "completed": false,
+      "category": "Teaching Posts",
+      "subject": "Biology",
+      "area": "Area2",
+      "governorate": "Gov2"
     }
   ]
 }
