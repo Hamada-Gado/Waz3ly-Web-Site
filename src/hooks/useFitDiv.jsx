@@ -7,7 +7,11 @@ const useFitDiv = () => {
     const handleResize = () => setInnerHeight(window.innerHeight);
     window.addEventListener('resize', handleResize);
 
-    if (!ref.current) return;
+    if (!ref.current) {
+      console.warn('Ref not found');
+      return;
+    }
+
     const { y } = ref.current.getBoundingClientRect();
     const { height: footer_height } = document
       .querySelector('footer')
