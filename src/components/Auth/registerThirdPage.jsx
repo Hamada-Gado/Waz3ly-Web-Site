@@ -18,11 +18,14 @@ const ThirdPage = ({ formData, ...props }) => {
             <option value="" disabled>
               -- Select an option --
             </option>
-            {Object.values(AccountType).map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
+            {Object.values(AccountType).map(
+              (value) =>
+                value !== AccountType.Admin && (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                )
+            )}
           </select>
         </label>
       </div>

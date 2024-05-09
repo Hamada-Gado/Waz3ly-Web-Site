@@ -19,7 +19,7 @@ export default function App() {
       <div id="main-content" className="h-full overflow-auto" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/admin/" element={<Admin />}></Route>
           <Route path="/organization" element={<Organization />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -28,6 +28,14 @@ export default function App() {
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
           ></Route>
+          <Route
+            path="*"
+            element={
+              <div className="bg-red-500 text-white text-center p-4">
+                <h1>404 Not Found</h1>
+              </div>
+            }
+          />
         </Routes>
       </div>
       <Footer />
