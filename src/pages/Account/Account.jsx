@@ -4,6 +4,8 @@ import Page from '/src/components/Auth/registerPage';
 import ThirdPage from '/src/components/Auth/registerThirdPage';
 import { AccountType } from '../../enums/Enums';
 import PageIndicator from '../../components/Layout/PageIndicator';
+import usePost from '../../hooks/usePost';
+import useUpdate from '../../hooks/useUpdate';
 
 const Account = ({ title, initFormData, onEdit }) => {
   const [formData, setFormData] = useState(
@@ -59,10 +61,19 @@ const Account = ({ title, initFormData, onEdit }) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('userData', JSON.stringify(formData));
 
+    console.log('Registering');
+    console.log(formData);
+    if (title === 'Edit Profile') {
+      useUpdate('users', formData, formData.id);
+    } else {
+      const { id } = await usePost('users', formData);
+      formData.id = id;
+    }
+
+    localStorage.setItem('userData', JSON.stringify(formData));
     if (!onEdit) {
       const path =
         formData.accountType === AccountType.Organization
@@ -161,19 +172,22 @@ const Account = ({ title, initFormData, onEdit }) => {
               setPageNum(pageNum + 1);
             }}
           >
-            <select
-              name="gender"
-              value={formData['gender']}
-              onChange={handleChange}
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
-              disabled={title === 'Edit Profile'}
-            >
-              <option value="" disabled>
-                -- Select an option --
-              </option>
-              <option value="Male">Male</option>
-              <option value="female">female</option>
-            </select>
+            <label className={labelClassName}>
+              Gender:
+              <select
+                name="gender"
+                value={formData['gender']}
+                onChange={handleChange}
+                className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+                disabled={title === 'Edit Profile'}
+              >
+                <option value="" disabled>
+                  -- Select an option --
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">female</option>
+              </select>
+            </label>
 
             <Page
               pageProps={secondPageProps}
