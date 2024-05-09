@@ -60,7 +60,7 @@ const Login = () => {
         </form>
         <div className="text-sm text-gray-700 text-center">
           Don't have an account?{" "}
-          <Link to="/registerform" className="text-primary underline">
+          <Link to="/register" className="text-primary underline">
             Register here
           </Link>
         </div>
