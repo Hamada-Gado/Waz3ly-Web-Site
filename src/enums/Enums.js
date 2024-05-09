@@ -3,7 +3,6 @@ export const AccountType = {
   Doctor: 'Doctor',
   Teacher: 'Teacher',
   Organization: 'Organization',
-  DonorReciever: 'Donor Reciever',
 };
 
 export const OrganizationType = {
