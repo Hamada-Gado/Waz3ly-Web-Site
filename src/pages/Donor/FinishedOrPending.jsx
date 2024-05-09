@@ -1,6 +1,44 @@
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-
+function getDesc(donation) {
+  switch (donation.category) {
+    case "Clothing":
+      return `category: ${donation.category},\n
+              Age: ${donation.age},\n
+              Gender: ${donation.gender},\n
+              Season: ${donation.season}`;
+    case "Food":
+      return `category: ${donation.category},\n
+      Type: ${donation.type}`;
+    case "Toys":
+      return `category: ${donation.category},\n
+              Age: ${donation.age},\n
+              gender: ${donation.gender},\n
+              Sub Category: ${donation.subCategory}`;
+    case "Medical Supplies":
+      return `category: ${donation.category},\n
+      Sub Category: ${donation.subCategory}`;
+    case "Blood Donation":
+      return `category: ${donation.category},\n
+      Organization: ${donation.organization}`;
+    case "School Supplies":
+      return `category: ${donation.category},\n
+        Supply Type: ${donation.supplyType}`;
+    case "Medical Cases":
+      return `category: ${donation.category},\n
+      Specialty: ${donation.specialty},\n
+              Organization: ${donation.organization},\n
+              Area: ${donation.area},\n
+              Governorate: ${donation.governorate}`;
+    case "Teaching Posts":
+      return `category: ${donation.category},\n
+      Subject: ${donation.subject},\n
+              Area: ${donation.area},\n
+              Governorate: ${donation.governorate}`;
+    default:
+      return "";
+  }
+}
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
@@ -12,7 +50,7 @@ const FinishedOrPending = () => {
     <>
       {!donations && <h1>Loading...</h1>}
       {donations && (
-        <div className="py-8 flex flex-col w-full h-full overflow-auto justify-center items-center">
+        <div className="py-8 flex flex-col w-full h-full overflow-auto items-center">
           <h1 className="text-3xl font-bold text-primary text-center">
             Pending/Completed Donations
           </h1>
@@ -26,7 +64,13 @@ const FinishedOrPending = () => {
                   style={{ minWidth: "500px" }} // Increase the width here
                 >
                   <h2 className="text-3xl text-black">{donation.title}</h2>
-                  <p className="text-xl text-black">{donation.description}</p>
+                  {getDesc(donation)
+                    .split(",\n")
+                    .map((desc, index) => (
+                      <p key={index} className="text-base font-body text-black">
+                        {desc}
+                      </p>
+                    ))}
                   {donation.pending && (
                     <div className="flex justify-between">
                       <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
