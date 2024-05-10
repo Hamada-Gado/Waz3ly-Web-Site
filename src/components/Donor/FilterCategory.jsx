@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const FilterCategory = ({ donations, setFilter, setFurtherFiltering }) => {
   const distinctCategories = [
@@ -15,12 +15,18 @@ const FilterCategory = ({ donations, setFilter, setFurtherFiltering }) => {
         }}
         className="border-2 border-black bg-white text-center text-black py-2 px-4 rounded-md shadow-md"
       >
-        <option value="" disabled={true}>
-          Choose a Category
+        <option value="" className="text-base font-body" disabled={true}>
+          CHOOSE A CATEGORY
         </option>
-        <option value="">All</option>
+        <option className="text-base font-body" value="">
+          All
+        </option>
         {distinctCategories.map((category) => (
-          <option key={category} value={category}>
+          <option
+            key={category}
+            className="font-body text-base"
+            value={category}
+          >
             {category}
           </option>
         ))}

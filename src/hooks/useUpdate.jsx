@@ -2,16 +2,15 @@ const useUpdate = (endpoint, body) => {
   const PORT = import.meta.env.VITE_PORT;
 
   fetch(`http://localhost:${PORT}/${endpoint}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   })
     .then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error('Failed to update');
+        throw new Error("Failed to update");
       }
     })
     .then((data) => console.log(data))

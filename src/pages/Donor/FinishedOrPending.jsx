@@ -5,20 +5,22 @@ const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
   const [currDonation, setCurrDonation] = useState(null);
-
   useFetch("donations", setDonations);
 
   return (
     <>
       {!donations && <h1>Loading...</h1>}
       {donations && (
-        <div className="py-8 flex flex-col w-full h-full overflow-auto justify-center items-center">
-          <h1 className="text-3xl font-bold text-primary text-center">
+        <div className="py-8 flex flex-col w-full overflow-auto h-full items-center">
+          <h1 className="text-3xl font-bold font-heading  text-primary text-center">
             Pending/Completed Donations
           </h1>
           <div className="space-y-4">
             {donations
-              .filter((donation) => donation.pending || donation.completed)
+              .filter(
+                (donation) =>
+                  donation.accepted || donation.pending || donation.completed
+              )
               .map((donation) => (
                 <div
                   key={donation.id}
@@ -27,24 +29,58 @@ const FinishedOrPending = () => {
                 >
                   <h2 className="text-3xl text-black">{donation.title}</h2>
                   <p className="text-xl text-black">{donation.description}</p>
-                  {donation.pending && (
-                    <div className="flex justify-between">
-                      <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
-                        <strong className="text-black font-bold">
-                          ETA: 2 days
-                        </strong>
-                      </span>
-                      <button
-                        className="bg-secondary text-black font-bold px-2 py-1 rounded-md"
-                        onClick={() => {
-                          setShowDriverInfo(true);
-                          setCurrDonation(donation);
-                        }}
-                      >
-                        DRIVER INFORMATION
-                      </button>
-                    </div>
-                  )}
+                  {donation.pending &&
+                    !donation.accepted &&
+                    (donation.category === "Medical Cases" ||
+                      donation.category === "Teaching Posts" ||
+                      donation.category === "Blood Donation") && (
+                      <div className="flex justify-between">
+                        <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
+                          <strong className="text-black font-bold">
+                            Request Is Being Reviewed
+                          </strong>
+                        </span>
+                      </div>
+                    )}
+                  {!donation.pending &&
+                    donation.accepted &&
+                    (donation.category === "Medical Cases" ||
+                      donation.category === "Teaching Posts" ||
+                      donation.category === "Blood Donation") && (
+                      <div className="flex justify-between">
+                        <span className=" bottom-2 right-2 bg-green-500 text-white px-2 py-1 rounded-md">
+                          <strong className="text-black font-bold">
+                            Request Approved
+                          </strong>
+                        </span>
+                      </div>
+                    )}
+                  {donation.pending &&
+                    donation.category !== "Medical Cases" &&
+                    donation.category !== "Teaching Posts" &&
+                    donation.category !== "Blood Donation" && (
+                      <div className="flex justify-between">
+                        <span className=" bottom-2 right-2 bg-accent text-white px-2 py-1 rounded-md">
+                          <strong className="text-black font-bold">
+                            ETA:{" "}
+                            {donation.pickupDate.split("-")[2] -
+                              new Date()
+                                .toLocaleDateString()
+                                .split("/")[1]}{" "}
+                            days
+                          </strong>
+                        </span>
+                        <button
+                          className="bg-secondary text-black font-bold px-2 py-1 rounded-md"
+                          onClick={() => {
+                            setShowDriverInfo(true);
+                            setCurrDonation(donation);
+                          }}
+                        >
+                          DRIVER INFORMATION
+                        </button>
+                      </div>
+                    )}
                   {donation.completed && (
                     <span className="bottom-2 right-2 bg-accent text-black font-bold px-2 py-1 rounded-md">
                       Completed
