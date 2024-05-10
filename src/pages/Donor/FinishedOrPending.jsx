@@ -1,6 +1,44 @@
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-
+function getDesc(donation) {
+  switch (donation.category) {
+    case "Clothing":
+      return `category: ${donation.category},\n
+              Age: ${donation.age},\n
+              Gender: ${donation.gender},\n
+              Season: ${donation.season}`;
+    case "Food":
+      return `category: ${donation.category},\n
+      Type: ${donation.type}`;
+    case "Toys":
+      return `category: ${donation.category},\n
+              Age: ${donation.age},\n
+              gender: ${donation.gender},\n
+              Sub Category: ${donation.subCategory}`;
+    case "Medical Supplies":
+      return `category: ${donation.category},\n
+      Sub Category: ${donation.subCategory}`;
+    case "Blood Donation":
+      return `category: ${donation.category},\n
+      Organization: ${donation.organization}`;
+    case "School Supplies":
+      return `category: ${donation.category},\n
+        Supply Type: ${donation.supplyType}`;
+    case "Medical Cases":
+      return `category: ${donation.category},\n
+      Specialty: ${donation.specialty},\n
+              Organization: ${donation.organization},\n
+              Area: ${donation.area},\n
+              Governorate: ${donation.governorate}`;
+    case "Teaching Posts":
+      return `category: ${donation.category},\n
+      Subject: ${donation.subject},\n
+              Area: ${donation.area},\n
+              Governorate: ${donation.governorate}`;
+    default:
+      return "";
+  }
+}
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
@@ -27,8 +65,22 @@ const FinishedOrPending = () => {
                   className="border w-full  border-accent bg-background-dark p-6 rounded-md transform transition duration-500 ease-in-out hover:scale-100 "
                   style={{ minWidth: "500px" }} // Increase the width here
                 >
-                  <h2 className="text-3xl text-black">{donation.title}</h2>
-                  <p className="text-xl text-black">{donation.description}</p>
+                  <h2 className="text-2xl text-body font-heading text-black">
+                    {donation.title}
+                  </h2>
+                  {getDesc(donation)
+                    .split(",\n")
+                    .map((desc, index) => (
+                      <p key={index} className="text-base font-body text-black">
+                        <strong>
+                          {desc.split(":")[0].charAt(0).toUpperCase() +
+                            desc.split(":")[0].slice(1)}{" "}
+                          :{" "}
+                        </strong>
+                        {desc.split(":")[1].charAt(0).toUpperCase() +
+                          desc.split(":")[1].slice(1)}
+                      </p>
+                    ))}
                   {donation.pending &&
                     !donation.accepted &&
                     (donation.category === "Medical Cases" ||
@@ -93,6 +145,14 @@ const FinishedOrPending = () => {
                           Driver Information
                         </h3>
                         <p className="md:font-bold">Driver Name: John Doe</p>
+                        <p className="md:font-bold">
+                          PickUp Vehicle: {donation.pickupVehicle}{" "}
+                          {donation.pickupVehicle === "Car"
+                            ? "🚗"
+                            : donation.pickupVehicle === "Truck"
+                            ? "🚚"
+                            : "🏍️"}
+                        </p>
                         <p className="md:font-bold">
                           Phone Number: 123-456-7890
                         </p>
