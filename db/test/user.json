@@ -47,6 +47,22 @@
       "organizationName": "NP",
       "organizationType": "Orphanage",
       "organizationAddress": "15 Hassan Aflaton"
+    },
+    {
+      "username": "ahmedgado",
+      "firstName": "Ahmed",
+      "lastName": "Gado",
+      "email": "Ahmedgado0100@gmail.com",
+      "password": "2535234523532523",
+      "gender": "Male",
+      "contactNumber": "01019403379",
+      "area": "Naser City",
+      "governorate": "Cairo",
+      "accountType": "Organization",
+      "organizationName": "NP",
+      "organizationType": "Charity",
+      "organizationAddress": "15 Aflaton",
+      "id": "1752"
     }
   ]
 }

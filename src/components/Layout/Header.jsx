@@ -21,12 +21,15 @@ const Header = () => {
       </button>
 
       <nav className="flex space-x-4">
-        <Link
-          to={'/settings'}
+        <button
+          onClick={() => {
+            if (localStorage.getItem('defaultPath')) navigate('/settings');
+            else navigate('/');
+          }}
           className="text-text hover:text-primary font-base"
         >
           Settings
-        </Link>
+        </button>
         <Link
           to={'/'}
           replace={true}

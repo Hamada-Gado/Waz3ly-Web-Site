@@ -7,7 +7,7 @@ import PageIndicator from '../../components/Layout/PageIndicator';
 import usePost from '../../hooks/usePost';
 import useUpdate from '../../hooks/useUpdate';
 
-const Account = ({ title, initFormData, onEdit }) => {
+const Account = ({ title, initFormData }) => {
   const [formData, setFormData] = useState(
     initFormData || {
       username: '',
@@ -72,16 +72,12 @@ const Account = ({ title, initFormData, onEdit }) => {
     }
 
     localStorage.setItem('userData', JSON.stringify(formData));
-    if (!onEdit) {
-      const path =
-        formData.accountType === AccountType.Organization
-          ? '/organization'
-          : '/donor';
-      localStorage.setItem('defaultPath', path);
-      navigate(path, { replace: true });
-    } else {
-      onEdit(formData);
-    }
+    const path =
+      formData.accountType === AccountType.Organization
+        ? '/organization'
+        : '/donor';
+    localStorage.setItem('defaultPath', path);
+    navigate(path, { replace: true });
   };
 
   const firstPageProps = [

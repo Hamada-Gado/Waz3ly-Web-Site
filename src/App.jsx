@@ -10,6 +10,7 @@ import Register from './pages/Auth/Register';
 
 import useFitDiv from './hooks/useFitDiv';
 import FinishedOrPending from './pages/Donor/FinishedOrPending';
+import Settings from './pages/Account/Settings';
 
 export default function App() {
   const ref = useFitDiv();
@@ -19,6 +20,7 @@ export default function App() {
       <div id="main-content" className="h-full overflow-auto" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
           <Route path="/admin/" element={<Admin />}></Route>
           <Route path="/organization" element={<Organization />}></Route>
           <Route path="/donor" element={<Donor />}></Route>

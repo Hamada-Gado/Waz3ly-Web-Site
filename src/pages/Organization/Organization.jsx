@@ -4,30 +4,14 @@ import { Link } from 'react-router-dom';
 import '/src/styles/dashboard.css';
 import Account from '../Account/Account';
 
-function SideBar({ userData, setUserData, setElement }) {
+function SideBar({ userData }) {
   return (
     <div className="sidebar">
       <div className="title">
         <h2>{userData.organizationName}</h2>
       </div>
       <div className="nav">
-        <button
-          className="sidebar-item"
-          onClick={() =>
-            setElement(
-              <Account
-                title="Edit Profile"
-                initFormData={userData}
-                onEdit={(formData) => {
-                  setUserData(formData);
-                  setElement(null);
-                }}
-              />
-            )
-          }
-        >
-          Manage Account
-        </button>
+        <button className="sidebar-item">New Donation Post</button>
         <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
           Manage Requests
         </Link>
@@ -47,11 +31,7 @@ const Organization = () => {
   console.log(userData);
   return (
     <div className="root-container">
-      <SideBar
-        userData={userData}
-        setUserData={setUserData}
-        setElement={setElement}
-      />
+      <SideBar userData={userData} />
       {element}
     </div>
   );
