@@ -20,13 +20,13 @@ const Account = ({ title, initFormData, onEdit }) => {
       area: '',
       governorate: '',
       accountType: null,
+      address: '',
       organizationName: '',
       organizationType: null,
-      organizationAddress: '',
     }
   );
 
-  const [pageNum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(2);
   const navigate = useNavigate();
 
   const SubmitButton = ({ title, prevButton }) => {
