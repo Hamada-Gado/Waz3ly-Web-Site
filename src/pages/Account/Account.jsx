@@ -20,13 +20,20 @@ const Account = ({ title, initFormData }) => {
       area: '',
       governorate: '',
       accountType: null,
-      address: '',
+
+      address: '', // Doctor/Organization
+      maxCases: 0, // Doctor/Teacher
+
+      doctorSpecialty: '', // Doctor
+      teacherSubject: '', // Teacher
+
+      // Organization
       organizationName: '',
       organizationType: null,
     }
   );
 
-  const [pageNum, setPageNum] = useState(2);
+  const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
 
   const SubmitButton = ({ title, prevButton }) => {

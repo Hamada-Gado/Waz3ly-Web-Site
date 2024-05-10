@@ -79,6 +79,58 @@ const ThirdPage = ({
           </div>
         </>
       )}
+      {formData['accountType'] === AccountType.Doctor && (
+        <>
+          <label className={labelClassName}>
+            Specialization:
+            <input
+              name="doctorSpecialty"
+              type="text"
+              value={formData['doctorSpecialty']}
+              onChange={onChange}
+              className={inputClassName}
+              required
+            />
+          </label>
+          <label className={labelClassName}>
+            How many cases you can take on?
+            <input
+              name="maxCases"
+              type="number"
+              value={formData['maxCases']}
+              onChange={onChange}
+              className={inputClassName}
+              required
+            />
+          </label>
+        </>
+      )}
+      {formData['accountType'] === AccountType.Teacher && (
+        <>
+          <label className={labelClassName}>
+            Subject:
+            <input
+              name="teacherSubject"
+              type="text"
+              value={formData['teacherSubject']}
+              onChange={onChange}
+              className={inputClassName}
+              required
+            />
+          </label>
+          <label className={labelClassName}>
+            How many students you can take on?
+            <input
+              name="maxCases"
+              type="number"
+              value={formData['maxCases']}
+              onChange={onChange}
+              className={inputClassName}
+              required
+            />
+          </label>
+        </>
+      )}
       {(formData['accountType'] === AccountType.Doctor ||
         formData['accountType'] === AccountType.Organization) && (
         <>
