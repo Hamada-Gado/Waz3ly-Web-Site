@@ -1,4 +1,5 @@
 import { AccountType, OrganizationType } from '../../enums/Enums';
+import SimpleMap from '../Maps/SimpleMap';
 
 const ThirdPage = ({
   formData,
@@ -76,19 +77,25 @@ const ThirdPage = ({
               />
             </label>
           </div>
+        </>
+      )}
+      {(formData['accountType'] === AccountType.Doctor ||
+        formData['accountType'] === AccountType.Organization) && (
+        <>
           <div className="flex flex-col">
             <label className={labelClassName}>
-              Organization Address:
+              {formData['accountType']} Address:
               <input
-                name="organizationAddress"
+                name="address"
                 type="text"
-                value={formData['organizationAddress']}
+                value={formData['address']}
                 onChange={onChange}
                 className={inputClassName}
                 required
               />
             </label>
           </div>
+          <SimpleMap onChange={onChange} />
         </>
       )}
       {(formData['accountType'] === AccountType.Doctor ||
