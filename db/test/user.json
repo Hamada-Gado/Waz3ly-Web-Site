@@ -1,3 +1,52 @@
 {
-    "users": []
+  "users": [
+    {
+      "id": "b4f8",
+      "username": "ahmedgado",
+      "firstName": "Ahmed",
+      "lastName": "Gado",
+      "email": "Ahmedgado0100@gmail.com",
+      "password": "6+64464546",
+      "gender": "Male",
+      "contactNumber": "01019403379",
+      "area": "Naser City",
+      "governorate": "Cairo",
+      "accountType": "Organization",
+      "organizationName": "NP",
+      "organizationType": "Place Of Worship",
+      "organizationAddress": "15 Hassan Aflaton"
+    },
+    {
+      "id": "29f6",
+      "username": "ahmedgado",
+      "firstName": "Ahmed",
+      "lastName": "Gado",
+      "email": "Ahmedgado0100@gmail.com",
+      "password": "5465465464",
+      "gender": "Male",
+      "contactNumber": "01019403379",
+      "area": "Naser City",
+      "governorate": "Cairo",
+      "accountType": "Organization",
+      "organizationName": "NP",
+      "organizationType": "Orphanage",
+      "organizationAddress": "15 Hassan Aflaton"
+    },
+    {
+      "id": "ba9f",
+      "username": "ahmedgado",
+      "firstName": "Ahmed",
+      "lastName": "Gado",
+      "email": "Ahmedgado0100@gmail.com",
+      "password": "536536567",
+      "gender": "Male",
+      "contactNumber": "01019403379",
+      "area": "Naser City",
+      "governorate": "Cairo",
+      "accountType": "Organization",
+      "organizationName": "NP",
+      "organizationType": "Orphanage",
+      "organizationAddress": "15 Hassan Aflaton"
+    }
+  ]
 }

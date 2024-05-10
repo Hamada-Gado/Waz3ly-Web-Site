@@ -44,6 +44,7 @@ const Organization = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   );
+  console.log(userData);
   return (
     <div className="root-container">
       <SideBar

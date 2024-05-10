@@ -64,8 +64,6 @@ const Account = ({ title, initFormData, onEdit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Registering');
-    console.log(formData);
     if (title === 'Edit Profile') {
       useUpdate('users', formData, formData.id);
     } else {
@@ -79,6 +77,7 @@ const Account = ({ title, initFormData, onEdit }) => {
         formData.accountType === AccountType.Organization
           ? '/organization'
           : '/donor';
+      localStorage.setItem('defaultPath', path);
       navigate(path, { replace: true });
     } else {
       onEdit(formData);
@@ -180,12 +179,13 @@ const Account = ({ title, initFormData, onEdit }) => {
                 onChange={handleChange}
                 className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
                 disabled={title === 'Edit Profile'}
+                required
               >
                 <option value="" disabled>
                   -- Select an option --
                 </option>
                 <option value="Male">Male</option>
-                <option value="Female">female</option>
+                <option value="Female">Female</option>
               </select>
             </label>
 
