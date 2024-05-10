@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Clothes from './Clothes';
-// import Toys from './Toys';
-// import Food from './Food';
+import Toys from './Toys';
+import Food from './Food';
 // import MedicalSupplies from './MedicalSupplies';
 // import SchoolSupplies from './SchoolSupplies';
 // import BloodDonations from './BloodDonations';
@@ -20,11 +20,16 @@ const Submission = ({ setElement }) => {
   const selectClassName =
     'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { id } = await usePost('donations', formData);
     formData.id = id;
-    localStorage.getItem('userData').donations.push(formData.id);
+    JSON.parse(localStorage.getItem('userData')).donations.push(formData.id);
+    setElement(null);
   };
 
   return (
@@ -64,14 +69,33 @@ const Submission = ({ setElement }) => {
               labelClassName={labelClassName}
               inputClassName={inputClassName}
               selectClassName={selectClassName}
+              handleChange={handleChange}
             />
           )}
 
-          {/* {category === 'Toys' && <Toys />}
-        {category === 'Food' && <Food />}
-        {category === 'Medical Supplies' && <MedicalSupplies />}
-        {category === 'School Supplies' && <SchoolSupplies />}
-        {category === 'Blood Donation' && <BloodDonation />} */}
+          {category === 'Toys' && (
+            <Toys
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectedClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Food' && (
+            <Food
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {/* {category === 'Medical Supplies' && <MedicalSupplies />} */}
+          {/* {category === 'School Supplies' && <SchoolSupplies />} */}
+          {/* {category === 'Blood Donation' && <BloodDonation />} */}
 
           <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
             Submit
