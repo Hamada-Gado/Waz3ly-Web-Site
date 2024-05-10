@@ -40,7 +40,7 @@ const SimpleMap = ({ onChange }) => {
     setMapsLoaded(true);
   };
 
-  const handleMarkerDrag = async (lat, lng) => {
+  const handleMarker = async (lat, lng) => {
     const response = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${
         import.meta.env.VITE_GOOGLE_MAPS_GEOCODING_API_KEY
@@ -70,7 +70,7 @@ const SimpleMap = ({ onChange }) => {
             map={map}
             lat={defaultProps.center.lat}
             lng={defaultProps.center.lng}
-            onDrag={handleMarkerDrag}
+            onDrag={handleMarker}
           />
         ) : null}
       </GoogleMapReact>

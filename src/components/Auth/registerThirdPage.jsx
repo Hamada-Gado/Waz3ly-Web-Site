@@ -88,7 +88,7 @@ const ThirdPage = ({
               <input
                 name="address"
                 type="text"
-                value={formData['organizationAddress']}
+                value={formData['address']}
                 onChange={onChange}
                 className={inputClassName}
                 required
