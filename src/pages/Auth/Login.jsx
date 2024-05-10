@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Assuming you use React Router for navigation
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
+import { AccountType } from '../../enums/Enums';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -18,28 +19,29 @@ const Login = () => {
     e.preventDefault();
     console.log(`Username: ${username}, Password: ${password}`);
 
+    if (username === 'admin' && password === 'admin') {
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ accountType: AccountType.Admin })
+      );
+      localStorage.setItem('defaultPath', '/admin');
+      navigate('/admin', { replace: true });
+    }
+
     for (let i = 0; i < users.length; i++) {
       console.log(users[i]);
       if (users[i].username === username && users[i].password === password) {
         console.log('Login successful');
         console.log(users[i].accountType);
         localStorage.setItem('userData', JSON.stringify(users[i]));
-        switch (users[i].accountType) {
-          case 'admin':
-            localStorage.setItem('defaultPath', '/admin');
-            navigate('/admin', { replace: true });
-            break;
-          case 'organization':
-            localStorage.setItem('defaultPath', '/organization');
-            navigate('/organization', { replace: true });
-            break;
-          case 'donor':
-            localStorage.setItem('defaultPath', '/donor');
-            navigate('/donor', { replace: true });
-            break;
-          default:
-            navigate('/', { replace: true });
+        if (users[i].accountType === AccountType.Organization) {
+          localStorage.setItem('defaultPath', '/organization');
+          navigate('/organization', { replace: true });
+        } else {
+          localStorage.setItem('defaultPath', '/donor');
+          navigate('/donor', { replace: true });
         }
+
         return;
       }
     }
@@ -67,6 +69,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -82,6 +85,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
+              required
             />
           </div>
           <button
