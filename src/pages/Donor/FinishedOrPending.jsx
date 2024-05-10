@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 function getDesc(donation) {
   switch (donation.category) {
@@ -39,11 +39,15 @@ function getDesc(donation) {
       return "";
   }
 }
+
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
   const [currDonation, setCurrDonation] = useState(null);
-  useFetch("donations", setDonations);
+
+  useEffect(() => {
+    useFetch('donations', setDonations);
+  }, []);
 
   return (
     <>
@@ -63,7 +67,7 @@ const FinishedOrPending = () => {
                 <div
                   key={donation.id}
                   className="border w-full  border-accent bg-background-dark p-6 rounded-md transform transition duration-500 ease-in-out hover:scale-100 "
-                  style={{ minWidth: "500px" }} // Increase the width here
+                  style={{ minWidth: '500px' }} // Increase the width here
                 >
                   <h2 className="text-2xl text-body font-heading text-black">
                     {donation.title}

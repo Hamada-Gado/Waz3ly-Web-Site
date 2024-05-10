@@ -11,6 +11,7 @@ import FilterMedicalCases from "./FilterMedicalCases";
 import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
 
+
 function getDesc(donation) {
   switch (donation.category) {
     case "Clothing":
@@ -57,7 +58,9 @@ const DonationsList = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [furtherFiltering, setFurtherFiltering] = useState(null);
 
-  useFetch("donations", setDonations);
+  useEffect(() => {
+    useFetch('donations', setDonations);
+  }, []);
 
   const filteredDonations = () => {
     if (furtherFiltering) {

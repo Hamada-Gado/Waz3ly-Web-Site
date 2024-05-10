@@ -1,30 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "/src/assets/Icon.png";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '/src/assets/Icon.png';
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header
       id="main-header"
       className="flex justify-between items-center bg-background-main py-4 px-6 shadow-md"
     >
-      <Link to="/">
+      <button
+        onClick={() => {
+          const path = localStorage.getItem('defaultPath');
+          if (path) navigate(path);
+          else navigate('/');
+        }}
+      >
         <img src={logo} alt="Logo" className="h-10" />
-      </Link>
+      </button>
 
       <nav className="flex space-x-4">
-        <Link
-          to={'/settings'}
+        <button
+          onClick={() => {
+            if (localStorage.getItem('defaultPath')) navigate('/settings');
+            else navigate('/');
+          }}
           className="text-text hover:text-primary font-base"
-          onClick={() => localStorage.removeItem('userData')}
         >
           Settings
-        </Link>
+        </button>
         <Link
           to={'/'}
           replace={true}
           className="text-text hover:text-primary font-base"
-          onClick={() => localStorage.removeItem('userData')}
+          onClick={() => localStorage.clear()}
         >
           Logout
         </Link>
