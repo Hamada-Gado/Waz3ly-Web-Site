@@ -1,12 +1,14 @@
-import { useState } from "react";
-import useFetch from "../../hooks/useFetch";
+import { useEffect, useState } from 'react';
+import useFetch from '../../hooks/useFetch';
 
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
   const [showDriverInfo, setShowDriverInfo] = useState(false);
   const [currDonation, setCurrDonation] = useState(null);
 
-  useFetch("donations", setDonations);
+  useEffect(() => {
+    useFetch('donations', setDonations);
+  }, []);
 
   return (
     <>
@@ -23,7 +25,7 @@ const FinishedOrPending = () => {
                 <div
                   key={donation.id}
                   className="border w-full  border-accent bg-background-dark p-6 rounded-md transform transition duration-500 ease-in-out hover:scale-100 "
-                  style={{ minWidth: "500px" }} // Increase the width here
+                  style={{ minWidth: '500px' }} // Increase the width here
                 >
                   <h2 className="text-3xl text-black">{donation.title}</h2>
                   <p className="text-xl text-black">{donation.description}</p>

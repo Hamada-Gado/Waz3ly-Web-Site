@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import FilterCategory from './FilterCategory';
 
 import DonationFormDefault from './DonationFormDefault';
@@ -18,7 +18,9 @@ const DonationsList = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [furtherFiltering, setFurtherFiltering] = useState(null);
 
-  useFetch('donations', setDonations);
+  useEffect(() => {
+    useFetch('donations', setDonations);
+  }, []);
 
   const filteredDonations = () => {
     if (furtherFiltering) {

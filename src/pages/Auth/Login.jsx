@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Assuming you use React Router for navigation
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
@@ -10,7 +10,9 @@ const Login = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  useFetch('accounts', setUsers);
+  useEffect(() => {
+    useFetch('users', setUsers);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
