@@ -1,9 +1,9 @@
 export const AccountType = {
+  Admin: 'Admin',
   Donor: 'Donor',
   Doctor: 'Doctor',
   Teacher: 'Teacher',
   Organization: 'Organization',
-  DonorReciever: 'Donor Reciever',
 };
 
 export const OrganizationType = {

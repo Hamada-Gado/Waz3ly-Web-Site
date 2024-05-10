@@ -1,6 +1,5 @@
-import React from "react";
-import "../../components/Donor/styles.css";
-import DonationsList from "/src/components/Donor/DonationsList";
+import React from 'react';
+import DonationsList from '/src/components/Donor/DonationsList';
 
 const Donor = () => {
   return (

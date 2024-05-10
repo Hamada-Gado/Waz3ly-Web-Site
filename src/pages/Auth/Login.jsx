@@ -1,17 +1,50 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"; // Assuming you use React Router for navigation
-import React from "react";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Assuming you use React Router for navigation
+import React from 'react';
+import useFetch from '../../hooks/useFetch';
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    useFetch('users', setUsers);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here (e.g., send data to backend)
     console.log(`Username: ${username}, Password: ${password}`);
-    setUsername("");
-    setPassword("");
+
+    for (let i = 0; i < users.length; i++) {
+      console.log(users[i]);
+      if (users[i].username === username && users[i].password === password) {
+        console.log('Login successful');
+        console.log(users[i].accountType);
+        localStorage.setItem('userData', JSON.stringify(users[i]));
+        switch (users[i].accountType) {
+          case 'admin':
+            localStorage.setItem('defaultPath', '/admin');
+            navigate('/admin', { replace: true });
+            break;
+          case 'organization':
+            localStorage.setItem('defaultPath', '/organization');
+            navigate('/organization', { replace: true });
+            break;
+          case 'donor':
+            localStorage.setItem('defaultPath', '/donor');
+            navigate('/donor', { replace: true });
+            break;
+          default:
+            navigate('/', { replace: true });
+        }
+        return;
+      }
+    }
+
+    console.log('Login unsuccessful');
   };
 
   return (
@@ -59,8 +92,8 @@ const Login = () => {
           </button>
         </form>
         <div className="text-sm text-gray-700 text-center">
-          Don't have an account?{" "}
-          <Link to="/registerform" className="text-primary underline">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-primary underline">
             Register here
           </Link>
         </div>

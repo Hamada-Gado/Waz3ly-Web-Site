@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home/Home';
+import Home from './pages/Home/Home';
 import Admin from './pages/Admin/Admin';
 import Organization from './pages/Organization/Organization';
 import Donor from './pages/Donor/Donor';
@@ -10,22 +10,18 @@ import Register from './pages/Auth/Register';
 
 import useFitDiv from './hooks/useFitDiv';
 import FinishedOrPending from './pages/Donor/FinishedOrPending';
-import FilterClothes from './components/Donor/FilterClothes';
-import FilterToys from './components/Donor/FilterToys';
-import FilterFood from './components/Donor/FilterFood';
-import FilterMedicalSupplies from './components/Donor/FilterMedicalSupplies';
-import FilterTeachingPosts from './components/Donor/FilterTeachingPosts';
-import FilterMedicalCases from './components/Donor/FilterMedicalCases';
+import Settings from './pages/Account/Settings';
 
 export default function App() {
   const ref = useFitDiv();
   return (
     <Router>
       <Header />
-      <div id="main-content" className="h-full overflow-auto m-0" ref={ref}>
+      <div id="main-content" className="h-full overflow-auto" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
+          <Route path="/admin/" element={<Admin />}></Route>
           <Route path="/organization" element={<Organization />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -35,24 +31,13 @@ export default function App() {
             element={<FinishedOrPending />}
           ></Route>
           <Route
-            path="/donor/filterClothes"
-            element={<FilterClothes />}
-          ></Route>
-          <Route path="/donor/filterToys" element={<FilterToys />}></Route>
-          <Route
-            path="/donor/filterTeaching"
-            element={<FilterTeachingPosts />}
-          ></Route>
-          <Route
-            path="/donor/filterMedicalCases"
-            element={<FilterMedicalCases />}
-          ></Route>
-
-          <Route path="/donor/filterFood" element={<FilterFood />}></Route>
-          <Route
-            path="/donor/filterMeds"
-            element={<FilterMedicalSupplies />}
-          ></Route>
+            path="*"
+            element={
+              <div className="bg-red-500 text-white text-center p-4">
+                <h1>404 Not Found</h1>
+              </div>
+            }
+          />
         </Routes>
       </div>
       <Footer />
