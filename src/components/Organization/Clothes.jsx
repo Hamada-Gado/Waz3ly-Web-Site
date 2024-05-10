@@ -9,6 +9,7 @@ const Clothes = ({
   useEffect(() => {
     setFormData({
       title: '',
+      approved: false,
       pending: false,
       completed: false,
       category: 'Clothing',

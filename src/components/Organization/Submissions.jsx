@@ -21,7 +21,10 @@ const Submission = ({ setElement }) => {
     'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+    const { id } = await usePost('donations', formData);
+    formData.id = id;
+    localStorage.getItem('userData').donations.push(formData.id);
   };
 
   return (
@@ -63,20 +66,21 @@ const Submission = ({ setElement }) => {
               selectClassName={selectClassName}
             />
           )}
+
           {/* {category === 'Toys' && <Toys />}
         {category === 'Food' && <Food />}
         {category === 'Medical Supplies' && <MedicalSupplies />}
         {category === 'School Supplies' && <SchoolSupplies />}
         {category === 'Blood Donation' && <BloodDonation />} */}
 
-          <button className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
+          <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
             Submit
           </button>
         </form>
 
         <button
           onClick={() => setElement(null)}
-          className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 mt-6 rounded-md shadow-sm w-full"
+          className="bg-secondary text-white font-bold py-2 px-4 mt-6 rounded-md shadow-sm w-full"
         >
           Cancel
         </button>
