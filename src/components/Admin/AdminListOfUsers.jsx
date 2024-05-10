@@ -4,16 +4,39 @@ import "../../pages/Admin/Dashboard.css"
 import UserList from './UserList'
 import ToolBar from './ToolBar'
 
+import useFilterUsers from '../../hooks/admin/useFilterUsers';
 
 
-function AdminListOfUsers() {
-	const [users, setUsers] = useState([]);
-	useFetch('list_of_users_for_admin', setUsers);
+
+function AdminListOfUsers({ endpoint }) {
+
+	const [
+		users,
+		setUsers,
+		filteredUsers,
+		setFilteredUsers,
+		filter,
+		setFilter,
+		search,
+		setSearch,
+		handleFilterChange,
+		handleSearchChange
+	] = useFilterUsers(endpoint);
+
 	return (
 		<div className="content-container">
 			<div className="title">List of Users</div>
-			<ToolBar users={users} setFilteredUsers={setUsers} />
-			<UserList users={users} setUsers={setUsers} />
+			<ToolBar
+				users={users}
+				filter={filter}
+				search={search}
+				handleFilterChange={handleFilterChange}
+				handleSearchChange={handleSearchChange}
+			/>
+			<UserList
+				users={filteredUsers}
+				setUsers={setFilteredUsers}
+			/>
 		</div>
 	);
 }
