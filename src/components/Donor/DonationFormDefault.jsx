@@ -1,12 +1,12 @@
-import React from "react";
-import useUpdate from "../../hooks/useUpdate";
-import { useState } from "react";
+import React from 'react';
+import useUpdate from '../../hooks/useUpdate';
+import { useState } from 'react';
 
 const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
-  const [item, setItem] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [pickupTime, setPickupTime] = useState("");
-  const [pickupVehicle, setPickupVehicle] = useState("");
+  const [item, setItem] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [pickupTime, setPickupTime] = useState('');
+  const [pickupVehicle, setPickupVehicle] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,7 +20,7 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
       prevSelectedDonation.completed =
         new Date() > new Date(event.target.pickupTime.value);
 
-      useUpdate("donations/" + prevSelectedDonation?.id, prevSelectedDonation);
+      useUpdate('donations', prevSelectedDonation, prevSelectedDonation?.id);
       return null;
     });
   };
@@ -61,8 +61,8 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
           type="date"
           name="pickupTime"
           onInput={(e) => {
-            console.log(e.target.value.split("-")[2]);
-            console.log(new Date().toLocaleDateString().split("/")[1]);
+            console.log(e.target.value.split('-')[2]);
+            console.log(new Date().toLocaleDateString().split('/')[1]);
           }}
           required
           min={new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
