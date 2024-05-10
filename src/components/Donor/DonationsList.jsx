@@ -240,7 +240,7 @@ const DonationsList = () => {
                           ? setSelectedDonation(null)
                           : setSelectedDonation(donation);
                       }}
-                      className="px-4 py-2 bg-primary text-black rounded font-heading text-xl"
+                      className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
                     >
                       DONATE {selectedDonation !== donation ? "🔽" : "🔼"}
                     </button>
@@ -255,7 +255,7 @@ const DonationsList = () => {
                       donation.pending = true;
                       useUpdate("donations/" + donation?.id, donation);
                     }}
-                    className="px-4 py-2 bg-primary text-black rounded font-heading text-xl"
+                    className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
                   >
                     CONTRIBUTE TO CAUSE{" "}
                     {donation.category === "Medical Cases" ? "🧑‍⚕️" : "🧑‍🏫"}
