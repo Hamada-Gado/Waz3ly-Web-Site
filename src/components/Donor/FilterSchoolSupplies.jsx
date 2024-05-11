@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "./styles.css";
 
 const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
   const [supply, setSupply] = useState("");
@@ -9,8 +8,7 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
     setSupply(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
     const supplyValue = supply;
 
@@ -25,7 +23,12 @@ const FilterMedicalSupplies = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!supply) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label">
         <h2 className="filter-title text-xl">

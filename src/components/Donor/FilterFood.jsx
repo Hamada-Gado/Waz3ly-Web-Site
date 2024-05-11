@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "./styles.css";
 
 const FilterFood = ({ setFurtherFiltering }) => {
   const [type, setType] = useState("");
@@ -9,8 +8,7 @@ const FilterFood = ({ setFurtherFiltering }) => {
     setType(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
     const typeValue = type;
     setFurtherFiltering({
@@ -22,7 +20,12 @@ const FilterFood = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!type) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label text-base font-body">
         <h2 className="filter-title text-xl ">

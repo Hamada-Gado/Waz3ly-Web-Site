@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "./styles.css";
 
 const FilterBloodDonations = ({ setFurtherFiltering }) => {
   const [organization, setOrganization] = useState("");
@@ -9,8 +8,7 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
     setOrganization(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
     const organizationValue = organization;
 
@@ -25,7 +23,12 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!organization) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label">
         <h2 className="text-xl">

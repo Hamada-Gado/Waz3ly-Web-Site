@@ -1,27 +1,32 @@
 import React from "react";
-import { donationsTest } from "/src/pages/Donor/data.js";
-import "./styles.css";
 
-const FilterCategory = ({ setFilter, setFurtherFiltering }) => {
+const FilterCategory = ({ donations, setFilter, setFurtherFiltering }) => {
   const distinctCategories = [
-    ...new Set(donationsTest.map((category) => category.category)),
+    ...new Set(donations.map((category) => category.category)),
   ];
 
   return (
     <div className="flex flex-col justify-center items-center ">
       <select
+        defaultValue=""
         onChange={(e) => {
           setFurtherFiltering(null);
           setFilter(e.target.value);
         }}
         className="border-2 border-black bg-white text-center text-black py-2 px-4 rounded-md shadow-md"
       >
-        <option value="" selected={true} disabled={true}>
-          Choose a Category
+        <option value="" className="text-base font-body" disabled={true}>
+          CHOOSE A CATEGORY
         </option>
-        <option value="">All</option>
+        <option className="text-base font-body" value="">
+          All
+        </option>
         {distinctCategories.map((category) => (
-          <option key={category.category} value={category}>
+          <option
+            key={category}
+            className="font-body text-base"
+            value={category}
+          >
             {category}
           </option>
         ))}
