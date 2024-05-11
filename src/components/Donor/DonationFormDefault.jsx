@@ -1,26 +1,23 @@
-import React from 'react';
-import useUpdate from '../../hooks/useUpdate';
-import { useState } from 'react';
+import React from "react";
+import useUpdate from "../../hooks/useUpdate";
+import { useState } from "react";
 
 const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
-  const [item, setItem] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [pickupTime, setPickupTime] = useState('');
-  const [pickupVehicle, setPickupVehicle] = useState('');
+  const [item, setItem] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
+  const [pickupVehicle, setPickupVehicle] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(selectedDonation);
     setSelectedDonations((prevSelectedDonation) => {
-      prevSelectedDonation.item = item;
-      prevSelectedDonation.quantity = quantity;
       prevSelectedDonation.pickupDate = pickupTime;
       prevSelectedDonation.pickupVehicle = pickupVehicle;
-      prevSelectedDonation.pending = true;
-      prevSelectedDonation.completed =
-        new Date() > new Date(event.target.pickupTime.value);
 
-      useUpdate('donations', prevSelectedDonation, prevSelectedDonation?.id);
+      prevSelectedDonation.pending = true;
+
+      useUpdate("donations", prevSelectedDonation, prevSelectedDonation?.id);
       return null;
     });
   };
@@ -30,29 +27,7 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
       <h2 className="text-xl font-heading font-bold">
         {selectedDonation.title}
       </h2>
-      <label className="block text-base font-body">
-        Item:
-        <input
-          onChange={(e) => setItem(e.target.value)}
-          value={item}
-          type="text"
-          name="item"
-          required
-          className="mt-1 p-2 border rounded-md w-full"
-        />
-      </label>
-      <label className="text-base font-body block">
-        Quantity:
-        <input
-          onChange={(e) => setQuantity(e.target.value)}
-          value={quantity}
-          type="number"
-          name="quantity"
-          required
-          min="0"
-          className="mt-1 p-2 border rounded-md w-full"
-        />
-      </label>
+
       <label className="text-base font-body block">
         Pickup Date:
         <input
@@ -61,8 +36,8 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
           type="date"
           name="pickupTime"
           onInput={(e) => {
-            console.log(e.target.value.split('-')[2]);
-            console.log(new Date().toLocaleDateString().split('/')[1]);
+            console.log(e.target.value.split("-")[2]);
+            console.log(new Date().toLocaleDateString().split("/")[1]);
           }}
           required
           min={new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
