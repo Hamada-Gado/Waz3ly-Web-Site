@@ -11,6 +11,7 @@ const Food = ({
     setFormData({
       title: '',
       approved: 0,
+      accepted: 0,
       pending: false,
       completed: false,
       category: 'Food',

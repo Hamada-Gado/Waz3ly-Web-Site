@@ -4,7 +4,7 @@ import Clothes from './Clothes';
 import Toys from './Toys';
 import Food from './Food';
 import MedicalSupplies from './MedicalSupplies';
-// import SchoolSupplies from './SchoolSupplies';
+import SchoolSupplies from './SchoolSupplies';
 // import BloodDonations from './BloodDonations';
 
 import usePost from '../../hooks/usePost';
@@ -27,11 +27,15 @@ const Submission = ({ setElement }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    formData.organizationID = userData.id;
+
     const { id } = await usePost('donations', formData);
     formData.id = id;
-    const userData = JSON.parse(localStorage.getItem('userData'));
+
     userData.donations.push(formData.id);
     localStorage.setItem('userData', JSON.stringify(userData));
+    
     useUpdate('users', userData, userData.id);
     setElement(null);
   };
@@ -117,7 +121,18 @@ const Submission = ({ setElement }) => {
               handleChange={handleChange}
             />
           )}
-          {/* {category === 'School Supplies' && <SchoolSupplies />} */}
+
+          {category === 'School Supplies' && (
+            <SchoolSupplies
+              formData={formData}
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
           {/* {category === 'Blood Donation' && <BloodDonation />} */}
 
           <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
