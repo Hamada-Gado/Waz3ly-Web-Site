@@ -40,6 +40,7 @@ const Clothes = ({
         Age:
         <select
           name="age"
+          defaultValue=""
           className={selectClassName}
           onChange={handleChange}
           required

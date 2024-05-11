@@ -31,6 +31,7 @@ const Submission = ({ setElement }) => {
     formData.id = id;
     const userData = JSON.parse(localStorage.getItem('userData'));
     userData.donations.push(formData.id);
+    localStorage.setItem('userData', JSON.stringify(userData));
     useUpdate('users', userData, userData.id);
     setElement(null);
   };

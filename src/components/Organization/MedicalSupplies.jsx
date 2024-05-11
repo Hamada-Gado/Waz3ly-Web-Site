@@ -34,6 +34,7 @@ const MedicalSupplies = ({
         Sub Category:
         <select
           name="subCategory"
+          defaultValue=""
           className={selectClassName}
           onChange={handleChange}
           required
