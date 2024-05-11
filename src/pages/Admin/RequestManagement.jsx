@@ -40,7 +40,7 @@ function acceptRequest(data, setData, selectedRows) {
 }
 
 
-function RequestwWindow() {
+function RequestWindow() {
 	const [selectedRows, setSelectedRows] = useState([]);
 	const [data, setData] = useState(Data); 
 	
@@ -79,4 +79,4 @@ function RequestwWindow() {
  	); 
 }
 
-export default RequestwWindow;
+export default RequestWindow;
