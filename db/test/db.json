@@ -4,32 +4,46 @@
       "id": "1",
       "title": "Donation 1",
       "description": "This is donation request 1.",
-      "pending": true,
+      "pending": false,
       "completed": false,
       "category": "Food",
-      "type": "Fruits"
+      "type": "Fruits",
+      "item": "Apples",
+      "quantity": "99",
+      "pickupDate": "2024-05-17",
+      "pickupVehicle": "Truck",
+      "pickupTime": ""
     },
     {
       "id": "2",
       "title": "Donation 2",
       "description": "This is donation request 2.",
-      "pending": true,
+      "pending": false,
       "completed": false,
       "category": "Toys",
       "age": "0-10",
       "gender": "Male",
-      "subCategory": "Dolls"
+      "subCategory": "Dolls",
+      "item": "Burgers",
+      "quantity": "100",
+      "pickupDate": "2024-05-13",
+      "pickupVehicle": "Truck",
+      "pickupTime": ""
     },
     {
       "id": "3",
       "title": "Donation 3",
       "description": "This is donation request 3.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "category": "Clothing",
       "age": "0-10",
       "gender": "Female",
-      "season": "Winter"
+      "season": "Winter",
+      "item": "Apples",
+      "quantity": "1000",
+      "pickupDate": "2024-05-14",
+      "pickupVehicle": "Truck"
     },
     {
       "id": "4",
@@ -40,7 +54,11 @@
       "category": "Clothing",
       "age": "11-20",
       "gender": "Male",
-      "season": "Summer"
+      "season": "Summer",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "5",
@@ -51,7 +69,11 @@
       "category": "Toys",
       "age": "11-20",
       "gender": "Female",
-      "subCategory": "Outdoor"
+      "subCategory": "Outdoor",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "6",
@@ -60,7 +82,11 @@
       "pending": false,
       "completed": false,
       "category": "School Supplies",
-      "supplyType": "Stationary"
+      "supplyType": "Stationary",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "7",
@@ -69,14 +95,18 @@
       "pending": false,
       "completed": false,
       "category": "Medical Supplies",
-      "subCategory": "Medication"
+      "subCategory": "Medication",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "8",
       "title": "Donation 8",
       "description": "This is donation request 8.",
       "pending": false,
-      "completed": false,
+      "accepted": false,
       "category": "Blood Donation",
       "organization": "Governorate"
     },
@@ -84,17 +114,21 @@
       "id": "9",
       "title": "Donation 9",
       "description": "This is donation request 9.",
-      "pending": true,
+      "pending": false,
       "completed": false,
       "category": "Food",
-      "type": "Vegetables"
+      "type": "Vegetables",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "10",
       "title": "Donation 10",
       "description": "This is donation request 10.",
-      "pending": false,
-      "completed": false,
+      "pending": true,
+      "accepted": false,
       "category": "Blood Donation",
       "organization": "Hospital"
     },
@@ -105,14 +139,18 @@
       "pending": false,
       "completed": false,
       "category": "School Supplies",
-      "supplyType": "Books"
+      "supplyType": "Books",
+      "item": "",
+      "quantity": "",
+      "pickupDate": "",
+      "pickupVehicle": ""
     },
     {
       "id": "12",
       "title": "Donation 12",
       "description": "This is donation request 12.",
       "pending": false,
-      "completed": false,
+      "accepted": false,
       "category": "Medical Cases",
       "specialty": "Surgeon",
       "organization": "Org1",
@@ -123,8 +161,8 @@
       "id": "13",
       "title": "Donation 13",
       "description": "This is donation request 13.",
-      "pending": false,
-      "completed": false,
+      "pending": true,
+      "accepted": false,
       "category": "Medical Cases",
       "specialty": "Dentists",
       "organization": "Org2",
@@ -136,7 +174,7 @@
       "title": "Donation 14",
       "description": "This is donation request 14.",
       "pending": false,
-      "completed": false,
+      "accepted": false,
       "category": "Teaching Posts",
       "subject": "Math",
       "area": "Area1",
@@ -147,147 +185,32 @@
       "title": "Donation 15",
       "description": "This is donation request 15.",
       "pending": false,
-      "completed": false,
+      "accepted": false,
       "category": "Teaching Posts",
       "subject": "Biology",
       "area": "Area2",
       "governorate": "Gov2"
     }
   ],
-  "accounts": [
+  "users": [
     {
-      "id": "1",
-      "name": "Admin",
-      "lastName": "",
-      "email": "admin@gmail.com",
-      "password": "123456",
-
-      "contactNo": "",
-      "area": "",
-      "gender": "",
-      "governate": "",
-
-      "type": "admin",
-      "organizationType": "",
-      "organizationName": "",
-      "organizationAddress": "",
-
-      "credentialsFileName": ""
-    },
-    {
-      "id": "2",
-      "name": "Ali",
-      "lastName": "Omar",
-      "email": "ali@gmail.com",
-      "password": "123",
-
-      "contactNo": "12345",
-      "area": "New Cairo",
+      "id": "eb73",
+      "username": "ahmedgado",
+      "firstName": "Ahmed",
+      "lastName": "Gado",
+      "email": "Ahmedgado0100@gmail.com",
+      "password": "12345678",
       "gender": "Male",
-      "governate": "Cairo",
-
-      "type": "organization",
-      "organizationType": "Public School",
-      "organizationName": "Manaret el alman",
-      "organizationAddress": "Tahrir sq.",
-
-      "credentialsFileName": ""
-    },
-    {
-      "id": "3",
-      "name": "Sarah",
-      "lastName": "Ahmed",
-      "email": "sarah.ahmed@doctor.com",
-      "password": "securePassword123",
-      "contactNo": "0109876543",
-      "area": "Giza",
-      "gender": "Female",
-      "governate": "Giza",
-      "type": "Doctor",
-      "organizationType": "",
-      "organizationName": "",
-      "organizationAddress": "",
-      "credentialsFileName": ""
-    },
-    {
-      "id": "4",
-      "name": "Omar",
-      "lastName": "Hassan",
-      "email": "omar@charity.org",
-      "password": "charitywork!",
-      "contactNo": "5432109876",
-      "area": "Sharm El Sheikh",
-      "gender": "Male",
-      "governate": "South Sinai",
-      "type": "Donor",
-      "organizationType": "Charity",
-      "organizationName": "Hope for Children",
-      "organizationAddress": "El Salam St., Montazah",
-      "credentialsFileName": ""
-    },
-    {
-      "id": "5",
-      "name": "Halima",
-      "lastName": "Khan",
-      "email": "halima.khan@teacher.edu",
-      "password": "teachthefuture",
-      "contactNo": "9876543210",
-      "area": "Alexandria",
-      "gender": "Female",
-      "governate": "Alexandria",
-      "type": "Teacher",
-      "organizationType": "PublicSchool",
-      "organizationName": "El Nozha Primary School",
-      "organizationAddress": "El Nozha St., Alexandria",
-      "credentialsFileName": ""
-    },
-    {
-      "id": "6",
-      "name": "Ahmed",
-      "lastName": "Mohamed",
-      "email": "ahmed@hospital.com",
-      "password": "healinghands123",
-      "contactNo": "2109876543",
-      "area": "Dokki",
-      "gender": "Male",
-      "governate": "Giza",
-      "type": "Doctor",
-      "organizationType": "Hospital",
-      "organizationName": "Main University Hospital",
-      "organizationAddress": "El Haram St., Giza",
-      "credentialsFileName": ""
-    },
-    {
-      "id": "7",
-      "name": "Fatima",
-      "lastName": "Ibrahim",
-      "email": "fatima@orphanage.org",
-      "password": "caringhearts!",
-      "contactNo": "8765432109",
-      "area": "Heliopolis",
-      "gender": "Female",
-      "governate": "Cairo",
-      "type": "Organization",
-      "organizationType": "Orphanage",
-      "organizationName": "Light of Hope Orphanage",
-      "organizationAddress": "Youssef Abbas St., Heliopolis",
-      "credentialsFileName": ""
-    },
-    {
-      "id": "8",
-      "name": "Khalid",
-      "lastName": "Ali",
-      "email": "khalid@donor.com",
-      "password": "sharingiscaring",
-      "contactNo": "3210987654",
-      "area": "Luxor",
-      "gender": "Male",
-      "governate": "Luxor",
-      "type": "Organization",
-      "organizationType": "",
-      "organizationName": "",
-      "organizationAddress": "",
-      "credentialsFileName": ""
+      "contactNumber": "01019403379",
+      "area": "Naser City",
+      "governorate": "Cairo",
+      "accountType": "Organization",
+      "address": "XCQQ+FJ6, New Cairo 1, Cairo Governorate 4721301, Egypt",
+      "maxCases": 0,
+      "doctorSpecialty": "",
+      "teacherSubject": "",
+      "organizationName": "NP",
+      "organizationType": "Charity"
     }
   ]
 }
