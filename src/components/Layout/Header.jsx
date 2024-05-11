@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '/src/assets/Icon.png';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "/src/assets/Icon.png";
+import Notification from "../Notification/Notification";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,26 +13,27 @@ const Header = () => {
     >
       <button
         onClick={() => {
-          const path = localStorage.getItem('defaultPath');
+          const path = localStorage.getItem("defaultPath");
           if (path) navigate(path);
-          else navigate('/');
+          else navigate("/");
         }}
       >
         <img src={logo} alt="Logo" className="h-10" />
       </button>
 
       <nav className="flex space-x-4">
+        <Notification />
         <button
           onClick={() => {
-            if (localStorage.getItem('defaultPath')) navigate('/settings');
-            else navigate('/');
+            if (localStorage.getItem("defaultPath")) navigate("/settings");
+            else navigate("/");
           }}
           className="text-text hover:text-primary font-base"
         >
           Settings
         </button>
         <Link
-          to={'/'}
+          to={"/"}
           replace={true}
           className="text-text hover:text-primary font-base"
           onClick={() => localStorage.clear()}
