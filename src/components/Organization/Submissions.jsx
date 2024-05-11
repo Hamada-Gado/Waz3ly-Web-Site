@@ -1,13 +1,16 @@
 import { useState } from 'react';
 
 import Clothes from './Clothes';
-// import Toys from './Toys';
-// import Food from './Food';
-// import MedicalSupplies from './MedicalSupplies';
-// import SchoolSupplies from './SchoolSupplies';
-// import BloodDonations from './BloodDonations';
+import Toys from './Toys';
+import Food from './Food';
+import MedicalSupplies from './MedicalSupplies';
+import SchoolSupplies from './SchoolSupplies';
+import BloodDonations from './BloodDonations';
+import TeachingPost from './TeachingPost';
+import MedicalCases from './MedicalCases';
 
 import usePost from '../../hooks/usePost';
+import useUpdate from '../../hooks/useUpdate';
 
 const Submission = ({ setElement }) => {
   const [formData, setFormData] = useState(null);
@@ -20,8 +23,23 @@ const Submission = ({ setElement }) => {
   const selectClassName =
     'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1';
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    formData.organizationID = userData.id;
+
+    const { id } = await usePost('donations', formData);
+    formData.id = id;
+
+    userData.donations.push(formData.id);
+    localStorage.setItem('userData', JSON.stringify(userData));
+
+    useUpdate('users', userData, userData.id);
+    setElement(null);
   };
 
   return (
@@ -52,7 +70,20 @@ const Submission = ({ setElement }) => {
               <option value="Medical Supplies">Medical Supplies</option>
               <option value="School Supplies">School Supplies</option>
               <option value="Blood Donation">Blood Donation</option>
+              <option value="Teaching Post">Teaching Post</option>
+              <option value="Medical Cases">Medical Cases</option>
             </select>
+          </label>
+
+          <label className={labelClassName}>
+            Title:
+            <input
+              type="text"
+              name="title"
+              className={inputClassName}
+              onChange={handleChange}
+              required
+            />
           </label>
 
           {category === 'Clothing' && (
@@ -61,22 +92,89 @@ const Submission = ({ setElement }) => {
               labelClassName={labelClassName}
               inputClassName={inputClassName}
               selectClassName={selectClassName}
+              handleChange={handleChange}
             />
           )}
-          {/* {category === 'Toys' && <Toys />}
-        {category === 'Food' && <Food />}
-        {category === 'Medical Supplies' && <MedicalSupplies />}
-        {category === 'School Supplies' && <SchoolSupplies />}
-        {category === 'Blood Donation' && <BloodDonation />} */}
 
-          <button className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
+          {category === 'Toys' && (
+            <Toys
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Food' && (
+            <Food
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Medical Supplies' && (
+            <MedicalSupplies
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'School Supplies' && (
+            <SchoolSupplies
+              formData={formData}
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Blood Donation' && (
+            <BloodDonations
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Teaching Post' && (
+            <TeachingPost
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Medical Cases' && (
+            <MedicalCases
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
             Submit
           </button>
         </form>
 
         <button
           onClick={() => setElement(null)}
-          className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 mt-6 rounded-md shadow-sm w-full"
+          className="bg-secondary text-white font-bold py-2 px-4 mt-6 rounded-md shadow-sm w-full"
         >
           Cancel
         </button>

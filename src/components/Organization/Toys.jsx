@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const Clothes = ({
+const Toys = ({
   setFormData,
   labelClassName,
   inputClassName,
@@ -14,12 +14,11 @@ const Clothes = ({
       accepted: 0,
       pending: false,
       completed: false,
-      category: 'Clothing',
+      category: 'Toys',
       type: '',
       age: '',
       gender: '',
-      season: '',
-      material: '',
+      subCategory: '',
       quantity: '',
     });
   }, []);
@@ -32,7 +31,7 @@ const Clothes = ({
           type="text"
           name="type"
           className={inputClassName}
-          placeholder="Type of Clothing"
+          placeholder="Type of Toy"
           onChange={handleChange}
           required
         />
@@ -60,7 +59,6 @@ const Clothes = ({
         Gender:
         <select
           name="gender"
-          defaultValue=""
           className={selectClassName}
           onChange={handleChange}
           required
@@ -73,10 +71,9 @@ const Clothes = ({
         </select>
       </label>
       <label className={labelClassName}>
-        Season:
+        Sub Category:
         <select
-          name="season"
-          defaultValue=""
+          name="subCategory"
           className={selectClassName}
           onChange={handleChange}
           required
@@ -84,22 +81,13 @@ const Clothes = ({
           <option value="" disabled>
             Choose
           </option>
-          <option value="Winter">Winter</option>
-          <option value="Summer">Summer</option>
-          <option value="Spring">Spring</option>
-          <option value="Fall">Fall</option>
+          <option value="Board Games">Board Games</option>
+          <option value="Stuffed Toys">Stuffed Toys</option>
+          <option value="Dolls">Dolls</option>
+          <option value="Sports">Sports</option>
+          <option value="Cars">Cars</option>
+          <option value="Outdoor">Outdoor</option>
         </select>
-      </label>
-      <label className={labelClassName}>
-        Material:
-        <input
-          type="text"
-          name="material"
-          className={inputClassName}
-          placeholder="Material"
-          onChange={handleChange}
-          required
-        />
       </label>
       <label className={labelClassName}>
         Quantity:
@@ -117,4 +105,4 @@ const Clothes = ({
   );
 };
 
-export default Clothes;
+export default Toys;
