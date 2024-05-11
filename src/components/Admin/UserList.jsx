@@ -9,6 +9,7 @@ function handleDelete(users, setUsers, userId) {
 	// Implement delete functionality for the user
 	console.log(`Delete user: ${userId}`);
 	// useDelete('list_of_users_for_admin', data, setData, userId); // NOT IMPLEMENTED
+	setUsers(users.filter((user) => user.id !== userId));
 }
 
 function UserItem({ users, setUsers, user }) {

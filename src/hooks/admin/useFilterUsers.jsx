@@ -48,7 +48,7 @@ function useFilterUsers(endpoint) {
 	// construct a function to handle changes in the search
 	const handleSearchChange = (newSearch) => {
 		setSearch(newSearch);
-		setFilteredUsers(users.filter(user => user.name.toLowerCase().includes(newSearch.toLowerCase())));
+		setFilteredUsers(users.filter(user => user.firstName.toLowerCase().includes(newSearch.toLowerCase())));
 
 	}
 
