@@ -2,33 +2,135 @@
 @tailwind components;
 @tailwind utilities;
 
-.container {
+.user-container {
 	@apply
-
 	w-full h-full
-	grid
-	grid-rows-[4rem_10rem_auto]
-	px-4
-	py-8
+	bg-white
+	flex
+	justify-center
+	items-center
 }
 
-.x {
+.card {
 	@apply
-	grid
-	grid-cols-2
+
+	h-2/3 w-4/5
+
+	bg-background-dark
+
+	rounded-lg shadow-lg
+
+	grid grid-rows-[4rem_2rem_1rem_auto] gap-2
 }
+
 
 .profile-pic {
 	@apply
-	h-40
-	pr-4
+	w-32
+	h-32
+
+	rounded-full
+	border-4
+	border-background-main
+
+	justify-self-center
+	self-end
 }
 
-.full-name {
+.fullname {
 	@apply
 	text-2xl
 	text-text
-	font-body
-	self-center
+	font-heading
+	self-start
+	justify-self-center
 }
 
+.username {
+	@apply
+	text-sm
+	text-text
+	font-heading
+	self-start
+	justify-self-center
+}
+
+.table-container {
+	@apply
+	grid
+	grid-rows-2
+	gap-16
+	p-4
+	overflow-y-auto
+}
+
+.general-data {
+	@apply
+	grid
+	grid-cols-4
+	grid-rows-[1rem_auto]
+	gap-4
+	pb-4
+}
+
+.general-data-header {
+	@apply
+	row-span-1
+	col-start-1 col-end-5
+	text-base
+	font-body
+	justify-self-center
+}
+
+.user-specific {
+	@apply
+	grid
+	grid-rows-2
+	grid-cols-2
+	pt-4
+}
+
+.table-header-ozr {
+	@apply
+	row-span-1
+	col-start-1 col-end-3
+	text-base
+	font-body
+	justify-self-center
+}
+
+.col-ozr {
+	@apply
+	row-span-2
+	grid
+	justify-center
+}
+
+.col{
+	@apply
+	grid
+	justify-center
+}
+
+.table-header {
+	@apply
+	text-text
+	text-base
+	font-body
+	justify-self-center
+}
+
+.key {
+	@apply
+	text-text
+	text-sm
+	font-body
+	font-bold
+}
+
+.value {
+	@apply
+	text-text
+	text-sm
+	font-body
+}
