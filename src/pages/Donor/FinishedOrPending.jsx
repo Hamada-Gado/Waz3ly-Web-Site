@@ -114,7 +114,7 @@ const FinishedOrPending = () => {
                         )}
                         {!donation.completed && !donation.pickupDate && (
                           <strong className="text-black font-bold">
-                            Waiting for u mf
+                            Waiting for You
                           </strong>
                         )}
                         {donation.completed && (
