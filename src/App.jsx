@@ -1,16 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Admin from './pages/Admin/Admin';
-import Organization from './pages/Organization/Organization';
-import Donor from './pages/Donor/Donor';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Admin from "./pages/Admin/Admin";
+import Organization from "./pages/Organization/Organization";
+import Donor from "./pages/Donor/Donor";
+import Header from "./components/Layout/Header";
+import Footer from "./components/Layout/Footer";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
-import useFitDiv from './hooks/useFitDiv';
-import FinishedOrPending from './pages/Donor/FinishedOrPending';
-import Settings from './pages/Account/Settings';
+import useFitDiv from "./hooks/useFitDiv";
+import FinishedOrPending from "./pages/Donor/FinishedOrPending";
+import Settings from "./pages/Account/Settings";
+import SubmissionWindow from "./pages/Admin/SubmissionWindow";
+import RequestwWindow from "./pages/Admin/RequestManagement";
 
 export default function App() {
   const ref = useFitDiv();
@@ -26,6 +28,11 @@ export default function App() {
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route
+            path="/SubmissionWindow"
+            element={<SubmissionWindow />}
+          ></Route>
+          <Route path="/RequestwWindow" element={<RequestwWindow />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
