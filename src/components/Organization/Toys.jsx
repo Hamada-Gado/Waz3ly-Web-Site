@@ -59,12 +59,13 @@ const Toys = ({
         Gender:
         <select
           name="gender"
+          defaultValue=""
           className={selectClassName}
           onChange={handleChange}
           required
         >
           <option value="" disabled>
-            Choose
+            Choose a Gender
           </option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -74,12 +75,13 @@ const Toys = ({
         Sub Category:
         <select
           name="subCategory"
+          defaultValue=""
           className={selectClassName}
           onChange={handleChange}
           required
         >
           <option value="" disabled>
-            Choose
+            Choose a Sub Category
           </option>
           <option value="Board Games">Board Games</option>
           <option value="Stuffed Toys">Stuffed Toys</option>
