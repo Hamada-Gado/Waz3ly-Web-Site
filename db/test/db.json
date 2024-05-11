@@ -182,7 +182,7 @@
       "title": "Donation 14",
       "description": "This is donation request 14.",
       "pending": true,
-      "completed": false,
+      "completed": true,
       "approved": 1,
       "accepted": 1,
       "category": "Teaching Posts",
