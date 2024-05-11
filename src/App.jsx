@@ -16,6 +16,8 @@ import FilterFood from "./components/Donor/FilterFood";
 import FilterMedicalSupplies from "./components/Donor/FilterMedicalSupplies";
 import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
 import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
+import ChangePassword from "./pages/Auth/ChangePassword";
+import RequestManagement from "./pages/Admin/RequestManagement";
 
 export default function App() {
   const ref = useFitDiv();
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+		  <Route path="/ChangePassword" element={<ChangePassword />}></Route>
+      <Route path="/RequestManagement" element={<RequestManagement />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
