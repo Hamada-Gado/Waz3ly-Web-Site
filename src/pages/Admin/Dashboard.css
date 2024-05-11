@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.root-container {
+	@apply
+	w-full h-full
+	grid
+	grid-cols-[12%_87%]
+}
+
+/* Sidebar */
+	.sidebar {
+		@apply
+		bg-background-dark
+		text-primary
+		grid
+		grid-rows-[15%_85%]
+	}
+
+	.sidebar .title {
+		@apply
+		text-primary
+		text-lg
+		self-start
+		text-center
+		p-4
+	}
+
+	.sidebar .nav {
+		@apply
+		grid
+		grid-rows-4
+		self-start
+		gap-6
+	}
+
+	.sidebar .sidebar-item {
+		@apply
+		text-text
+		text-sm
+		text-center
+	}
+
+/* content */
+	.content-container {
+		@apply
+		h-full w-full
+		pl-8
+		grid
+		grid-rows-[15%_85%]
+	}
+
+	.content-container .title {
+		@apply
+		text-primary
+		text-2xl
+		py-4
+	}
+
