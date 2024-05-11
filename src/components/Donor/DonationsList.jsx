@@ -11,6 +11,8 @@ import FilterMedicalCases from "./FilterMedicalCases";
 import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
+import SimpleMap from "../Maps/SimpleMap";
+import axios from "axios";
 
 function getDesc(donation) {
   switch (donation.category) {
@@ -18,7 +20,10 @@ function getDesc(donation) {
       return `category: ${donation.category},\n
               Age: ${donation.age},\n
               Gender: ${donation.gender},\n
-              Season: ${donation.season}`;
+              Season: ${donation.season}\n
+              material: ${donation.material}\n
+              quantity: ${donation.quantity}
+              location:`;
     case "Food":
       return `category: ${donation.category},\n
       Type: ${donation.type}`;
@@ -57,9 +62,16 @@ const DonationsList = () => {
   const [filter, setFilter] = useState("");
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [furtherFiltering, setFurtherFiltering] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [coords, setCoords] = useState([]);
+
+  function getAddress(organizationId) {
+    return users.filter((user) => user.id === organizationId)[0].address;
+  }
 
   useEffect(() => {
     useFetch("donations", setDonations);
+    useFetch("users", setUsers);
   }, []);
 
   const filteredDonations = () => {
@@ -218,71 +230,75 @@ const DonationsList = () => {
               setFurtherFiltering={setFurtherFiltering}
             />
 
-            {filteredDonations().map((donation) => (
-              <div
-                key={donation.id}
-                className={`w-full border  border-accent bg-background-dark p-6 rounded-md ${
-                  selectedDonation === null
-                    ? "transform transition duration-500 ease-in-out hover:scale-110 hover:bg-accent"
-                    : ""
-                }`}
-              >
-                <h2 className="text-2xl text-black font-heading">
-                  {donation.title}
-                </h2>
-                {getDesc(donation)
-                  .split(",\n")
-                  .map((desc, index) => (
-                    <p key={index} className="text-base font-body text-black">
-                      <strong>
-                        {desc.split(":")[0].charAt(0).toUpperCase() +
-                          desc.split(":")[0].slice(1)}{" "}
-                        :{" "}
-                      </strong>
-                      {desc.split(":")[1].charAt(0).toUpperCase() +
-                        desc.split(":")[1].slice(1)}
-                    </p>
-                  ))}
+            {filteredDonations().map((donation) => {
+              const address = users ? getAddress("eb73") : "";
+              return (
+                <div
+                  key={donation.id}
+                  className={`w-full border  border-accent bg-background-dark p-6 rounded-md ${
+                    selectedDonation === null
+                      ? "transform transition duration-500 ease-in-out hover:scale-110 hover:bg-accent"
+                      : ""
+                  }`}
+                >
+                  <h2 className="text-2xl text-black font-heading">
+                    {donation.title}
+                  </h2>
+                  {getDesc(donation)
+                    .split(",\n")
+                    .map((desc, index) => (
+                      <p key={index} className="text-base font-body text-black">
+                        <strong>
+                          {desc.split(":")[0].charAt(0).toUpperCase() +
+                            desc.split(":")[0].slice(1)}{" "}
+                          :{" "}
+                        </strong>
+                        {desc.split(":")[1].charAt(0).toUpperCase() +
+                          desc.split(":")[1].slice(1)}
+                      </p>
+                    ))}
+                  {<SimpleMap onChange={() => {}} />}
 
-                {donation.category !== "Medical Cases" &&
-                  donation.category !== "Teaching Posts" && (
+                  {donation.category !== "Medical Cases" &&
+                    donation.category !== "Teaching Posts" && (
+                      <button
+                        onClick={() => {
+                          selectedDonation === donation
+                            ? setSelectedDonation(null)
+                            : setSelectedDonation(donation);
+                        }}
+                        className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
+                      >
+                        DONATE {selectedDonation !== donation ? "🔽" : "🔼"}
+                      </button>
+                    )}
+                  {(donation.category === "Medical Cases" ||
+                    donation.category === "Teaching Posts") && (
                     <button
                       onClick={() => {
-                        selectedDonation === donation
-                          ? setSelectedDonation(null)
-                          : setSelectedDonation(donation);
+                        setDonations((prevDonations) =>
+                          prevDonations.filter((don) => don.id !== donation.id)
+                        );
+                        donation.pending = true;
+                        useUpdate("donations", donation, donation.id);
                       }}
                       className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
                     >
-                      DONATE {selectedDonation !== donation ? "🔽" : "🔼"}
+                      CONTRIBUTE TO CAUSE{" "}
+                      {donation.category === "Medical Cases" ? "🧑‍⚕️" : "🧑‍🏫"}
                     </button>
                   )}
-                {(donation.category === "Medical Cases" ||
-                  donation.category === "Teaching Posts") && (
-                  <button
-                    onClick={() => {
-                      setDonations((prevDonations) =>
-                        prevDonations.filter((don) => don.id !== donation.id)
-                      );
-                      donation.pending = true;
-                      useUpdate("donations", donation, donation.id);
-                    }}
-                    className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
-                  >
-                    CONTRIBUTE TO CAUSE{" "}
-                    {donation.category === "Medical Cases" ? "🧑‍⚕️" : "🧑‍🏫"}
-                  </button>
-                )}
-                {selectedDonation === donation &&
-                  (donation.category !== "Medical Cases" ||
-                    donation.category !== "Teaching Posts") && (
-                    <DonationFormDefault
-                      selectedDonation={selectedDonation}
-                      setSelectedDonations={setSelectedDonation}
-                    />
-                  )}
-              </div>
-            ))}
+                  {selectedDonation === donation &&
+                    (donation.category !== "Medical Cases" ||
+                      donation.category !== "Teaching Posts") && (
+                      <DonationFormDefault
+                        selectedDonation={selectedDonation}
+                        setSelectedDonations={setSelectedDonation}
+                      />
+                    )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
