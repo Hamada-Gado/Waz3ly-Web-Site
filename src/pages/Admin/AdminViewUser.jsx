@@ -1,7 +1,6 @@
-import {react, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import "./ViewUser.css";
-import profile from "../../../public/profilePic.png";
+import profile from "/src/assets/profilePic.png";
 import {AccountType} from "../../enums/Enums";
 
 
