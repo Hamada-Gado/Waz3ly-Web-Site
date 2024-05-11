@@ -12,7 +12,6 @@ import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
 import SimpleMap from "../Maps/SimpleMap";
-import axios from "axios";
 
 function getDesc(donation) {
   switch (donation.category) {
@@ -235,9 +234,9 @@ const DonationsList = () => {
               return (
                 <div
                   key={donation.id}
-                  className={`w-full border  border-accent bg-background-dark p-6 rounded-md ${
+                  className={`w-full border border-accent bg-background-dark p-6 rounded-md ${
                     selectedDonation === null
-                      ? "transform transition duration-500 ease-in-out hover:scale-110 hover:bg-accent"
+                      ? "transform transition duration-500  ease-in-out hover:scale-105 hover:bg-accent"
                       : ""
                   }`}
                 >
@@ -257,7 +256,7 @@ const DonationsList = () => {
                           desc.split(":")[1].slice(1)}
                       </p>
                     ))}
-                  {<SimpleMap onChange={() => {}} />}
+                  <div>{<SimpleMap onChange={() => {}} />}</div>
 
                   {donation.category !== "Medical Cases" &&
                     donation.category !== "Teaching Posts" && (
@@ -267,7 +266,7 @@ const DonationsList = () => {
                             ? setSelectedDonation(null)
                             : setSelectedDonation(donation);
                         }}
-                        className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
+                        className="px-4 py-2 mt-4 bg-primary font-bold text-black rounded font-heading text-xl"
                       >
                         DONATE {selectedDonation !== donation ? "🔽" : "🔼"}
                       </button>

@@ -54,7 +54,7 @@ const SimpleMap = ({ onChange, lat, lng }) => {
   };
 
   return (
-    <div style={{ height: "400px", width: "400px", marginRight: "30px" }}>
+    <div style={{ height: "400px", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: import.meta.env.VITE_GOOGLE_MAPS_GEOCODING_API_KEY,
