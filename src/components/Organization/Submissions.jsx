@@ -5,7 +5,7 @@ import Toys from './Toys';
 import Food from './Food';
 import MedicalSupplies from './MedicalSupplies';
 import SchoolSupplies from './SchoolSupplies';
-// import BloodDonations from './BloodDonations';
+import BloodDonations from './BloodDonations';
 
 import usePost from '../../hooks/usePost';
 import useUpdate from '../../hooks/useUpdate';
@@ -35,7 +35,7 @@ const Submission = ({ setElement }) => {
 
     userData.donations.push(formData.id);
     localStorage.setItem('userData', JSON.stringify(userData));
-    
+
     useUpdate('users', userData, userData.id);
     setElement(null);
   };
@@ -133,7 +133,15 @@ const Submission = ({ setElement }) => {
             />
           )}
 
-          {/* {category === 'Blood Donation' && <BloodDonation />} */}
+          {category === 'Blood Donation' && (
+            <BloodDonations
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
 
           <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
             Submit
