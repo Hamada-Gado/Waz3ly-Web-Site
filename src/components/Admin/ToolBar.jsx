@@ -1,4 +1,5 @@
 import {useState, useEffect, React} from "react"
+import { AccountType } from "../../enums/Enums"
 
 function ToolBar({
 	users,
@@ -46,7 +47,7 @@ function ToolBar({
 					<div
 						className="dropdown-item"
 						onClick={() => {
-							handleFilterChange('Organisation');
+							handleFilterChange(AccountType.Organization);
 							setIsOpen(false);
 						}
 					}>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
 const FilterClothes = ({ setFurtherFiltering }) => {
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [season, setSeason] = useState('');
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [season, setSeason] = useState("");
 
   const handleAgeChange = (e) => {
     setAge(e.target.value);
@@ -18,8 +18,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
     setSeason(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
     const ageValue = age;
     const genderValue = gender;
@@ -28,7 +27,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
       ageValue,
       genderValue,
       seasonValue,
-      type: 'Clothing',
+      type: "Clothing",
     });
 
     // Save the values into appropriate variables or perform any other logic
@@ -37,7 +36,12 @@ const FilterClothes = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!age && !gender && !season) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label">
         <h2 className="filter-title text-xl ">
@@ -56,7 +60,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
               className="filter-input"
               type="checkbox"
               value="0-10"
-              checked={age === '0-10'}
+              checked={age === "0-10"}
               onChange={handleAgeChange}
               onInput={(e) => console.log(e.target.value)}
             />
@@ -69,7 +73,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
               className="filter-input"
               type="checkbox"
               value="11-20"
-              checked={age === '11-20'}
+              checked={age === "11-20"}
               onChange={handleAgeChange}
               onInput={(e) => console.log(e.target.value)}
             />
@@ -82,7 +86,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
               className="filter-input"
               type="checkbox"
               value="21-30"
-              checked={age === '21-30'}
+              checked={age === "21-30"}
               onChange={handleAgeChange}
               onInput={(e) => console.log(e.target.value)}
             />
@@ -95,7 +99,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
               className="filter-input"
               type="checkbox"
               value="31-40"
-              checked={age === '31-40'}
+              checked={age === "31-40"}
               onChange={handleAgeChange}
               onInput={(e) => console.log(e.target.value)}
             />
@@ -107,11 +111,11 @@ const FilterClothes = ({ setFurtherFiltering }) => {
             className="filter-input"
             type="checkbox"
             value=">40"
-            checked={age === '>40'}
+            checked={age === ">40"}
             onChange={handleAgeChange}
             onInput={(e) => console.log(e.target.value)}
           />
-          {'>'}40
+          {">"}40
         </label>
       </div>
       <div className="filter-label">
@@ -142,7 +146,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
                 className="filter-input"
                 type="checkbox"
                 value="Summer"
-                checked={season === 'Summer'}
+                checked={season === "Summer"}
                 onChange={handleSeasonChange}
                 onInput={(e) => console.log(e.target.value)}
               />
@@ -155,7 +159,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
                 className="filter-input"
                 type="checkbox"
                 value="Fall"
-                checked={season === 'Fall'}
+                checked={season === "Fall"}
                 onChange={handleSeasonChange}
                 onInput={(e) => console.log(e.target.value)}
               />
@@ -168,7 +172,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
                 className="filter-input"
                 type="checkbox"
                 value="Winter"
-                checked={season === 'Winter'}
+                checked={season === "Winter"}
                 onChange={handleSeasonChange}
                 onInput={(e) => console.log(e.target.value)}
               />
@@ -181,7 +185,7 @@ const FilterClothes = ({ setFurtherFiltering }) => {
                 className="filter-input"
                 type="checkbox"
                 value="Spring"
-                checked={season === 'Spring'}
+                checked={season === "Spring"}
                 onChange={handleSeasonChange}
                 onInput={(e) => console.log(e.target.value)}
               />
@@ -204,9 +208,9 @@ const FilterClothes = ({ setFurtherFiltering }) => {
           document.querySelectorAll('input[type="checkbox"]').forEach((el) => {
             el.checked = false;
           });
-          setAge('');
-          setGender('');
-          setSeason('');
+          setAge("");
+          setGender("");
+          setSeason("");
           setFurtherFiltering(null);
         }}
       >

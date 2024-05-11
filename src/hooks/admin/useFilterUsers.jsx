@@ -1,5 +1,6 @@
-import {useState, useEffect, React} from "react"
+import {useState, useEffect, React} from "react";
 import useFetch from '../useFetch';
+import { AccountType } from "../../enums/Enums";
 
 function useFilterUsers(endpoint) {
 	/*
@@ -23,13 +24,25 @@ function useFilterUsers(endpoint) {
 	const [filteredUsers, setFilteredUsers] = useState([]);
 
 	// fetch the users from the backend
-	useFetch(endpoint, setUsers)
-	useFetch(endpoint, setFilteredUsers)
+	useEffect(() => {
+		useFetch(endpoint, setUsers)
+		useFetch(endpoint, setFilteredUsers)
+	}, []);
 
 	// construct a function to handle changes in the filter
 	const handleFilterChange = (newFilter) => {
 		setFilter(newFilter);
-		setFilteredUsers(users.filter(user => user.type === newFilter || newFilter === 'All'));
+		if (newFilter === 'All') {
+			setFilteredUsers(users);
+			return;
+		}
+		if (newFilter === AccountType.Organization) {
+			console.log(users.map(user => user.accountType));
+			setFilteredUsers(users.filter(user => user.accountType === AccountType.Organization));
+			return;
+		}
+		setFilteredUsers(users.filter(user => user.accountType !== AccountType.Organization));
+		return;
 	}
 
 	// construct a function to handle changes in the search

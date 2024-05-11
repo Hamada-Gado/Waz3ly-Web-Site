@@ -10,12 +10,7 @@ import Register from './pages/Auth/Register';
 
 import useFitDiv from './hooks/useFitDiv';
 import FinishedOrPending from './pages/Donor/FinishedOrPending';
-import FilterClothes from './components/Donor/FilterClothes';
-import FilterToys from './components/Donor/FilterToys';
-import FilterFood from './components/Donor/FilterFood';
-import FilterMedicalSupplies from './components/Donor/FilterMedicalSupplies';
-import FilterTeachingPosts from './components/Donor/FilterTeachingPosts';
-import FilterMedicalCases from './components/Donor/FilterMedicalCases';
+import Settings from './pages/Account/Settings';
 
 // Admin imports
 import Admin from "./pages/Admin/Admin";
@@ -25,52 +20,42 @@ import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "./components/Admin/NotFound";
 
 export default function App() {
-	const ref = useFitDiv();
-	return (
-		<Router>
-			<Header />
-			<div id="main-content" className="h-full overflow-auto m-0" ref={ref}>
-				<Routes>
-					<Route path="/" element={<Home />}></Route>
+ 	const ref = useFitDiv();
+ 	return (
+ 	 	<Router>
+ 	 	 	<Header />
+ 	 	 	<div id="main-content" className="h-full overflow-auto" ref={ref}>
+ 	 	 	 	<Routes>
+ 	 	 	 	 	<Route path="/" element={<Home />}></Route>
 
 					<Route path="/admin/" element={<Admin />}></Route>
 					<Route path="/admin/listofusers" element={<AdminListOfUsers />}></Route>
 					<Route path="/admin/requests" element={<AdminRequests />}></Route>
 					<Route path="/admin/passwords" element={<AdminPasswords />}></Route>
 					<Route path="/admin/view-user" element={<AdminViewUser />}></Route>
-					<Route path="/organization" element={<Organization />}></Route>
-					<Route path="/donor" element={<Donor />}></Route>
-					<Route path="/login" element={<Login />}></Route>
-					<Route path="/register" element={<Register />}></Route>
 
-					<Route
-						path="/donor/FinishedOrPendingDonations"
-						element={<FinishedOrPending />}
-					></Route>
-					<Route
-						path="/donor/filterClothes"
-						element={<FilterClothes />}
-					></Route>
-					<Route path="/donor/filterToys" element={<FilterToys />}></Route>
-					<Route
-						path="/donor/filterTeaching"
-						element={<FilterTeachingPosts />}
-					></Route>
-					<Route
-						path="/donor/filterMedicalCases"
-						element={<FilterMedicalCases />}
-					></Route>
-
-					<Route path="/donor/filterFood" element={<FilterFood />}></Route>
-					<Route
-						path="/donor/filterMeds"
-						element={<FilterMedicalSupplies />}
-					></Route>
-				</Routes>
-			</div>
-			<Footer />
-		</Router>
-	);
+ 	 	 	 	 	<Route path="/settings" element={<Settings />}></Route>
+ 	 	 	 	 	<Route path="/organization" element={<Organization />}></Route>
+ 	 	 	 	 	<Route path="/donor" element={<Donor />}></Route>
+ 	 	 	 	 	<Route path="/login" element={<Login />}></Route>
+ 	 	 	 	 	<Route path="/register" element={<Register />}></Route>
+ 	 	 	 	 	<Route
+ 	 	 	 	 	 	path="/donor/FinishedOrPendingDonations"
+ 	 	 	 	 	 	element={<FinishedOrPending />}
+ 	 	 	 	 	></Route>
+ 	 	 	 	 	<Route
+ 	 	 	 	 	 	path="*"
+ 	 	 	 	 	 	element={
+ 	 	 	 	 	 	 	<div className="bg-red-500 text-white text-center p-4">
+ 	 	 	 	 	 	 	 	<h1>404 Not Found</h1>
+ 	 	 	 	 	 	 	</div>
+ 	 	 	 	 	 	}
+ 	 	 	 	 	/>
+ 	 	 	 	</Routes>
+ 	 	 	</div>
+ 	 	 	<Footer />
+ 	 	</Router>
+ 	);
 }
 
 

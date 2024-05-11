@@ -6,7 +6,7 @@ export default function Admin() {
 	return (
 		<div className="root-container">
 			<SideBar />
-			<AdminListOfUsers endpoint="list_of_users_for_admin" />
+			<AdminListOfUsers endpoint="users" />
 		</div>
 	);
 }

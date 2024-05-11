@@ -18,8 +18,7 @@ const FilterToys = ({ setFurtherFiltering }) => {
     setCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Read the values from the form inputs
 
     const ageValue = age;
@@ -36,7 +35,12 @@ const FilterToys = ({ setFurtherFiltering }) => {
   return (
     <form
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!age && !gender && !category) {
+          alert("Please Provide Filtering Options Fields");
+        } else handleSubmit();
+      }}
     >
       <div className="filter-label ">
         <h2 className="filter-title text-xl">
@@ -57,6 +61,7 @@ const FilterToys = ({ setFurtherFiltering }) => {
               value="0-10"
               checked={age === "0-10"}
               onChange={handleAgeChange}
+
               // onInput={(e) => console.log(e.target.value)}
             />
             0-10
