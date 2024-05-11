@@ -10,6 +10,7 @@ import useUpdate from '../../hooks/useUpdate';
 const Account = ({ title, initFormData }) => {
   const [formData, setFormData] = useState(
     initFormData || {
+	  donations: [],
       username: '',
       firstName: '',
       lastName: '',
