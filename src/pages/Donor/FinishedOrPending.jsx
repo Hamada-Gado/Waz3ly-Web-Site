@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
+import SimpleMap from "../../components/Maps/SimpleMap";
 function getDesc(donation) {
   switch (donation.category) {
     case "Clothing":
@@ -43,7 +44,7 @@ function getDesc(donation) {
 
 const FinishedOrPending = () => {
   const [donations, setDonations] = useState(null);
-  const [showDriverInfo, setShowDriverInfo] = useState(false);
+  const [showCaseInfo, setShowCaseInfo] = useState(false);
   const [currDonation, setCurrDonation] = useState(null);
 
   useEffect(() => {
@@ -101,7 +102,7 @@ const FinishedOrPending = () => {
                         MARK COMPLETED
                       </button>
                       <span className="  bg-accent text-white px-2 py-1 rounded-md ">
-                        {!donation.completed && (
+                        {!donation.completed && donation.pickupDate && (
                           <strong className="text-black font-bold">
                             ETA:{" "}
                             {donation.pickupDate.split("-")[2] -
@@ -109,6 +110,11 @@ const FinishedOrPending = () => {
                                 .toLocaleDateString()
                                 .split("/")[1]}{" "}
                             days
+                          </strong>
+                        )}
+                        {!donation.completed && !donation.pickupDate && (
+                          <strong className="text-black font-bold">
+                            Waiting for u mf
                           </strong>
                         )}
                         {donation.completed && (
@@ -121,11 +127,17 @@ const FinishedOrPending = () => {
                       <button
                         className="bg-secondary right-2 absolute text-black font-bold px-2 py-1 rounded-md"
                         onClick={() => {
-                          setShowDriverInfo(true);
-                          setCurrDonation(donation);
+                          if (showCaseInfo) {
+                            setShowCaseInfo(false);
+                            setCurrDonation(null);
+                          } else {
+                            setShowCaseInfo(true);
+                            setCurrDonation(donation);
+                          }
                         }}
                       >
-                        CASE INFORMATION
+                        CASE INFORMATION{" "}
+                        {currDonation !== donation ? "🔽" : "🔼"}
                       </button>
                     </div>
                   )}
@@ -135,8 +147,8 @@ const FinishedOrPending = () => {
                     </span>
                   )}
                   {currDonation === donation && (
-                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
-                      <div className="bg-white p-4 rounded-md absolute">
+                    <div className=" top-0 left-0 w-full h-full flex justify-center items-center bg-opacity-100">
+                      <div className="bg-white p-4 m-5 rounded-md right-auto ">
                         <h3 className="text-xl font-bold font-heading"></h3>
                         {getDesc(donation)
                           .split(",\n")
@@ -154,6 +166,7 @@ const FinishedOrPending = () => {
                                 desc.split(":")[1].slice(1)}
                             </p>
                           ))}
+                        {<SimpleMap onChange={() => {}} />}
                         <p className="font-bold text-base font-body">
                           PickUp Vehicle:{" "}
                           {donation.pickupVehicle === "Car"
@@ -162,15 +175,6 @@ const FinishedOrPending = () => {
                             ? "🚚"
                             : "🏍️"}
                         </p>
-                        <button
-                          className="absolute top-2 right-2 outline-none "
-                          onClick={() => {
-                            setShowDriverInfo(false);
-                            setCurrDonation(null);
-                          }}
-                        >
-                          ❌
-                        </button>
                       </div>
                     </div>
                   )}
