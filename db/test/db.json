@@ -214,7 +214,7 @@
       "category": "Toys",
       "type": "BatMan fig.",
       "age": "0-10",
-      "gender": "",
+      "gender": "Male",
       "subCategory": "Dolls",
       "quantity": "2"
     },
@@ -297,6 +297,34 @@
       "patientName": "dracula",
       "bloodType": "O+",
       "organizationID": "eb73"
+    },
+    {
+      "id": "d23d",
+      "title": "let' teach",
+      "approved": 0,
+      "accepted": 0,
+      "pending": false,
+      "completed": false,
+      "category": "Teaching Posts",
+      "numStudents": "20",
+      "subjects": "Maths",
+      "organizationID": "eb73"
+    },
+    {
+      "id": "c9a5",
+      "title": "WUT HAPPEND",
+      "approved": 0,
+      "accepted": 0,
+      "pending": false,
+      "completed": false,
+      "category": "Medical Cases",
+      "patientName": "Frank",
+      "age": ">40",
+      "gender": "Male",
+      "weight": "176",
+      "medicalSpecialty": "Surgery",
+      "caseDescription": "yay",
+      "organizationID": "eb73"
     }
   ],
   "users": [
@@ -310,7 +338,9 @@
         "5b7c",
         "e6e9",
         "bf8c",
-        "a610"
+        "a610",
+        "d23d",
+        "c9a5"
       ],
       "username": "ahmedgado",
       "firstName": "Ahmed",

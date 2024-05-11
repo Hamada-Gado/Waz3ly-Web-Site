@@ -6,6 +6,8 @@ import Food from './Food';
 import MedicalSupplies from './MedicalSupplies';
 import SchoolSupplies from './SchoolSupplies';
 import BloodDonations from './BloodDonations';
+import TeachingPost from './TeachingPost';
+import MedicalCases from './MedicalCases';
 
 import usePost from '../../hooks/usePost';
 import useUpdate from '../../hooks/useUpdate';
@@ -68,6 +70,8 @@ const Submission = ({ setElement }) => {
               <option value="Medical Supplies">Medical Supplies</option>
               <option value="School Supplies">School Supplies</option>
               <option value="Blood Donation">Blood Donation</option>
+              <option value="Teaching Post">Teaching Post</option>
+              <option value="Medical Cases">Medical Cases</option>
             </select>
           </label>
 
@@ -135,6 +139,26 @@ const Submission = ({ setElement }) => {
 
           {category === 'Blood Donation' && (
             <BloodDonations
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Teaching Post' && (
+            <TeachingPost
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
+
+          {category === 'Medical Cases' && (
+            <MedicalCases
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}

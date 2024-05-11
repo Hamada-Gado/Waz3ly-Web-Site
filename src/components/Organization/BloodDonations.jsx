@@ -14,7 +14,7 @@ const BloodDonations = ({
       accepted: 0,
       pending: false,
       completed: false,
-      category: 'Toys',
+      category: 'Blood Donation',
       patientName: '',
       bloodType: '',
     });
