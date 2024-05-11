@@ -18,6 +18,7 @@ import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
 import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
 import ChangePassword from "./pages/Auth/ChangePassword";
 import RequestManagement from "./pages/Admin/RequestManagement";
+import RequestwWindow from "./pages/Admin/RequestManagement";
 
 export default function App() {
   const ref = useFitDiv();
@@ -27,13 +28,20 @@ export default function App() {
       <div id="main-content" className="h-full overflow-auto m-0" ref={ref}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/admin/" element={<Admin />}></Route>
           <Route path="/organization" element={<Organization />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-		  <Route path="/ChangePassword" element={<ChangePassword />}></Route>
-      <Route path="/RequestManagement" element={<RequestManagement />}></Route>
+          <Route path="/ChangePassword" element={<ChangePassword />}></Route>
+          <Route
+            path="/admin/RequestwWindow"
+            element={<RequestwWindow />}
+          ></Route>
+          <Route
+            path="/RequestManagement"
+            element={<RequestManagement />}
+          ></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
