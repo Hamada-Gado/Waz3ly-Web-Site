@@ -1,145 +1,166 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import FilterCategory from './FilterCategory';
-import DonationFormDefault from './DonationFormDefault';
-import FilterClothes from './FilterClothes';
-import FilterFood from './FilterFood';
-import FilterToys from './FilterToys';
-import FilterMedicalSupplies from './FilterMedicalSupplies';
-import FilterBloodDonations from './FilterBloodDonations';
-import FilterSchoolSupplies from './FilterSchoolSupplies';
-import FilterMedicalCases from './FilterMedicalCases';
-import FilterTeachingPosts from './FilterTeachingPosts';
-import useFetch from '../../hooks/useFetch';
+import React, { useState, useEffect, Fragment } from "react";
+import FilterCategory from "./FilterCategory";
+import DonationFormDefault from "./DonationFormDefault";
+import FilterClothes from "./FilterClothes";
+import FilterFood from "./FilterFood";
+import FilterToys from "./FilterToys";
+import FilterMedicalSupplies from "./FilterMedicalSupplies";
+import FilterBloodDonations from "./FilterBloodDonations";
+import FilterSchoolSupplies from "./FilterSchoolSupplies";
+import FilterMedicalCases from "./FilterMedicalCases";
+import FilterTeachingPosts from "./FilterTeachingPosts";
+import useFetch from "../../hooks/useFetch";
+import useUpdate from "../../hooks/useUpdate";
+import SimpleMap from "../Maps/SimpleMap";
+import axios from "axios";
 
 function getDesc(donation) {
   switch (donation.category) {
-    case 'Clothing':
+    case "Clothing":
       return `category: ${donation.category},\n
               Age: ${donation.age},\n
               Gender: ${donation.gender},\n
-              Season: ${donation.season}`;
-    case 'Food':
+              Season: ${donation.season}\n
+              material: ${donation.material}\n
+              quantity: ${donation.quantity}
+              location:`;
+    case "Food":
       return `category: ${donation.category},\n
       Type: ${donation.type}`;
-    case 'Toys':
+    case "Toys":
       return `category: ${donation.category},\n
               Age: ${donation.age},\n
               gender: ${donation.gender},\n
               Sub Category: ${donation.subCategory}`;
-    case 'Medical Supplies':
+    case "Medical Supplies":
       return `category: ${donation.category},\n
       Sub Category: ${donation.subCategory}`;
-    case 'Blood Donation':
+    case "Blood Donation":
       return `category: ${donation.category},\n
       Organization: ${donation.organization}`;
-    case 'School Supplies':
+    case "School Supplies":
       return `category: ${donation.category},\n
         Supply Type: ${donation.supplyType}`;
-    case 'Medical Cases':
+    case "Medical Cases":
       return `category: ${donation.category},\n
       Specialty: ${donation.specialty},\n
               Organization: ${donation.organization},\n
               Area: ${donation.area},\n
               Governorate: ${donation.governorate}`;
-    case 'Teaching Posts':
+    case "Teaching Posts":
       return `category: ${donation.category},\n
       Subject: ${donation.subject},\n
               Area: ${donation.area},\n
               Governorate: ${donation.governorate}`;
     default:
-      return '';
+      return "";
   }
 }
 
 const DonationsList = () => {
   const [donations, setDonations] = useState(null);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [furtherFiltering, setFurtherFiltering] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [coords, setCoords] = useState([]);
+
+  function getAddress(organizationId) {
+    return users.filter((user) => user.id === organizationId)[0].address;
+  }
 
   useEffect(() => {
-    useFetch('donations', setDonations);
+    useFetch("donations", setDonations);
+    useFetch("users", setUsers);
   }, []);
 
   const filteredDonations = () => {
     if (furtherFiltering) {
       switch (furtherFiltering.type) {
-        case 'Clothing':
+        case "Clothing":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Clothing' &&
+              donation.category === "Clothing" &&
               (donation.age === furtherFiltering?.ageValue ||
                 donation.gender === furtherFiltering?.genderValue ||
                 donation.season === furtherFiltering?.seasonValue)
             );
           });
-        case 'Food':
+        case "Food":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Food' &&
+              donation.category === "Food" &&
               //loop on the array of types and check if the type is equal to the value of the donation type
               donation.type === furtherFiltering?.typeValue
             );
           });
-        case 'Toys':
+        case "Toys":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Toys' &&
+              donation.category === "Toys" &&
               (donation.age === furtherFiltering?.ageValue ||
                 donation.gender === furtherFiltering?.genderValue ||
                 donation.subCategory === furtherFiltering?.categoryValue)
             );
           });
-        case 'Medical Supplies':
+        case "Medical Supplies":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Medical Supplies' &&
+              donation.category === "Medical Supplies" &&
               donation.subCategory === furtherFiltering?.subCategoryValue
             );
           });
-        case 'Blood Donation':
+        case "Blood Donation":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
               donation.organization === furtherFiltering?.organizationValue
             );
           });
-        case 'School Supplies':
+        case "School Supplies":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'School Supplies' &&
+              donation.category === "School Supplies" &&
               donation.supplyType === furtherFiltering?.supplyValue
             );
           });
-        case 'Medical Cases':
+        case "Medical Cases":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Medical Cases' &&
+              donation.category === "Medical Cases" &&
               (donation.specialty === furtherFiltering?.specialtyValue ||
                 donation.organization === furtherFiltering?.organizationValue ||
                 donation.area === furtherFiltering?.areaValue ||
                 donation.governorate === furtherFiltering?.governmentValue)
             );
           });
-        case 'Teaching Posts':
+        case "Teaching Posts":
           return donations.filter((donation) => {
             return (
+              donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
-              donation.category === 'Teaching Posts' &&
+              donation.category === "Teaching Posts" &&
               (donation.subject === furtherFiltering?.subjectValue ||
                 donation.area === furtherFiltering?.areaValue ||
                 donation.governorate === furtherFiltering?.governorateValue)
@@ -151,6 +172,7 @@ const DonationsList = () => {
     } else {
       return donations.filter((donation) => {
         return (
+          donation.approved === 1 &&
           !donation.pending &&
           !donation.completed &&
           (filter ? donation.category === filter : true) //if filter is selected, filter by category
@@ -165,34 +187,34 @@ const DonationsList = () => {
       {donations && (
         <div className="overflow-auto h-full w-full  grid gap-0 m-0 grid-cols-3 ">
           <div className="col-start-1 max-w-sm mb-2 p-8 -translate-y-12">
-            {(filter === 'Clothing' && (
+            {(filter === "Clothing" && (
               <FilterClothes setFurtherFiltering={setFurtherFiltering} />
             )) ||
-              (filter === 'Food' && (
+              (filter === "Food" && (
                 <FilterFood setFurtherFiltering={setFurtherFiltering} />
               )) ||
-              (filter === 'Toys' && (
+              (filter === "Toys" && (
                 <FilterToys setFurtherFiltering={setFurtherFiltering} />
               )) ||
-              (filter === 'Medical Supplies' && (
+              (filter === "Medical Supplies" && (
                 <FilterMedicalSupplies
                   setFurtherFiltering={setFurtherFiltering}
                 />
               )) ||
-              (filter === 'Blood Donation' && (
+              (filter === "Blood Donation" && (
                 <FilterBloodDonations
                   setFurtherFiltering={setFurtherFiltering}
                 />
               )) ||
-              (filter === 'Medical Cases' && (
+              (filter === "Medical Cases" && (
                 <FilterMedicalCases setFurtherFiltering={setFurtherFiltering} />
               )) ||
-              (filter === 'Teaching Posts' && (
+              (filter === "Teaching Posts" && (
                 <FilterTeachingPosts
                   setFurtherFiltering={setFurtherFiltering}
                 />
               )) ||
-              (filter === 'School Supplies' && (
+              (filter === "School Supplies" && (
                 <FilterSchoolSupplies
                   setFurtherFiltering={setFurtherFiltering}
                 />
@@ -208,71 +230,75 @@ const DonationsList = () => {
               setFurtherFiltering={setFurtherFiltering}
             />
 
-            {filteredDonations().map((donation) => (
-              <div
-                key={donation.id}
-                className={`w-full border  border-accent bg-background-dark p-6 rounded-md ${
-                  selectedDonation === null
-                    ? 'transform transition duration-500 ease-in-out hover:scale-110 hover:bg-accent'
-                    : ''
-                }`}
-              >
-                <h2 className="text-2xl text-black font-heading">
-                  {donation.title}
-                </h2>
-                {getDesc(donation)
-                  .split(',\n')
-                  .map((desc, index) => (
-                    <p key={index} className="text-base font-body text-black">
-                      <strong>
-                        {desc.split(':')[0].charAt(0).toUpperCase() +
-                          desc.split(':')[0].slice(1)}{' '}
-                        :{' '}
-                      </strong>
-                      {desc.split(':')[1].charAt(0).toUpperCase() +
-                        desc.split(':')[1].slice(1)}
-                    </p>
-                  ))}
+            {filteredDonations().map((donation) => {
+              const address = users ? getAddress("eb73") : "";
+              return (
+                <div
+                  key={donation.id}
+                  className={`w-full border  border-accent bg-background-dark p-6 rounded-md ${
+                    selectedDonation === null
+                      ? "transform transition duration-500 ease-in-out hover:scale-110 hover:bg-accent"
+                      : ""
+                  }`}
+                >
+                  <h2 className="text-2xl text-black font-heading">
+                    {donation.title}
+                  </h2>
+                  {getDesc(donation)
+                    .split(",\n")
+                    .map((desc, index) => (
+                      <p key={index} className="text-base font-body text-black">
+                        <strong>
+                          {desc.split(":")[0].charAt(0).toUpperCase() +
+                            desc.split(":")[0].slice(1)}{" "}
+                          :{" "}
+                        </strong>
+                        {desc.split(":")[1].charAt(0).toUpperCase() +
+                          desc.split(":")[1].slice(1)}
+                      </p>
+                    ))}
+                  {<SimpleMap onChange={() => {}} />}
 
-                {donation.category !== 'Medical Cases' &&
-                  donation.category !== 'Teaching Posts' && (
+                  {donation.category !== "Medical Cases" &&
+                    donation.category !== "Teaching Posts" && (
+                      <button
+                        onClick={() => {
+                          selectedDonation === donation
+                            ? setSelectedDonation(null)
+                            : setSelectedDonation(donation);
+                        }}
+                        className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
+                      >
+                        DONATE {selectedDonation !== donation ? "🔽" : "🔼"}
+                      </button>
+                    )}
+                  {(donation.category === "Medical Cases" ||
+                    donation.category === "Teaching Posts") && (
                     <button
                       onClick={() => {
-                        selectedDonation === donation
-                          ? setSelectedDonation(null)
-                          : setSelectedDonation(donation);
+                        setDonations((prevDonations) =>
+                          prevDonations.filter((don) => don.id !== donation.id)
+                        );
+                        donation.pending = true;
+                        useUpdate("donations", donation, donation.id);
                       }}
                       className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
                     >
-                      DONATE {selectedDonation !== donation ? '🔽' : '🔼'}
+                      CONTRIBUTE TO CAUSE{" "}
+                      {donation.category === "Medical Cases" ? "🧑‍⚕️" : "🧑‍🏫"}
                     </button>
                   )}
-                {(donation.category === 'Medical Cases' ||
-                  donation.category === 'Teaching Posts') && (
-                  <button
-                    onClick={() => {
-                      setDonations((prevDonations) =>
-                        prevDonations.filter((don) => don.id !== donation.id)
-                      );
-                      donation.pending = true;
-                      useUpdate('donations', donation, donation?.id);
-                    }}
-                    className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
-                  >
-                    CONTRIBUTE TO CAUSE{' '}
-                    {donation.category === 'Medical Cases' ? '🧑‍⚕️' : '🧑‍🏫'}
-                  </button>
-                )}
-                {selectedDonation === donation &&
-                  (donation.category !== 'Medical Cases' ||
-                    donation.category !== 'Teaching Posts') && (
-                    <DonationFormDefault
-                      selectedDonation={selectedDonation}
-                      setSelectedDonations={setSelectedDonation}
-                    />
-                  )}
-              </div>
-            ))}
+                  {selectedDonation === donation &&
+                    (donation.category !== "Medical Cases" ||
+                      donation.category !== "Teaching Posts") && (
+                      <DonationFormDefault
+                        selectedDonation={selectedDonation}
+                        setSelectedDonations={setSelectedDonation}
+                      />
+                    )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
