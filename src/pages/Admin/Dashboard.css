@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.root-container {
+	@apply
+	w-full h-full
+	grid
+	grid-cols-[20%_80%]
+}
+
+/* Sidebar */
+	.sidebar {
+		@apply
+		bg-background-dark
+		text-primary
+		grid
+		grid-rows-[15%_85%]
+	}
+
+	.sidebar .title {
+		@apply
+		text-primary
+		text-lg
+		self-start
+		text-center
+		p-4
+	}
+
+	.sidebar .nav {
+		@apply
+		grid
+		grid-rows-2
+		self-start
+		gap-6
+	}
+
+	.sidebar .sidebar-item {
+		@apply
+		text-text
+		text-sm
+		text-center
+	}
+
+/* content */
+	.content-container {
+		@apply
+		h-full w-full
+		overflow-auto
+		pl-8
+		pr-4
+		grid
+		grid-rows-[15%_15%_70%]
+	}
+
+	.content-container .title {
+		@apply
+		text-primary
+		text-2xl
+		py-4
+	}
+
+	.toolbar {
+		@apply
+		w-4/6
+		grid
+		grid-cols-[70%_30%]
+		gap-6
+		pb-4
+	}
+
+	.toolbar .searchbar {
+		@apply
+
+		h-1/2
+		self-center
+		rounded-md
+		border
+		border-gray-300
+		focus:outline-none
+		focus:ring-1
+		focus:ring-accent
+		focus:border-accent
+
+		px-2
+	}
+
+	.toolbar .dropdown {
+		@apply
+		w-24 h-1/2 self-center
+
+		rounded-md border border-gray-300
+
+		bg-background-dark 
+		text-primary text-sm text-center
+
+		/* center the inner span */
+		flex justify-center items-center
+
+		py-2 px-3
+
+		cursor-pointer
+
+		focus:outline-none focus:ring-1 focus:ring-accent
+		focus:border-accent
+	}
+
+	.dropdown-menu {
+		@apply 
+
+		absolute
+		top-full
+
+		left-0
+		w-24 h-20
+
+		rounded-md border border-gray-300
+
+		bg-white
+		shadow-md
+
+		grid grid-rows-3 justify-items-center items-center
+	}
+
+	.dropdown-menu .dropdown-item {
+		@apply
+		text-text
+		text-sm
+		cursor-pointer
+		w-full h-full
+		hover:bg-accent
+		text-center
+	}
+
+	.view-but {
+		@apply
+		text-white
+		bg-secondary
+		hover:bg-primary
+		focus:ring-4
+		focus:outline-none
+		focus:ring-blue-300
+		font-medium
+		rounded-lg
+		text-sm
+		px-3
+		py-2
+	}
+
+	.delete-but {
+		@apply
+		text-white
+		bg-danger
+		hover:bg-red-700
+		focus:ring-4
+		focus:outline-none
+		focus:ring-red-300
+		font-medium
+		rounded-lg
+		text-sm
+		px-3
+		py-2
+	}
+
+	.user-list {
+		@apply
+		w-full
+		overflow-auto
+		rounded-md
+		shadow-sm
+		mb-4
+	}
+
