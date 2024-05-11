@@ -1,6 +1,8 @@
-function handleView(userId) {
-	// Implement edit functionality for the user
-	console.log(`View user: ${userId}`);
+import { useNavigate } from 'react-router-dom';
+
+
+function handleView(navigate, userId, user) {
+	navigate('/admin/view-user', { state: { userId, user } });
 }
 
 function handleDelete(users, setUsers, userId) {
@@ -10,6 +12,7 @@ function handleDelete(users, setUsers, userId) {
 }
 
 function UserItem({ users, setUsers, user }) {
+	const navigate = useNavigate();
 	return (
 		<div className="flex items-center justify-between px-4 py-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200">
 			<div className="flex items-center space-x-3">
@@ -21,7 +24,7 @@ function UserItem({ users, setUsers, user }) {
 					<button
 						type="button"
 						className="view-but"
-						onClick={() => handleView(user.id)}
+						onClick={() => handleView(navigate, user.id, user)}
 					>
 						View
 					</button>

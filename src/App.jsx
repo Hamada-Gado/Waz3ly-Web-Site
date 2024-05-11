@@ -17,7 +17,7 @@ import Admin from "./pages/Admin/Admin";
 import AdminListOfUsers from "./pages/Admin/ListOfUsers";
 import AdminRequests from "./components/Admin/NotFound";
 import AdminPasswords from "./components/Admin/NotFound";
-import AdminViewUser from "./components/Admin/NotFound";
+import AdminViewUser from "./pages/Admin/AdminViewUser";
 
 export default function App() {
  	const ref = useFitDiv();
