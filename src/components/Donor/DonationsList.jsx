@@ -10,6 +10,7 @@ import FilterSchoolSupplies from "./FilterSchoolSupplies";
 import FilterMedicalCases from "./FilterMedicalCases";
 import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
+import useUpdate from "../../hooks/useUpdate";
 
 function getDesc(donation) {
   switch (donation.category) {
@@ -264,7 +265,7 @@ const DonationsList = () => {
                         prevDonations.filter((don) => don.id !== donation.id)
                       );
                       donation.pending = true;
-                      useUpdate("donations", donation, donation?.id);
+                      useUpdate("donations", donation, donation.id);
                     }}
                     className="px-4 py-2 bg-primary font-bold text-black rounded font-heading text-xl"
                   >

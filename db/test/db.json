@@ -4,15 +4,14 @@
       "id": "1",
       "title": "Donation 1",
       "description": "This is donation request 1.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "approved": 1,
       "accepted": 0,
       "category": "Food",
       "type": "Fruits",
-
       "pickupDate": "2024-05-11",
-      "pickupVehicle": "Truck",
+      "pickupVehicle": "",
       "pickupTime": ""
     },
     {
@@ -27,7 +26,6 @@
       "age": "0-10",
       "gender": "Male",
       "subCategory": "Dolls",
-
       "pickupDate": "2024-05-11",
       "pickupVehicle": "",
       "pickupTime": ""
@@ -36,7 +34,7 @@
       "id": "3",
       "title": "Donation 3",
       "description": "This is donation request 3.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "approved": 1,
       "accepted": 2,
@@ -44,8 +42,7 @@
       "age": "0-10",
       "gender": "Female",
       "season": "Winter",
-
-      "pickupDate": "2024-05-25",
+      "pickupDate": "2024-05-18",
       "pickupVehicle": ""
     },
     {
@@ -60,7 +57,6 @@
       "age": "11-20",
       "gender": "Male",
       "season": "Summer",
-
       "pickupDate": "2024-05-13",
       "pickupVehicle": "Motorcycle"
     },
@@ -76,7 +72,6 @@
       "age": "11-20",
       "gender": "Female",
       "subCategory": "Outdoor",
-
       "pickupDate": "2024-05-11",
       "pickupVehicle": ""
     },
@@ -90,7 +85,6 @@
       "accepted": 2,
       "category": "School Supplies",
       "supplyType": "Stationary",
-
       "pickupDate": "",
       "pickupVehicle": ""
     },
@@ -104,7 +98,6 @@
       "accepted": 0,
       "category": "Medical Supplies",
       "subCategory": "Medication",
-
       "pickupDate": "",
       "pickupVehicle": ""
     },
@@ -129,7 +122,6 @@
       "accepted": 2,
       "category": "Food",
       "type": "Vegetables",
-
       "pickupDate": "",
       "pickupVehicle": ""
     },
@@ -175,7 +167,7 @@
       "id": "13",
       "title": "Donation 13",
       "description": "This is donation request 13.",
-      "pending": false,
+      "pending": true,
       "completed": false,
       "approved": 1,
       "accepted": 0,
