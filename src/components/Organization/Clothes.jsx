@@ -26,17 +26,6 @@ const Clothes = ({
   return (
     <>
       <label className={labelClassName}>
-        Title:
-        <input
-          className={inputClassName}
-          type="text"
-          name="title"
-          placeholder="Title"
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label className={labelClassName}>
         Type:
         <input
           type="text"

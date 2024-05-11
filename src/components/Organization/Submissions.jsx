@@ -3,11 +3,12 @@ import { useState } from 'react';
 import Clothes from './Clothes';
 import Toys from './Toys';
 import Food from './Food';
-// import MedicalSupplies from './MedicalSupplies';
+import MedicalSupplies from './MedicalSupplies';
 // import SchoolSupplies from './SchoolSupplies';
 // import BloodDonations from './BloodDonations';
 
 import usePost from '../../hooks/usePost';
+import useUpdate from '../../hooks/useUpdate';
 
 const Submission = ({ setElement }) => {
   const [formData, setFormData] = useState(null);
@@ -28,7 +29,9 @@ const Submission = ({ setElement }) => {
     e.preventDefault();
     const { id } = await usePost('donations', formData);
     formData.id = id;
-    JSON.parse(localStorage.getItem('userData')).donations.push(formData.id);
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    userData.donations.push(formData.id);
+    useUpdate('users', userData, userData.id);
     setElement(null);
   };
 
@@ -63,6 +66,17 @@ const Submission = ({ setElement }) => {
             </select>
           </label>
 
+          <label className={labelClassName}>
+            Title:
+            <input
+              type="text"
+              name="title"
+              className={inputClassName}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
           {category === 'Clothing' && (
             <Clothes
               setFormData={setFormData}
@@ -78,7 +92,7 @@ const Submission = ({ setElement }) => {
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
-              selectedClassName={selectClassName}
+              selectClassName={selectClassName}
               handleChange={handleChange}
             />
           )}
@@ -93,7 +107,15 @@ const Submission = ({ setElement }) => {
             />
           )}
 
-          {/* {category === 'Medical Supplies' && <MedicalSupplies />} */}
+          {category === 'Medical Supplies' && (
+            <MedicalSupplies
+              setFormData={setFormData}
+              labelClassName={labelClassName}
+              inputClassName={inputClassName}
+              selectClassName={selectClassName}
+              handleChange={handleChange}
+            />
+          )}
           {/* {category === 'School Supplies' && <SchoolSupplies />} */}
           {/* {category === 'Blood Donation' && <BloodDonation />} */}
 

@@ -4,13 +4,13 @@ const Toys = ({
   setFormData,
   labelClassName,
   inputClassName,
-  selectedClassName,
+  selectClassName,
   handleChange,
 }) => {
   useEffect(() => {
     setFormData({
       title: '',
-      approved: false,
+      approved: 0,
       pending: false,
       completed: false,
       category: 'Toys',
@@ -24,17 +24,6 @@ const Toys = ({
 
   return (
     <>
-      <label className={labelClassName}>
-        Title:
-        <input
-          className={inputClassName}
-          type="text"
-          name="title"
-          placeholder="Title"
-          onChange={handleChange}
-          required
-        />
-      </label>
       <label className={labelClassName}>
         Type:
         <input
@@ -50,7 +39,7 @@ const Toys = ({
         Age:
         <select
           name="age"
-          className={selectedClassName}
+          className={selectClassName}
           onChange={handleChange}
           required
         >
@@ -68,7 +57,7 @@ const Toys = ({
         Gender:
         <select
           name="gender"
-          className={selectedClassName}
+          className={selectClassName}
           onChange={handleChange}
           required
         >
@@ -83,19 +72,19 @@ const Toys = ({
         Sub Category:
         <select
           name="subCategory"
-          className={selectedClassName}
+          className={selectClassName}
           onChange={handleChange}
           required
         >
           <option value="" disabled>
             Choose
           </option>
-          <option value="Action Figures">Action Figures</option>
+          <option value="Board Games">Board Games</option>
+          <option value="Stuffed Toys">Stuffed Toys</option>
           <option value="Dolls">Dolls</option>
-          <option value="Educational">Educational</option>
-          <option value="Puzzles">Puzzles</option>
-          <option value="Vehicles">Vehicles</option>
-          <option value="Other">Other</option>
+          <option value="Sports">Sports</option>
+          <option value="Cars">Cars</option>
+          <option value="Outdoor">Outdoor</option>
         </select>
       </label>
       <label className={labelClassName}>

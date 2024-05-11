@@ -93,8 +93,8 @@
       "title": "Donation 7",
       "description": "This is donation request 7.",
       "pending": false,
-      "completed": false,
       "category": "Medical Supplies",
+      "completed": false,
       "subCategory": "Medication",
       "item": "",
       "quantity": "",
@@ -218,12 +218,55 @@
       "season": "Summer",
       "material": "Wool",
       "quantity": "2"
+    },
+    {
+      "id": "63f1",
+      "title": "LOL",
+      "approved": 0,
+      "pending": false,
+      "completed": false,
+      "category": "",
+      "type": "BatMan fig.",
+      "age": "",
+      "gender": "",
+      "subCategory": "Dolls",
+      "quantity": "2"
+    },
+    {
+      "id": "238c",
+      "title": "HYE",
+      "approved": false,
+      "pending": false,
+      "completed": false,
+      "category": "Clothing",
+      "type": "Shirts",
+      "age": "",
+      "gender": "Male",
+      "season": "Summer",
+      "material": "Cotton",
+      "quantity": "2"
+    },
+    {
+      "id": "5cda",
+      "title": "PLZ WOrK",
+      "approved": false,
+      "pending": false,
+      "completed": false,
+      "category": "Clothing",
+      "type": "Shirts",
+      "age": "",
+      "gender": "Male",
+      "season": "Summer",
+      "material": "Cotton",
+      "quantity": "2"
     }
   ],
   "users": [
     {
       "id": "eb73",
-      "donations": [],
+      "donations": [
+        "5cda"
+      ],
       "username": "ahmedgado",
       "firstName": "Ahmed",
       "lastName": "Gado",

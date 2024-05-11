@@ -10,7 +10,7 @@ const Food = ({
   useEffect(() => {
     setFormData({
       title: '',
-      approved: false,
+      approved: 0,
       pending: false,
       completed: false,
       category: 'Food',
@@ -22,17 +22,6 @@ const Food = ({
 
   return (
     <>
-      <label className={labelClassName}>
-        Title:
-        <input
-          className={inputClassName}
-          type="text"
-          name="title"
-          placeholder="Title"
-          onChange={handleChange}
-          required
-        />
-      </label>
       <label className={labelClassName}>
         Type (in KG if fruits or vegetables and amount for the rest):
         <select
