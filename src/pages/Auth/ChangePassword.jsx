@@ -24,24 +24,30 @@ const ChangePassword = () => {
   };
 
   return (
-    <div>
+    
+    <div className="text-sm text-gray-700 text-center">
       <h1 className="text-3xl font-heading font-bold text-primary text-center">
         Set new Password
       </h1>
-      <div>
-        <label htmlFor="oldPassword">
+      <div className="flex flex-col">
+        <label htmlFor="oldPassword"
+        className="text-sm font-body text-gray-700">
           Old Password
+          </label>
           <input
             id="oldPassword"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
             type="password"
             className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
-          ></input>
-          <br />
-        </label>
-        <label htmlFor="newPassword">
+          ></input>         
+        
+        </div>
+          <div className="flex flex-col">
+        <label htmlFor="newPassword"
+        className="text-sm font-body text-gray-700">
           New Password
+          </label>
           <input
             id="newPassword"
             value={newPassword}
@@ -50,9 +56,13 @@ const ChangePassword = () => {
             className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
           ></input>
           <br />
-        </label>
-        <label htmlFor="confirmPassword">
+  
+        </div>
+        <div className="flex flex-col">
+        <label htmlFor="confirmPassword"
+        className="text-sm font-body text-gray-700">
           Confirm Password
+          </label>
           <input
             id="confirmPassword"
             value={confirmPassword}
@@ -60,9 +70,10 @@ const ChangePassword = () => {
             type="password"
             className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:ring-1"
           ></input>
-          <br />         
-        </label>  
-        <button onClick={handleSubmit}>Confirm</button>
+          <br /> 
+          </div>        
+        <div>
+        <button className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md shadow-sm " onClick={handleSubmit}>Confirm</button>
       </div> 
     </div>
     

@@ -12,6 +12,15 @@ import FinishedOrPending from "./pages/Donor/FinishedOrPending";
 import Settings from "./pages/Account/Settings";
 import SubmissionWindow from "./pages/Admin/SubmissionWindow";
 import RequestwWindow from "./pages/Admin/RequestManagement";
+import FilterClothes from "./components/Donor/FilterClothes";
+import FilterToys from "./components/Donor/FilterToys";
+import FilterFood from "./components/Donor/FilterFood";
+import FilterMedicalSupplies from "./components/Donor/FilterMedicalSupplies";
+import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
+import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
+import ChangePassword from "./pages/Auth/ChangePassword";
+import RequestManagement from "./pages/Admin/RequestManagement";
+import Submissions from "./pages/Admin/Submissions"
 
 // Admin imports
 import Admin from "./pages/Admin/Admin";
@@ -46,6 +55,9 @@ export default function App() {
             element={<SubmissionWindow />}
           ></Route>
           <Route path="/RequestwWindow" element={<RequestwWindow />}></Route>
+		  <Route path="/ChangePassword" element={<ChangePassword />}></Route>
+      <Route path="/RequestManagement" element={<RequestManagement />}></Route>
+      <Route path="/Submissions" element={<Submissions />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
