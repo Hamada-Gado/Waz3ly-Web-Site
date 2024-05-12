@@ -39,7 +39,7 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
       className="mt-4 space-y-2 border-2 py-2 px-4 rounded-md shadow-md border-black max-w-56 text-base font-body"
       onSubmit={(e) => {
         e.preventDefault();
-        if (!organization) {
+        if (!organization && !area && !governorate) {
           alert("Please Provide Filtering Options Fields");
         } else handleSubmit();
       }}
@@ -80,6 +80,8 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
         className="px-4 py-2 bg-red-500 font-bold text-black rounded"
         onClick={() => {
           setOrganization("");
+          setGovernorate("");
+          setArea("");
           setFurtherFiltering(null);
         }}
       >
