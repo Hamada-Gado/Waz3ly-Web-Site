@@ -1,234 +1,104 @@
 {
   "donations": [
     {
-      "id": "1",
-      "title": "Donation 1",
-      "description": "This is donation request 1.",
+      "id": "a180",
+      "title": "LEBSSSSS",
+      "approved": 0,
+      "accepted": 0,
+      "pending": false,
+      "completed": false,
+      "category": "Clothing",
+      "type": "Shirts",
+      "age": "11-20",
+      "gender": "Male",
+      "season": "Summer",
+      "material": "Cotton",
+      "quantity": "5",
+      "organizationID": "eb73"
+    },
+    {
+      "id": "53ab",
+      "title": "AM A SKELETON",
+      "approved": 0,
+      "accepted": 0,
       "pending": false,
       "completed": false,
       "category": "Food",
       "type": "Fruits",
       "item": "Apples",
-      "quantity": "99",
-      "pickupDate": "2024-05-17",
-      "pickupVehicle": "Truck",
-      "pickupTime": ""
+      "quantity": "10",
+      "organizationID": "eb73"
     },
     {
-      "id": "2",
-      "title": "Donation 2",
-      "description": "This is donation request 2.",
-      "pending": false,
-      "completed": false,
-      "category": "Toys",
-      "age": "0-10",
-      "gender": "Male",
-      "subCategory": "Dolls",
-      "item": "Burgers",
-      "quantity": "100",
-      "pickupDate": "2024-05-13",
-      "pickupVehicle": "Truck",
-      "pickupTime": ""
-    },
-    {
-      "id": "3",
-      "title": "Donation 3",
-      "description": "This is donation request 3.",
-      "pending": true,
-      "completed": false,
-      "category": "Clothing",
-      "age": "0-10",
-      "gender": "Female",
-      "season": "Winter",
-      "item": "Apples",
-      "quantity": "1000",
-      "pickupDate": "2024-05-14",
-      "pickupVehicle": "Truck"
-    },
-    {
-      "id": "4",
-      "title": "Donation 4",
-      "description": "This is donation request 4.",
-      "pending": false,
-      "completed": false,
-      "category": "Clothing",
-      "age": "11-20",
-      "gender": "Male",
-      "season": "Summer",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
-    },
-    {
-      "id": "5",
-      "title": "Donation 5",
-      "description": "This is donation request 5.",
-      "pending": false,
-      "completed": false,
-      "category": "Toys",
-      "age": "11-20",
-      "gender": "Female",
-      "subCategory": "Outdoor",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
-    },
-    {
-      "id": "6",
-      "title": "Donation 6",
-      "description": "This is donation request 6.",
-      "pending": false,
-      "completed": false,
-      "category": "School Supplies",
-      "supplyType": "Stationary",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
-    },
-    {
-      "id": "7",
-      "title": "Donation 7",
-      "description": "This is donation request 7.",
+      "id": "46a4",
+      "title": "Chug Splash",
+      "approved": 0,
+      "accepted": 0,
       "pending": false,
       "completed": false,
       "category": "Medical Supplies",
       "subCategory": "Medication",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
+      "deviceType": "None",
+      "use": "Pain Reliever",
+      "quantity": "10",
+      "organizationID": "eb73"
     },
     {
-      "id": "8",
-      "title": "Donation 8",
-      "description": "This is donation request 8.",
-      "pending": false,
-      "accepted": false,
-      "category": "Blood Donation",
-      "organization": "Governorate"
-    },
-    {
-      "id": "9",
-      "title": "Donation 9",
-      "description": "This is donation request 9.",
-      "pending": false,
-      "completed": false,
-      "category": "Food",
-      "type": "Vegetables",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
-    },
-    {
-      "id": "10",
-      "title": "Donation 10",
-      "description": "This is donation request 10.",
-      "pending": true,
-      "accepted": false,
-      "category": "Blood Donation",
-      "organization": "Hospital"
-    },
-    {
-      "id": "11",
-      "title": "Donation 11",
-      "description": "This is donation request 11.",
+      "id": "16bf",
+      "title": "HERE WE GO AGAIN",
+      "approved": 0,
+      "accepted": 0,
       "pending": false,
       "completed": false,
       "category": "School Supplies",
-      "supplyType": "Books",
-      "item": "",
-      "quantity": "",
-      "pickupDate": "",
-      "pickupVehicle": ""
-    },
-    {
-      "id": "12",
-      "title": "Donation 12",
-      "description": "This is donation request 12.",
-      "pending": false,
-      "accepted": false,
-      "category": "Medical Cases",
-      "specialty": "Surgeon",
-      "organization": "Org1",
-      "area": "Area1",
-      "governorate": "Gov1"
-    },
-    {
-      "id": "13",
-      "title": "Donation 13",
-      "description": "This is donation request 13.",
-      "pending": true,
-      "accepted": false,
-      "category": "Medical Cases",
-      "specialty": "Dentists",
-      "organization": "Org2",
-      "area": "Area2",
-      "governorate": "Gov2"
-    },
-    {
-      "id": "14",
-      "title": "Donation 14",
-      "description": "This is donation request 14.",
-      "pending": false,
-      "accepted": false,
-      "category": "Teaching Posts",
-      "subject": "Math",
-      "area": "Area1",
-      "governorate": "Gov1"
-    },
-    {
-      "id": "15",
-      "title": "Donation 15",
-      "description": "This is donation request 15.",
-      "pending": false,
-      "accepted": false,
-      "category": "Teaching Posts",
-      "subject": "Biology",
-      "area": "Area2",
-      "governorate": "Gov2"
-    },
-    {
-      "id": "a610",
-      "title": "vampire",
-      "approved": 0,
-      "accepted": 0,
-      "pending": false,
-      "completed": false,
-      "category": "Toys",
-      "patientName": "dracula",
-      "bloodType": "O+",
+      "supplyType": "Stationary",
+      "quantity": "50",
+      "type": "Pens",
+      "name": "",
+      "author": "",
+      "language": "",
+      "edition": "",
+      "shortDescription": "",
       "organizationID": "eb73"
     },
     {
-      "id": "d23d",
-      "title": "let' teach",
+      "id": "4ee4",
+      "title": "VAMPIRESSSS",
+      "approved": 0,
+      "accepted": 0,
+      "pending": false,
+      "completed": false,
+      "category": "Blood Donation",
+      "patientName": "Dracula",
+      "bloodType": "AB+",
+      "organizationID": "eb73"
+    },
+    {
+      "id": "c7dc",
+      "title": "WHITE CHALK",
       "approved": 0,
       "accepted": 0,
       "pending": false,
       "completed": false,
       "category": "Teaching Posts",
-      "numStudents": "20",
-      "subjects": "Maths",
+      "numStudents": "25",
+      "subjects": "English",
       "organizationID": "eb73"
     },
     {
-      "id": "c9a5",
-      "title": "WUT HAPPEND",
+      "id": "b5c6",
+      "title": "Graveyard",
       "approved": 0,
       "accepted": 0,
       "pending": false,
       "completed": false,
       "category": "Medical Cases",
-      "patientName": "Frank",
+      "patientName": "Frankenstein",
       "age": ">40",
       "gender": "Male",
-      "weight": "176",
+      "weight": "250",
       "medicalSpecialty": "Surgery",
-      "caseDescription": "yay",
+      "caseDescription": "Remove the 2 *IRON BOLTS*",
       "organizationID": "eb73"
     }
   ],
@@ -274,7 +144,7 @@
       "doctorSpecialty": "",
       "teacherSubject": "",
       "organizationName": "",
-      "organizationType": "Donar"
+      "organizationType": ""
     },
     {
       "id": "3c9b8",
@@ -290,11 +160,11 @@
       "governorate": "Cairo",
       "accountType": "Teacher",
       "address": "",
-      "maxCases": 0,
+      "maxCases": 25,
       "doctorSpecialty": "",
       "teacherSubject": "History",
       "organizationName": "",
-      "organizationType": "Teacher"
+      "organizationType": ""
     },
     {
       "id": "01e4d",
@@ -309,7 +179,7 @@
       "area": "Giza",
       "governorate": "Giza",
       "accountType": "Doctor",
-      "address": "",
+      "address": "25 El-Salam Street",
       "maxCases": 15,
       "doctorSpecialty": "Cardiology",
       "teacherSubject": "",
@@ -334,7 +204,7 @@
       "doctorSpecialty": "",
       "teacherSubject": "",
       "organizationName": "Hope Foundation",
-      "organizationType": "Organization"
+      "organizationType": "Charity"
     },
     {
       "id": "4e21f",
@@ -354,7 +224,7 @@
       "doctorSpecialty": "",
       "teacherSubject": "",
       "organizationName": "",
-      "organizationType": "Admin"
+      "organizationType": ""
     },
     {
       "id": "b90a7",
@@ -370,11 +240,11 @@
       "governorate": "Cairo",
       "accountType": "Teacher",
       "address": "",
-      "maxCases": 0,
+      "maxCases": 30,
       "doctorSpecialty": "",
       "teacherSubject": "Math",
       "organizationName": "",
-      "organizationType": "Admin"
+      "organizationType": ""
     },
     {
       "id": "1d53c",
@@ -389,12 +259,12 @@
       "area": "Heliopolis",
       "governorate": "Cairo",
       "accountType": "Doctor",
-      "address": "",
+      "address": "10 El-Nasr Street, Dokki",
       "maxCases": 8,
       "doctorSpecialty": "Ophthalmology",
       "teacherSubject": "",
       "organizationName": "",
-      "organizationType": "Doctor"
+      "organizationType": ""
     },
     {
       "id": "68aef",
@@ -414,7 +284,7 @@
       "doctorSpecialty": "",
       "teacherSubject": "",
       "organizationName": "Green Earth",
-      "organizationType": "Teacher"
+      "organizationType": "Hospital"
     },
     {
       "id": "c37b0",
@@ -434,7 +304,7 @@
       "doctorSpecialty": "",
       "teacherSubject": "",
       "organizationName": "",
-      "organizationType": "Organization"
+      "organizationType": ""
     }
   ]
 }

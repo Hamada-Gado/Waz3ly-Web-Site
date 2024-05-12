@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '/src/styles/dashboard.css';
 import Submission from '../../components/Organization/Submissions';
+import ShowSubmission from '../../components/Organization/ShowSubmission';
 
 function SideBar({ userData, setElement }) {
   return (
@@ -13,14 +14,15 @@ function SideBar({ userData, setElement }) {
       <div className="nav">
         <button
           className="sidebar-item"
-          onClick={() => {
-            setElement(<Submission setElement={setElement} />);
-          }}
+          onClick={() => setElement(<Submission setElement={setElement} />)}
         >
           New Donation Request
         </button>
-        <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
-          My Requests
+        <Link
+          className="sidebar-item"
+          onClick={() => setElement(<ShowSubmission setElement={setElement} />)}
+        >
+          My Donations
         </Link>
         <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
           Our Heros 🌟

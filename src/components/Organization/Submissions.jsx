@@ -12,9 +12,9 @@ import MedicalCases from './MedicalCases';
 import usePost from '../../hooks/usePost';
 import useUpdate from '../../hooks/useUpdate';
 
-const Submission = ({ setElement }) => {
-  const [formData, setFormData] = useState(null);
-  const [category, setCategory] = useState('');
+const Submission = ({ setElement, isUpdate, initFormData }) => {
+  const [formData, setFormData] = useState(initFormData);
+  const [category, setCategory] = useState(initFormData?.category || '');
 
   const formClassName = 'flex flex-col space-y-4';
   const labelClassName = 'flex flex-col text-sm font-body text-text font-base';
@@ -32,13 +32,16 @@ const Submission = ({ setElement }) => {
     const userData = JSON.parse(localStorage.getItem('userData'));
     formData.organizationID = userData.id;
 
-    const { id } = await usePost('donations', formData);
-    formData.id = id;
+    if (isUpdate) {
+      useUpdate('donations', formData, formData.id);
+    } else {
+      const { id } = await usePost('donations', formData);
+      formData.id = id;
+      userData.donations.push(formData.id);
+      localStorage.setItem('userData', JSON.stringify(userData));
+      useUpdate('users', userData, userData.id);
+    }
 
-    userData.donations.push(formData.id);
-    localStorage.setItem('userData', JSON.stringify(userData));
-
-    useUpdate('users', userData, userData.id);
     setElement(null);
   };
 
@@ -49,14 +52,14 @@ const Submission = ({ setElement }) => {
         style={{ top: 'clamp(0px, 10vh, calc(100% - 10px)' }}
       >
         <h1 className="text-3xl font-primary font-bold text-primary text-center">
-          Create a Donation Request
+          {isUpdate ? 'Update Donation Request' : 'Create a Donation Request'}
         </h1>
         <form className={formClassName} onSubmit={handleSubmit}>
           <label className={labelClassName}>
             Category:
             <select
               name="category"
-              defaultValue=""
+              defaultValue={initFormData?.category || ''}
               className={selectClassName}
               onChange={(e) => setCategory(e.target.value)}
               required
@@ -80,6 +83,7 @@ const Submission = ({ setElement }) => {
             <input
               type="text"
               name="title"
+              defaultValue={initFormData?.title || ''}
               className={inputClassName}
               onChange={handleChange}
               required
@@ -88,6 +92,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Clothing' && (
             <Clothes
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -98,6 +103,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Toys' && (
             <Toys
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -108,6 +114,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Food' && (
             <Food
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -118,6 +125,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Medical Supplies' && (
             <MedicalSupplies
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -139,6 +147,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Blood Donation' && (
             <BloodDonations
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -149,6 +158,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Teaching Post' && (
             <TeachingPost
+              formData={formData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -159,6 +169,7 @@ const Submission = ({ setElement }) => {
 
           {category === 'Medical Cases' && (
             <MedicalCases
+              formData={initFormData}
               setFormData={setFormData}
               labelClassName={labelClassName}
               inputClassName={inputClassName}
@@ -172,13 +183,18 @@ const Submission = ({ setElement }) => {
             <input
               type="datetime-local"
               name="dropOff"
+              defaultValue={new Date(
+                Date.now() - new Date().getTimezoneOffset() * 60000
+              )
+                .toISOString()
+                .slice(0, -1)}
               className={inputClassName}
               required
             ></input>
           </label>
 
           <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
-            Submit
+            {isUpdate ? 'Save' : 'Submit'}
           </button>
         </form>
 
