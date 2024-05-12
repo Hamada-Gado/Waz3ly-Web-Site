@@ -19,6 +19,8 @@ function NotificationDropdown() {
   useEffect(() => {
     const interval = setInterval(() => {
       updateNotifications();
+      console.log(notifications);
+      console.log(accountType);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -50,7 +52,11 @@ function NotificationDropdown() {
   ];
 
   const updateNotifications = () => {
-    setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
+    try {
+      setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
+    } catch (e) {
+      console.log(e);
+    }
     switch (accountType) {
       case "Organization":
         setNotifications(
@@ -60,7 +66,6 @@ function NotificationDropdown() {
               notification.id === Math.floor(Math.random() * 3) + 1
           )
         );
-        console.log(notifications);
         break;
       case "Donor":
       case "Teacher":
@@ -71,7 +76,6 @@ function NotificationDropdown() {
               notification.id === Math.floor(Math.random() * 2) + 1
           )
         );
-        console.log(notifications);
         break;
       default:
         setNotifications([]);
