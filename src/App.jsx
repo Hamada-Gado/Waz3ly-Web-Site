@@ -20,7 +20,7 @@ import FilterTeachingPosts from "./components/Donor/FilterTeachingPosts";
 import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
 import ChangePassword from "./pages/Auth/ChangePassword";
 import RequestManagement from "./pages/Admin/RequestManagement";
-import Submissions from "./pages/Admin/Submissions"
+import Submissions from "./pages/Admin/Submissions";
 
 // Admin imports
 import Admin from "./pages/Admin/Admin";
@@ -55,10 +55,13 @@ export default function App() {
             path="/SubmissionWindow"
             element={<SubmissionWindow />}
           ></Route>
-          <Route path="/RequestwWindow" element={<RequestwWindow />}></Route>
-		  <Route path="/ChangePassword" element={<ChangePassword />}></Route>
+          <Route
+            path="/RequestManagement"
+            element={<RequestManagement />}
+          ></Route>
+          <Route path="/ChangePassword" element={<ChangePassword />}></Route>
           <Route path="/AdminSettings" element={<AdminSettings />}></Route>
-      <Route path="/Submissions" element={<Submissions />}></Route>
+          <Route path="/Submissions" element={<Submissions />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
