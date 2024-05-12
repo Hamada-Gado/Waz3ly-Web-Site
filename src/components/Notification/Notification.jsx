@@ -1,34 +1,77 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import bellIcon from "../../assets/icons/bell.svg";
+import emptyBellIcon from "../../assets/icons/emptyBell.svg";
+
 function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [accountType, setAccountType] = useState(null);
 
   const [notifications, setNotifications] = useState([]);
   const toggleMenu = () => {
-    updateNotifications();
     setIsOpen(!isOpen);
+    // Clear notifications when the menu is closed
+    if (isOpen) {
+      setNotifications([]);
+      console.log(notifications);
+    }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateNotifications();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const organizationNotificationsOptions = [
+    {
+      id: 1,
+      message: "Donation post 1: Food for 50 people has been donated",
+    },
+    {
+      id: 2,
+      message:
+        "Good news! Donation post 2 has been picked by Ahmed Ali to be donated",
+    },
+    {
+      id: 3,
+      message: "Donation post 5: Clothes for 20 people has been donated",
+    },
+  ];
+  const donorNotificationsOptions = [
+    {
+      id: 1,
+      message: "Your driver Ahmed has arrived",
+    },
+    {
+      id: 2,
+      message: "Your driver Ali will be arriving in 10 minutes",
+    },
+  ];
 
   const updateNotifications = () => {
     setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
-    console.log(accountType);
     switch (accountType) {
       case "Organization":
-        setNotifications([
-          {
-            id: 1,
-            message: "Donation post 193: Food for 50 people has been donated",
-          },
-        ]);
+        setNotifications(
+          // Show a random notification from the organizationNotificationsOptions
+          organizationNotificationsOptions.filter(
+            (notification) =>
+              notification.id === Math.floor(Math.random() * 3) + 1
+          )
+        );
+        console.log(notifications);
         break;
       case "Donor":
-        setNotifications([
-          {
-            id: 1,
-            message: "Your driver Ahmed has arrived",
-          },
-        ]);
+      case "Teacher":
+      case "Doctor":
+        setNotifications(
+          donorNotificationsOptions.filter(
+            (notification) =>
+              notification.id === Math.floor(Math.random() * 2) + 1
+          )
+        );
+        console.log(notifications);
         break;
       default:
         setNotifications([]);
@@ -51,7 +94,11 @@ function NotificationDropdown() {
   return (
     <div className="notification">
       <button onClick={toggleMenu}>
-        <img src={bellIcon} />
+        {notifications.length === 0 ? (
+          <img src={emptyBellIcon} />
+        ) : (
+          <img src={bellIcon} />
+        )}
       </button>
       <div style={isOpen ? overlayStyle : { display: "none" }}>
         {isOpen && (
