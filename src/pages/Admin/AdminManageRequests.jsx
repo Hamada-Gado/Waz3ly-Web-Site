@@ -30,7 +30,7 @@ const Data = [
   },
 ];
 
-const RequestwWindow = () => {
+const AdminManageRequests = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [data, setData] = useState(Data);
 
@@ -117,4 +117,4 @@ const RequestwWindow = () => {
   );
 };
 
-export default RequestwWindow;
+export default AdminManageRequests;

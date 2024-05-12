@@ -25,9 +25,9 @@ import Submissions from "./pages/Admin/Submissions";
 // Admin imports
 import Admin from "./pages/Admin/Admin";
 import AdminListOfUsers from "./pages/Admin/ListOfUsers";
-import AdminRequests from "./components/Admin/NotFound";
 import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "../src/pages/Admin/AdminViewUser";
+import AdminManageRequests from "./pages/Admin/AdminManageRequests";
 import AdminSettings from "./pages/Account/AdminSettings";
 
 export default function App() {
@@ -48,20 +48,15 @@ export default function App() {
             path="/admin/listofusers"
             element={<AdminListOfUsers />}
           ></Route>
-          <Route path="/admin/requests" element={<AdminRequests />}></Route>
           <Route path="/admin/passwords" element={<AdminPasswords />}></Route>
           <Route path="/admin/view-user" element={<AdminViewUser />}></Route>
-          <Route
-            path="/SubmissionWindow"
-            element={<SubmissionWindow />}
-          ></Route>
-          <Route
-            path="/RequestManagement"
-            element={<RequestManagement />}
-          ></Route>
           <Route path="/ChangePassword" element={<ChangePassword />}></Route>
           <Route path="/AdminSettings" element={<AdminSettings />}></Route>
           <Route path="/Submissions" element={<Submissions />}></Route>
+          <Route
+            path="admin/requests"
+            element={<AdminManageRequests />}
+          ></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
             element={<FinishedOrPending />}
