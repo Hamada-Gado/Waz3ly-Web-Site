@@ -10,25 +10,54 @@ function NotificationDropdown() {
     setIsOpen(!isOpen);
   };
 
+  const organizationNotificationsOptions = [
+    {
+      id: 1,
+      message: "Donation post 1: Food for 50 people has been donated",
+    },
+    {
+      id: 2,
+      message:
+        "Good news! Donation post 2 has been picked by Ahmed Ali to be donated",
+    },
+    {
+      id: 3,
+      message: "Donation post 5: Clothes for 20 people has been donated",
+    },
+  ];
+  const donorNotificationsOptions = [
+    {
+      id: 1,
+      message: "Your driver Ahmed has arrived",
+    },
+    {
+      id: 2,
+      message: "Your driver Ali will be arriving in 10 minutes",
+    },
+  ];
+
   const updateNotifications = () => {
     setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
     console.log(accountType);
     switch (accountType) {
       case "Organization":
-        setNotifications([
-          {
-            id: 1,
-            message: "Donation post 193: Food for 50 people has been donated",
-          },
-        ]);
+        setNotifications(
+          // Show a random notification from the organizationNotificationsOptions
+          organizationNotificationsOptions.filter(
+            (notification) =>
+              notification.id === Math.floor(Math.random() * 3) + 1
+          )
+        );
         break;
       case "Donor":
-        setNotifications([
-          {
-            id: 1,
-            message: "Your driver Ahmed has arrived",
-          },
-        ]);
+      case "Teacher":
+      case "Doctor":
+        setNotifications(
+          donorNotificationsOptions.filter(
+            (notification) =>
+              notification.id === Math.floor(Math.random() * 2) + 1
+          )
+        );
         break;
       default:
         setNotifications([]);
