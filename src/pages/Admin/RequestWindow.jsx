@@ -1,40 +1,36 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
+import PDFViewer from "../../components/Media/PDFViewer";
 
 const Data = [
 	{
 		id: 1,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "clothing donation",
+		type: "Donor",
+		request: "clothing donation",
 	},
 	{
 		id: 2,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "food donation",
+		type: "Donor",
+		request: "food donation",
 	},
 	{
 		id: 3,
-		organization: "Hospital",
-		submission: "School",
-		document: "books",
+		type: "School",
+		request: "books",
 	},
 	{
 		id: 4,
-		organization: "Hospital",
-		submission: "Hospital",
-		document: "blood donation",
+		type: "Hospital",
+		request: "blood donation",
 	},
 	{
 		id: 5,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "money donation",
+		type: "Donor",
+		request: "money donation",
 	},
 ];
 
-const SubmissionWindow = () => {
+const RequestWindow = () => {
 	const [selectedRows, setSelectedRows] = useState([]);
 	const [data, setData] = useState(Data);
 
@@ -70,28 +66,28 @@ const SubmissionWindow = () => {
 
 	const columns = [
 		{
-			name: "Organization",
-			selector: (row) => row.organization,
+			name: "Type",
+			selector: (row) => row.type,
 			sortable: true,
 		},
 		{
-			name: "Submission",
-			selector: (row) => row.submission,
+			name: "Request",
+			selector: (row) => row.request,
 			sortable: true,
 		},
 		{
 			name: "Document",
-			selector: (row) => row.document,
-			sortable: true,
-			grow: 2,
+			selector: () => <PDFViewer />, // Render PDFViewer component directly
 		},
 	];
 
 	return (
 		<div className="flex justify-center items-center h-screen w-full">
-			<div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md w-full">
+			<div className="bg-white shadow-md rounded-lg px-8 py-6 w-1/2">
+				{" "}
+				{/* Set width to 3/4 */}
 				<h1 className="text-3xl font-bold text-center text-primary mb-6">
-					Submissions
+					Requests
 				</h1>
 				<DataTable
 					columns={columns}
@@ -119,5 +115,4 @@ const SubmissionWindow = () => {
 	);
 };
 
-export default SubmissionWindow;
-
+export default RequestWindow;

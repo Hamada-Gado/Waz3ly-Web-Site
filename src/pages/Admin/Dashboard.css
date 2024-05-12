@@ -30,7 +30,7 @@
 	.sidebar .nav {
 		@apply
 		grid
-		grid-rows-2
+		grid-rows-3
 		self-start
 		gap-6
 	}
