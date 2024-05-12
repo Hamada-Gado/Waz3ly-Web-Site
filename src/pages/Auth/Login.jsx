@@ -96,17 +96,17 @@ const Login = () => {
             Login
           </button>
         </form>
-        <div className="text-sm text-gray-700 text-center">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-primary underline">
-            Register here
-          </Link>
-        </div>
         {invalidLogin && (
           <div className="text-sm text-danger text-center">
             Invalid username or password. Please try again
           </div>
         )}
+        <div className="text-sm text-gray-700 text-center">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-primary underline">
+            Register here
+          </Link>
+        </div>
       </div>
     </div>
   );
