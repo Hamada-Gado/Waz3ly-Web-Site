@@ -11,6 +11,8 @@ const Login = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
+  const [invalidLogin, setInvalidLogin] = useState(false);
+
   useEffect(() => {
     useFetch('users', setUsers);
   }, []);
@@ -41,12 +43,11 @@ const Login = () => {
           localStorage.setItem('defaultPath', '/donor');
           navigate('/donor', { replace: true });
         }
-
-        return;
       }
     }
-
-    console.log('Login unsuccessful');
+    setInvalidLogin(true);
+    setPassword("");
+    console.log("Login unsuccessful");
   };
 
   return (
@@ -101,6 +102,11 @@ const Login = () => {
             Register here
           </Link>
         </div>
+        {invalidLogin && (
+          <div className="text-sm text-danger text-center">
+            Invalid username or password. Please try again
+          </div>
+        )}
       </div>
     </div>
   );
