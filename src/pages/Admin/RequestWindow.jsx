@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
+import PDFViewer from "../../components/Media/PDFViewer";
 
 const Data = [
   {
@@ -29,7 +30,7 @@ const Data = [
   },
 ];
 
-const RequestwWindow = () => {
+const RequestWindow = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [data, setData] = useState(Data);
 
@@ -74,11 +75,15 @@ const RequestwWindow = () => {
       selector: (row) => row.request,
       sortable: true,
     },
+    {
+      name: "Document",
+      selector: () => <PDFViewer />,
+    },
   ];
 
   return (
     <div className="flex justify-center items-center h-screen w-full">
-      <div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md w-full">
+      <div className="bg-white shadow-md rounded-lg px-8 py-6 w-1/2">
         <h1 className="text-3xl font-bold text-center text-primary mb-6">
           Requests
         </h1>
@@ -108,4 +113,4 @@ const RequestwWindow = () => {
   );
 };
 
-export default RequestwWindow;
+export default RequestWindow;
