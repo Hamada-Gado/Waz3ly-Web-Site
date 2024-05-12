@@ -12,6 +12,8 @@ import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
 import SimpleMap from "../Maps/SimpleMap";
+import medicalDevice from "./medicalDevice.webp";
+import Book from "./book.jpg";
 
 function getOrg(donation, users) {
   // console.log(users);
@@ -29,31 +31,32 @@ function getDesc(donation, users) {
               Gender: ${donation.gender},\n
               Season: ${donation.season},\n
               material: ${donation.material},\n
-              quantity: ${donation.quantity}\n
-              Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+              quantity: ${donation.quantity},\n
+              Organization Name: ${organization.organizationName}
+               `;
     case "Food":
       return `category: ${donation.category},\n
       Type: ${donation.type},\n
       Item: ${donation.item},\n
       Quantity: ${donation.quantity}${
         donation.type === "Fruits" || donation.type === "Vegetables" ? "kg" : ""
-      }`;
+      },\n
+      Organization Name: ${organization.organizationName}`;
     case "Toys":
       return `category: ${donation.category},\n
               Age: ${donation.age},\n
               gender: ${donation.gender},\n
               Sub Category: ${donation.subCategory},\n
-              Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+              Organization Name: ${organization.organizationName}
+               `;
     case "Medical Supplies":
       return `category: ${donation.category},\n
               Sub Category: ${donation.subCategory},\n
               device type: ${donation.deviceType},\n
               use : ${donation.use},\n
               quantity: ${donation.quantity},\n
-              Organization Name: ${organization.organizationName},\n
-              Organization location:
+              Organization Name: ${organization.organizationName}
+               
               `;
     case "Blood Donation":
       return `Category: ${donation.category},\n
@@ -64,16 +67,16 @@ function getDesc(donation, users) {
       Governorate: ${organization.governorate},\n
       Hospital address: ${organization.address},\n
       Hospital phone: ${organization.contactNumber},\n
-      Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+      Organization Name: ${organization.organizationName}
+               `;
     case "School Supplies":
       if (donation.supplyType === "Stationary") {
         return `category: ${donation.category},\n
         Supply Type: ${donation.supplyType},\n
         type: ${donation.type},\n
         Quantity: ${donation.quantity},\n
-        Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+        Organization Name: ${organization.organizationName}
+               `;
       }
       return `category: ${donation.category},\n
               Supply Type: ${donation.supplyType},\n
@@ -83,8 +86,8 @@ function getDesc(donation, users) {
               book language: ${donation.language},\n
               book edition: ${donation.edition},\n
               book summary: ${donation.shortDescription},\n
-              Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+              Organization Name: ${organization.organizationName}
+               `;
     case "Medical Cases":
       return `category: ${donation.category},\n
               patient name: ${donation.patientName},\n
@@ -95,15 +98,15 @@ function getDesc(donation, users) {
               Specialty: ${donation.medicalSpecialty},\n
               case description: ${donation.caseDescription},\n
               Address: ${organization.address},\n
-              Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+              Organization Name: ${organization.organizationName}
+               `;
     case "Teaching Posts":
       return `category: ${donation.category},\n
       Subject: ${donation.subject},\n
       Max number of students: ${donation.numStudents},\n
       Address: ${organization.address},\n
-      Organization Name: ${organization.organizationName},\n
-              Organization location:`;
+      Organization Name: ${organization.organizationName}
+               `;
     default:
       return "";
   }
@@ -303,6 +306,25 @@ const DonationsList = () => {
                           desc.split(":")[1].slice(1)}
                       </p>
                     ))}
+
+                  {donation.category === "Medical Supplies" && (
+                    <img
+                      className="rounded-lg mt-4"
+                      src={medicalDevice}
+                      alt="Medical Device"
+                    ></img>
+                  )}
+                  {donation.category === "School Supplies" &&
+                    donation.supplyType === "Books" && (
+                      <img
+                        className="rounded-lg mt-4"
+                        src={Book}
+                        alt="Book"
+                      ></img>
+                    )}
+                  <p className="font-bold text-base font-body">
+                    Organization Location:
+                  </p>
                   <div>{<SimpleMap onChange={() => {}} />}</div>
 
                   {donation.category !== "Medical Cases" &&
