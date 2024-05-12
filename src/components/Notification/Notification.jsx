@@ -4,12 +4,10 @@ import emptyBellIcon from "../../assets/icons/emptyBell.svg";
 
 function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [accountType, setAccountType] = useState(null);
 
   const [notifications, setNotifications] = useState([]);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    // Clear notifications when the menu is closed
     if (isOpen) {
       setNotifications([]);
       console.log(notifications);
@@ -20,26 +18,10 @@ function NotificationDropdown() {
     const interval = setInterval(() => {
       updateNotifications();
       console.log(notifications);
-      console.log(accountType);
-    }, 5000);
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
 
-  const organizationNotificationsOptions = [
-    {
-      id: 1,
-      message: "Donation post 1: Food for 50 people has been donated",
-    },
-    {
-      id: 2,
-      message:
-        "Good news! Donation post 2 has been picked by Ahmed Ali to be donated",
-    },
-    {
-      id: 3,
-      message: "Donation post 5: Clothes for 20 people has been donated",
-    },
-  ];
   const donorNotificationsOptions = [
     {
       id: 1,
@@ -49,37 +31,18 @@ function NotificationDropdown() {
       id: 2,
       message: "Your driver Ali will be arriving in 10 minutes",
     },
+    {
+      id: 3,
+      message: "Donation post 5: Clothes for 20 people has been donated",
+    },
   ];
 
   const updateNotifications = () => {
-    try {
-      setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
-    } catch (e) {
-      console.log(e);
-    }
-    switch (accountType) {
-      case "Organization":
-        setNotifications(
-          // Show a random notification from the organizationNotificationsOptions
-          organizationNotificationsOptions.filter(
-            (notification) =>
-              notification.id === Math.floor(Math.random() * 3) + 1
-          )
-        );
-        break;
-      case "Donor":
-      case "Teacher":
-      case "Doctor":
-        setNotifications(
-          donorNotificationsOptions.filter(
-            (notification) =>
-              notification.id === Math.floor(Math.random() * 2) + 1
-          )
-        );
-        break;
-      default:
-        setNotifications([]);
-    }
+    setNotifications(
+      donorNotificationsOptions.filter(
+        (notification) => notification.id === Math.floor(Math.random() * 3) + 1
+      )
+    );
   };
 
   const overlayStyle = {
