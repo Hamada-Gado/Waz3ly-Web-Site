@@ -19,7 +19,7 @@ function NotificationDropdown() {
   useEffect(() => {
     const interval = setInterval(() => {
       updateNotifications();
-    }, 8000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
