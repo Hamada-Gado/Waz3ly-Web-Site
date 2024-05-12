@@ -13,7 +13,7 @@ import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
 import SimpleMap from "../Maps/SimpleMap";
 import medicalDevice from "./medicalDevice.webp";
-import Book from "./book.jpg";
+import Book from "./Book.jpg";
 
 function getOrg(donation, users) {
   return users.find((user) => user.id === donation.organizationID);
