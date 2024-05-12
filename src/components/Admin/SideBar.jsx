@@ -15,10 +15,6 @@ export default function SideBar(){
 				<a className="sidebar-item" href="/admin/submissions">
 					Manage Submissions
 				</a>
-
-				<a className="sidebar-item" href="/admin/passwords">
-					Manage Passwords
-				</a>
 			</div>
 		</div>
 	);
