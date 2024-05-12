@@ -33,9 +33,21 @@ function DonationItem({ setElement, donations, setDonations, donation }) {
     <div className="flex items-center justify-between my-4 mr-2 px-4 py-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200">
       <div className="flex items-center space-x-3">
         <span className="text-lg font-medium">{donation.title}</span>
-        {/* <span className="text-gray-500 text-sm">{donation.accountType}</span> */}
       </div>
       <div className="flex space-x-2">
+        {
+          <button
+            type="button"
+            className={
+              donation.completed
+                ? 'bg-accepted'
+                : 'bg-warning' + ' rounded-md px-2 py-1'
+            }
+            disabled
+          >
+            {donation.completed ? 'Completed' : 'Pending'}
+          </button>
+        }
         {
           <button
             type="button"
