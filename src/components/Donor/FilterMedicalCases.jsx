@@ -53,48 +53,36 @@ const FilterMedicalCases = ({ setFurtherFiltering }) => {
             <u>Filtering Options:</u>
           </strong>
         </h2>
-        <select
-          className="filter-input bg-background-main "
+        <input
+          className="filter-input border border-black rounded-lg bg-background-main "
+          placeholder="  Specialty"
           value={specialty}
           onChange={handleSpecialtyChange}
-        >
-          <option value="">Select Specialty</option>
-          <option value="Surgeon">Surgeon</option>
-          <option value="Dentists">Dentist</option>
-        </select>
+        ></input>
       </div>
       <div className="filter-label">
-        <select
-          className="filter-input bg-background-main "
+        <input
+          className="filter-input border border-black rounded-lg bg-background-main "
+          placeholder="  Organization"
           value={organization}
           onChange={handleOrganizationChange}
-        >
-          <option value="">Select Organization</option>
-          <option value="Org1">Organization 1</option>
-          <option value="Org2">Organization 2</option>
-        </select>
+        ></input>
       </div>
       <div className="filter-label">
-        <select
-          className="filter-input bg-background-main "
+        <input
+          className="filter-input border border-black rounded-lg bg-background-main "
+          placeholder="  Area"
           value={area}
           onChange={handleAreaChange}
-        >
-          <option value="">Select Area</option>
-          <option value="Area1">Area 1</option>
-          <option value="Area2">Area 2</option>
-        </select>
+        ></input>
       </div>
       <div className="filter-label">
-        <select
-          className="filter-input bg-background-main "
+        <input
+          className="filter-input border border-black rounded-lg bg-background-main "
+          placeholder="  Governorate"
           value={governorate}
           onChange={handleGovernorateChange}
-        >
-          <option value="">Select Governorate</option>
-          <option value="Gov1">Governorate 1</option>
-          <option value="Gov2">Governorate 2</option>
-        </select>
+        ></input>
       </div>
       <button
         type="submit"

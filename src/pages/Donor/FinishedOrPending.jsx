@@ -207,7 +207,7 @@ const FinishedOrPending = () => {
                   )}
                   {currDonation === donation && (
                     <div className=" top-0 left-0 w-full h-full flex justify-center items-center bg-opacity-100">
-                      <div className="bg-white w-full p-4 m-5 rounded-md right-auto ">
+                      <div className="bg-background-dark w-full p-4 m-5 rounded-md right-auto ">
                         <h3 className="text-xl font-bold font-heading"></h3>
                         {getDesc(donation, users)
                           .split(",\n")
