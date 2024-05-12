@@ -20,7 +20,7 @@ import FilterMedicalCases from "./components/Donor/FilterMedicalCases";
 // Admin imports
 import Admin from "./pages/Admin/Admin";
 import AdminListOfUsers from "./pages/Admin/ListOfUsers";
-import RequestWindow from "./pages/Admin/RequestManagement";
+import RequestWindow from "./pages/Admin/RequestWindow";
 import SubmissionWindow from "./pages/Admin/SubmissionWindow";
 import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "../src/pages/Admin/AdminViewUser";
