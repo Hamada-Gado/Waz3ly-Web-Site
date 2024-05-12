@@ -167,6 +167,16 @@ const Submission = ({ setElement }) => {
             />
           )}
 
+          <label className={labelClassName}>
+            Drop-Off
+            <input
+              type="datetime-local"
+              name="dropOff"
+              className={inputClassName}
+              required
+            ></input>
+          </label>
+
           <button className="bg-primary  text-white font-bold py-2 px-4 my-3 rounded-md shadow-sm w-full">
             Submit
           </button>
