@@ -166,14 +166,14 @@ const FinishedOrPending = () => {
                                 desc.split(":")[1].slice(1)}
                             </p>
                           ))}
-                        {<SimpleMap onChange={() => {}} />}
+                        {<SimpleMap onChange={() => {}} />}~{" "}
                         <p className="font-bold text-base font-body">
                           PickUp Vehicle:{" "}
                           {donation.pickupVehicle === "Car"
-                            ? "🚗"
+                            ? "🚗 ~ Car"
                             : donation.pickupVehicle === "Truck"
-                            ? "🚚"
-                            : "🏍️"}
+                            ? "🚚 ~ Truck"
+                            : "🏍️ ~ Motorcycle"}
                         </p>
                       </div>
                     </div>
