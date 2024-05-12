@@ -28,6 +28,7 @@ const Login = () => {
       );
       localStorage.setItem('defaultPath', '/admin');
       navigate('/admin', { replace: true });
+      return;
     }
 
     for (let i = 0; i < users.length; i++) {
@@ -39,9 +40,11 @@ const Login = () => {
         if (users[i].accountType === AccountType.Organization) {
           localStorage.setItem('defaultPath', '/organization');
           navigate('/organization', { replace: true });
+          return;
         } else {
           localStorage.setItem('defaultPath', '/donor');
           navigate('/donor', { replace: true });
+          return;
         }
       }
     }
