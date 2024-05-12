@@ -3,6 +3,16 @@ import { useState } from "react";
 
 const FilterBloodDonations = ({ setFurtherFiltering }) => {
   const [organization, setOrganization] = useState("");
+  const [governorate, setGovernorate] = useState("");
+  const [area, setArea] = useState("");
+
+  const handleAreaChange = (e) => {
+    setArea(e.target.value);
+  };
+
+  const handleGovernorateChange = (e) => {
+    setGovernorate(e.target.value);
+  };
 
   const handleOrganizationChange = (e) => {
     setOrganization(e.target.value);
@@ -11,9 +21,13 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
   const handleSubmit = () => {
     // Read the values from the form inputs
     const organizationValue = organization;
+    const governorateValue = governorate;
+    const areaValue = area;
 
     setFurtherFiltering({
       organizationValue,
+      governorateValue,
+      areaValue,
       type: "Blood Donation",
     });
 
@@ -36,16 +50,24 @@ const FilterBloodDonations = ({ setFurtherFiltering }) => {
             <u>Filter Options:</u>
           </strong>
         </h2>
-        <select
-          className="filter-input bg-background-main "
+        <input
+          className="filter-input border mb-2 border-black rounded-lg bg-background-main "
+          placeholder="  Organization"
           value={organization}
           onChange={handleOrganizationChange}
-        >
-          <option value="">Select Organization</option>
-          <option value="Hospital">Hospital</option>
-          <option value="Governorate">Governorate</option>
-          <option value="Area">Area</option>
-        </select>
+        ></input>
+        <input
+          className="filter-input border mb-2 border-black rounded-lg bg-background-main "
+          placeholder="  Governorate"
+          value={governorate}
+          onChange={handleGovernorateChange}
+        ></input>
+        <input
+          className="filter-input border  border-black rounded-lg bg-background-main "
+          placeholder="  Area"
+          value={area}
+          onChange={handleAreaChange}
+        ></input>
       </div>
       <button
         type="submit"
