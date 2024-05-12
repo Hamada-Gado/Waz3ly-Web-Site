@@ -15,7 +15,8 @@ import Settings from './pages/Account/Settings';
 // Admin imports
 import Admin from "./pages/Admin/Admin";
 import AdminListOfUsers from "./pages/Admin/ListOfUsers";
-import AdminRequests from "./components/Admin/NotFound";
+import RequestWindow from "./pages/Admin/RequestManagement";
+import SubmissionWindow from "./pages/Admin/SubmissionWindow";
 import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "./pages/Admin/AdminViewUser";
 
@@ -30,7 +31,8 @@ export default function App() {
 
 					<Route path="/admin/" element={<Admin />}></Route>
 					<Route path="/admin/listofusers" element={<AdminListOfUsers />}></Route>
-					<Route path="/admin/requests" element={<AdminRequests />}></Route>
+					<Route path="/admin/requests" element={<RequestWindow />}></Route>
+					<Route path="/admin/submissions" element={<SubmissionWindow />}></Route>
 					<Route path="/admin/passwords" element={<AdminPasswords />}></Route>
 					<Route path="/admin/view-user" element={<AdminViewUser />}></Route>
 
@@ -57,5 +59,3 @@ export default function App() {
  	 	</Router>
  	);
 }
-
-
