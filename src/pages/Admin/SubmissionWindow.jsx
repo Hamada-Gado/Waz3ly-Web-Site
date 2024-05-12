@@ -1,123 +1,121 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
+import PDFViewer from "../../components/Media/PDFViewer";
 
 const Data = [
-	{
-		id: 1,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "clothing donation",
-	},
-	{
-		id: 2,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "food donation",
-	},
-	{
-		id: 3,
-		organization: "Hospital",
-		submission: "School",
-		document: "books",
-	},
-	{
-		id: 4,
-		organization: "Hospital",
-		submission: "Hospital",
-		document: "blood donation",
-	},
-	{
-		id: 5,
-		organization: "Hospital",
-		submission: "Donor",
-		document: "money donation",
-	},
+  {
+    id: 1,
+    organization: "Hospital",
+    submission: "Donor",
+    document: "clothing donation",
+  },
+  {
+    id: 2,
+    organization: "Hospital",
+    submission: "Donor",
+    document: "food donation",
+  },
+  {
+    id: 3,
+    organization: "Hospital",
+    submission: "School",
+    document: "books",
+  },
+  {
+    id: 4,
+    organization: "Hospital",
+    submission: "Hospital",
+    document: "blood donation",
+  },
+  {
+    id: 5,
+    organization: "Hospital",
+    submission: "Donor",
+    document: "money donation",
+  },
 ];
 
 const SubmissionWindow = () => {
-	const [selectedRows, setSelectedRows] = useState([]);
-	const [data, setData] = useState(Data);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState(Data);
 
-	const handleRowSelected = React.useCallback((state) => {
-		setSelectedRows(state.selectedRows);
-	}, []);
+  const handleRowSelected = React.useCallback((state) => {
+    setSelectedRows(state.selectedRows);
+  }, []);
 
-	const acceptRequest = () => {
-		if (selectedRows.length === 0) {
-			alert("Please select requests to accept.");
-			return;
-		}
+  const acceptRequest = () => {
+    if (selectedRows.length === 0) {
+      alert("Please select requests to accept.");
+      return;
+    }
 
-		const updatedData = data.filter(
-			(row) => !selectedRows.some((selected) => selected.id === row.id)
-		);
-		setData(updatedData);
-		setSelectedRows([]);
-	};
+    const updatedData = data.filter(
+      (row) => !selectedRows.some((selected) => selected.id === row.id)
+    );
+    setData(updatedData);
+    setSelectedRows([]);
+  };
 
-	const rejectRequest = () => {
-		if (selectedRows.length === 0) {
-			alert("Please select requests to reject.");
-			return;
-		}
+  const rejectRequest = () => {
+    if (selectedRows.length === 0) {
+      alert("Please select requests to reject.");
+      return;
+    }
 
-		const updatedData = data.filter(
-			(row) => !selectedRows.some((selected) => selected.id === row.id)
-		);
-		setData(updatedData);
-		setSelectedRows([]);
-	};
+    const updatedData = data.filter(
+      (row) => !selectedRows.some((selected) => selected.id === row.id)
+    );
+    setData(updatedData);
+    setSelectedRows([]);
+  };
 
-	const columns = [
-		{
-			name: "Organization",
-			selector: (row) => row.organization,
-			sortable: true,
-		},
-		{
-			name: "Submission",
-			selector: (row) => row.submission,
-			sortable: true,
-		},
-		{
-			name: "Document",
-			selector: (row) => row.document,
-			sortable: true,
-			grow: 2,
-		},
-	];
+  const columns = [
+    {
+      name: "Organization",
+      selector: (row) => row.organization,
+      sortable: true,
+    },
+    {
+      name: "Submission",
+      selector: (row) => row.submission,
+      sortable: true,
+    },
+    {
+      name: "Document",
+      selector: () => <PDFViewer />,
+    },
+  ];
 
-	return (
-		<div className="flex justify-center items-center h-screen w-full">
-			<div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md w-full">
-				<h1 className="text-3xl font-bold text-center text-primary mb-6">
-					Submissions
-				</h1>
-				<DataTable
-					columns={columns}
-					data={data}
-					selectableRows
-					onSelectedRowsChange={handleRowSelected}
-					className="mb-6"
-				/>
-				<div className="flex justify-between">
-					<button
-						onClick={acceptRequest}
-						className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded"
-					>
-						Accept
-					</button>
-					<button
-						onClick={rejectRequest}
-						className="bg-danger hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-					>
-						Reject
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className="flex justify-center items-center h-screen w-full">
+      <div className="bg-white shadow-md rounded-lg px-8 py-6 w-1/2">
+        <h1 className="text-3xl font-bold text-center text-primary mb-6">
+          Submissions
+        </h1>
+        <DataTable
+          columns={columns}
+          data={data}
+          selectableRows
+          onSelectedRowsChange={handleRowSelected}
+          className="mb-6"
+        />
+        <div className="flex justify-between">
+          <button
+            onClick={acceptRequest}
+            className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded"
+          >
+            Accept
+          </button>
+          <button
+            onClick={rejectRequest}
+            className="bg-danger hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SubmissionWindow;
-
