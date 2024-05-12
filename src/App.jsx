@@ -28,6 +28,7 @@ import AdminListOfUsers from "./pages/Admin/ListOfUsers";
 import AdminRequests from "./components/Admin/NotFound";
 import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "../src/pages/Admin/AdminViewUser";
+import AdminSettings from "./pages/Account/AdminSettings";
 
 export default function App() {
   const ref = useFitDiv();
@@ -56,7 +57,7 @@ export default function App() {
           ></Route>
           <Route path="/RequestwWindow" element={<RequestwWindow />}></Route>
 		  <Route path="/ChangePassword" element={<ChangePassword />}></Route>
-      <Route path="/RequestManagement" element={<RequestManagement />}></Route>
+          <Route path="/AdminSettings" element={<AdminSettings />}></Route>
       <Route path="/Submissions" element={<Submissions />}></Route>
           <Route
             path="/donor/FinishedOrPendingDonations"
