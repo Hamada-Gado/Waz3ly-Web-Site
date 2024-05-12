@@ -12,6 +12,10 @@ export default function SideBar(){
 					Manage Requests
 				</a>
 
+				<a className="sidebar-item" href="/admin/submissions">
+					Manage Submissions
+				</a>
+
 				<a className="sidebar-item" href="/admin/passwords">
 					Manage Passwords
 				</a>
