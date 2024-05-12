@@ -102,7 +102,7 @@ function getDesc(donation, users) {
                `;
     case "Teaching Posts":
       return `category: ${donation.category},\n
-      Subject: ${donation.subject},\n
+      Subject: ${donation.subjects},\n
       Max number of students: ${donation.numStudents},\n
       Address: ${organization.address},\n
       Organization Name: ${organization.organizationName}

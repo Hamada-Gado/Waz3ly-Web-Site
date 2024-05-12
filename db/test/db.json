@@ -101,7 +101,7 @@
       "title": "WHITE CHALK",
       "approved": 1,
       "accepted": 0,
-      "pending": true,
+      "pending": false,
       "completed": false,
       "category": "Teaching Posts",
       "numStudents": "25",
