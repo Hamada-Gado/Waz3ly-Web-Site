@@ -12,49 +12,98 @@ import FilterTeachingPosts from "./FilterTeachingPosts";
 import useFetch from "../../hooks/useFetch";
 import useUpdate from "../../hooks/useUpdate";
 import SimpleMap from "../Maps/SimpleMap";
+import medicalDevice from "./medicalDevice.webp";
+import Book from "./Book.jpg";
 
 function getOrg(donation, users) {
   return users.find((user) => user.id === donation.organizationID);
 }
-
-function getDesc(donation) {
+function getDesc(donation, users) {
+  const organization = getOrg(donation, users);
   switch (donation.category) {
     case "Clothing":
       return `category: ${donation.category},\n
+              type: ${donation.type},\n
               Age: ${donation.age},\n
               Gender: ${donation.gender},\n
-              Season: ${donation.season}\n
-              material: ${donation.material}\n
-              quantity: ${donation.quantity}
-              location:`;
+              Season: ${donation.season},\n
+              material: ${donation.material},\n
+              quantity: ${donation.quantity},\n
+              Organization Name: ${organization.organizationName}
+               `;
     case "Food":
       return `category: ${donation.category},\n
-      Type: ${donation.type}`;
+      Type: ${donation.type},\n
+      Item: ${donation.item},\n
+      Quantity: ${donation.quantity}${
+        donation.type === "Fruits" || donation.type === "Vegetables" ? "kg" : ""
+      },\n
+      Organization Name: ${organization.organizationName}`;
     case "Toys":
       return `category: ${donation.category},\n
               Age: ${donation.age},\n
               gender: ${donation.gender},\n
-              Sub Category: ${donation.subCategory}`;
+              Sub Category: ${donation.subCategory},\n
+              Organization Name: ${organization.organizationName}
+               `;
     case "Medical Supplies":
       return `category: ${donation.category},\n
-      Sub Category: ${donation.subCategory}`;
+              Sub Category: ${donation.subCategory},\n
+              device type: ${donation.deviceType},\n
+              use : ${donation.use},\n
+              quantity: ${donation.quantity},\n
+              Organization Name: ${organization.organizationName}
+               
+              `;
     case "Blood Donation":
-      return `category: ${donation.category},\n
-      Organization: ${donation.organization}`;
+      return `Category: ${donation.category},\n
+      Patient name: ${donation.patientName},\n
+      Blood type: ${donation.bloodType},\n
+      Hospital Name: ${organization.organizationName},\n
+      Area: ${organization.area},\n
+      Governorate: ${organization.governorate},\n
+      Hospital address: ${organization.address},\n
+      Hospital phone: ${organization.contactNumber},\n
+      Organization Name: ${organization.organizationName}
+               `;
     case "School Supplies":
+      if (donation.supplyType === "Stationary") {
+        return `category: ${donation.category},\n
+        Supply Type: ${donation.supplyType},\n
+        type: ${donation.type},\n
+        Quantity: ${donation.quantity},\n
+        Organization Name: ${organization.organizationName}
+               `;
+      }
       return `category: ${donation.category},\n
-        Supply Type: ${donation.supplyType}`;
+              Supply Type: ${donation.supplyType},\n
+              Quantity: ${donation.quantity},\n
+              Book Name: ${donation.name},\n
+              Book Author: ${donation.author},\n
+              book language: ${donation.language},\n
+              book edition: ${donation.edition},\n
+              book summary: ${donation.shortDescription},\n
+              Organization Name: ${organization.organizationName}
+               `;
     case "Medical Cases":
       return `category: ${donation.category},\n
-      Specialty: ${donation.specialty},\n
-              Organization: ${donation.organization},\n
-              Area: ${donation.area},\n
-              Governorate: ${donation.governorate}`;
+              patient name: ${donation.patientName},\n
+              patient age: ${donation.age},\n
+              patient gender: ${donation.gender},\n
+              patient weight: ${donation.weight}KG,\n
+              Hospital Name: ${organization.organizationName},\n
+              Specialty: ${donation.medicalSpecialty},\n
+              case description: ${donation.caseDescription},\n
+              Address: ${organization.address},\n
+              Organization Name: ${organization.organizationName}
+               `;
     case "Teaching Posts":
       return `category: ${donation.category},\n
-      Subject: ${donation.subject},\n
-              Area: ${donation.area},\n
-              Governorate: ${donation.governorate}`;
+      Subject: ${donation.subjects},\n
+      Max number of students: ${donation.numStudents},\n
+      Address: ${organization.address},\n
+      Organization Name: ${organization.organizationName}
+               `;
     default:
       return "";
   }
@@ -122,10 +171,12 @@ const DonationsList = () => {
         case "Blood Donation":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+            console.log(org);
             return (
               donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
+              donation.category === "Blood Donation" &&
               (org.organizationName === furtherFiltering?.organizationValue ||
                 org.governorate === furtherFiltering?.governorateValue ||
                 org.area === furtherFiltering?.areaValue)
@@ -144,6 +195,7 @@ const DonationsList = () => {
         case "Medical Cases":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+            console.log(org.area);
             return (
               donation.approved === 1 &&
               !donation.pending &&
@@ -158,6 +210,7 @@ const DonationsList = () => {
         case "Teaching Posts":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+
             return (
               donation.approved === 1 &&
               !donation.pending &&
@@ -185,8 +238,8 @@ const DonationsList = () => {
 
   return (
     <>
-      {!donations && <h1>Loading...</h1>}
-      {donations && (
+      {(!donations || !users) && <h1>Loading...</h1>}
+      {donations && users && (
         <div className="h-full bg-background-main flex flex-col items-center py-4 overflow-y-auto">
           <div className="overflow-auto h-full w-full  grid gap-0 m-0 grid-cols-3 ">
             <div className="col-start-1 max-w-sm mb-2 p-8 -translate-y-12">
@@ -248,7 +301,7 @@ const DonationsList = () => {
                     <h2 className="text-2xl text-black font-heading">
                       {donation.title}
                     </h2>
-                    {getDesc(donation)
+                    {getDesc(donation, users)
                       .split(",\n")
                       .map((desc, index) => (
                         <p
@@ -264,6 +317,25 @@ const DonationsList = () => {
                             desc.split(":")[1].slice(1)}
                         </p>
                       ))}
+
+                    {donation.category === "Medical Supplies" && (
+                      <img
+                        className="rounded-lg mt-4"
+                        src={medicalDevice}
+                        alt="Medical Device"
+                      ></img>
+                    )}
+                    {donation.category === "School Supplies" &&
+                      donation.supplyType === "Books" && (
+                        <img
+                          className="rounded-lg mt-4"
+                          src={Book}
+                          alt="Book"
+                        ></img>
+                      )}
+                    <p className="font-bold text-base font-body">
+                      Organization Location:
+                    </p>
                     <div>{<SimpleMap onChange={() => {}} />}</div>
 
                     {donation.category !== "Medical Cases" &&
@@ -317,160 +389,3 @@ const DonationsList = () => {
 };
 
 export default DonationsList;
-
-// Sample data
-// "donations": [
-//   {
-//     "id": "1",
-//     "title": "Donation 1",
-//     "description": "This is donation request 1.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Food",
-//     "type": "Fruits"
-//   },
-//   {
-//     "id": "2",
-//     "title": "Donation 2",
-//     "description": "This is donation request 2.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Toys",
-//     "age": "0-10",
-//     "gender": "Male",
-//     "subCategory": "Dolls"
-//   },
-//   {
-//     "id": "3",
-//     "title": "Donation 3",
-//     "description": "This is donation request 3.",
-//     "pending":false,
-//     "completed": false,
-//     "category": "Clothing",
-//     "age": "0-10",
-//     "gender": "Female",
-//     "season": "Winter"
-//   },
-//   {
-//     "id": "4",
-//     "title": "Donation 4",
-//     "description": "This is donation request 4.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Clothing",
-//     "age": "11-20",
-//     "gender": "Male",
-//     "season": "Summer"
-//   },
-//   {
-//     "id": "5",
-//     "title": "Donation 5",
-//     "description": "This is donation request 5.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Toys",
-//     "age": "11-20",
-//     "gender": "Female",
-//     "subCategory": "Outdoor"
-//   },
-//   {
-//     "id": "6",
-//     "title": "Donation 6",
-//     "description": "This is donation request 6.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "School Supplies",
-//     "supplyType": "Stationary"
-//   },
-//   {
-//     "id": "7",
-//     "title": "Donation 7",
-//     "description": "This is donation request 7.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Medical Supplies",
-//     "subCategory": "Medication"
-//   },
-//   {
-//     "id": "8",
-//     "title": "Donation 8",
-//     "description": "This is donation request 8.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Blood Donation",
-//     "organization": "Governorate"
-//   },
-//   {
-//     "id": "9",
-//     "title": "Donation 9",
-//     "description": "This is donation request 9.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Food",
-//     "type": "Vegetables"
-//   },
-//   {
-//     "id": "10",
-//     "title": "Donation 10",
-//     "description": "This is donation request 10.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Blood Donation",
-//     "organization": "Hospital"
-//   },
-//   {
-//     "id": "11",
-//     "title": "Donation 11",
-//     "description": "This is donation request 11.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "School Supplies",
-//     "supplyType": "Books"
-//   },
-//   {
-//     "id": "12",
-//     "title": "Donation 12",
-//     "description": "This is donation request 12.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Medical Cases",
-//     "specialty": "Surgeon",
-//     "organization": "Org1",
-//     "area": "Area1",
-//     "governorate": "Gov1"
-//   },
-//   {
-//     "id": "13",
-//     "title": "Donation 13",
-//     "description": "This is donation request 13.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Medical Cases",
-//     "specialty": "Dentists",
-//     "organization": "Org2",
-//     "area": "Area2",
-//     "governorate": "Gov2"
-//   },
-//   {
-//     "id": "14",
-//     "title": "Donation 14",
-//     "description": "This is donation request 14.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Teaching Posts",
-//     "subject": "Math",
-//     "area": "Area1",
-//     "governorate": "Gov1"
-//   },
-//   {
-//     "id": "15",
-//     "title": "Donation 15",
-//     "description": "This is donation request 15.",
-//     "pending": false,
-//     "completed": false,
-//     "category": "Teaching Posts",
-//     "subject": "Biology",
-//     "area": "Area2",
-//     "governorate": "Gov2"
-//   }
-// ],

@@ -1,48 +1,38 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import bellIcon from "../../assets/icons/bell.svg";
-import emptyBellIcon from "../../assets/icons/emptyBell.svg";
-
 function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [accountType, setAccountType] = useState(null);
 
   const [notifications, setNotifications] = useState([]);
   const toggleMenu = () => {
+    updateNotifications();
     setIsOpen(!isOpen);
-    if (isOpen) {
-      setNotifications([]);
-      console.log(notifications);
-    }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      updateNotifications();
-      console.log(notifications);
-    }, 15000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const donorNotificationsOptions = [
-    {
-      id: 1,
-      message: "Your driver Ahmed has arrived",
-    },
-    {
-      id: 2,
-      message: "Your driver Ali will be arriving in 10 minutes",
-    },
-    {
-      id: 3,
-      message: "Donation post 5: Clothes for 20 people has been donated",
-    },
-  ];
-
   const updateNotifications = () => {
-    setNotifications(
-      donorNotificationsOptions.filter(
-        (notification) => notification.id === Math.floor(Math.random() * 3) + 1
-      )
-    );
+    setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
+    console.log(accountType);
+    switch (accountType) {
+      case "Organization":
+        setNotifications([
+          {
+            id: 1,
+            message: "Donation post 193: Food for 50 people has been donated",
+          },
+        ]);
+        break;
+      case "Donor":
+        setNotifications([
+          {
+            id: 1,
+            message: "Your driver Ahmed has arrived",
+          },
+        ]);
+        break;
+      default:
+        setNotifications([]);
+    }
   };
 
   const overlayStyle = {
@@ -61,11 +51,7 @@ function NotificationDropdown() {
   return (
     <div className="notification">
       <button onClick={toggleMenu}>
-        {notifications.length === 0 ? (
-          <img src={emptyBellIcon} />
-        ) : (
-          <img src={bellIcon} />
-        )}
+        <img src={bellIcon} />
       </button>
       <div style={isOpen ? overlayStyle : { display: "none" }}>
         {isOpen && (

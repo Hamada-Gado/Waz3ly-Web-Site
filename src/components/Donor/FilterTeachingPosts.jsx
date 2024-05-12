@@ -6,7 +6,6 @@ const FilterTeachingPosts = ({ setFurtherFiltering }) => {
   const [governorate, setGovernorate] = useState("");
 
   const handleSubjectChange = (event) => {
-    console.log(event.target.value);
     setSubject(event.target.value);
   };
 
