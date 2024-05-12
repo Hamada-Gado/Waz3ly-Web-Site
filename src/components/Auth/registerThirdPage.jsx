@@ -100,6 +100,7 @@ const ThirdPage = ({
               value={formData['maxCases']}
               onChange={onChange}
               className={inputClassName}
+              min={0}
               required
             />
           </label>
@@ -126,6 +127,7 @@ const ThirdPage = ({
               value={formData['maxCases']}
               onChange={onChange}
               className={inputClassName}
+              min={0}
               required
             />
           </label>

@@ -10,7 +10,7 @@ const useUpdate = (endpoint, body, id) => {
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error('Failed to update');
+        throw new Error("Failed to update");
       }
     })
     .then((data) => console.log(data))

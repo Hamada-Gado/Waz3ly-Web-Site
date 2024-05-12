@@ -2,18 +2,25 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import '/src/styles/dashboard.css';
-import Account from '../Account/Account';
+import Submission from '../../components/Organization/Submissions';
 
-function SideBar({ userData }) {
+function SideBar({ userData, setElement }) {
   return (
     <div className="sidebar">
       <div className="title">
         <h2>{userData.organizationName}</h2>
       </div>
       <div className="nav">
-        <button className="sidebar-item">New Donation Post</button>
+        <button
+          className="sidebar-item"
+          onClick={() => {
+            setElement(<Submission setElement={setElement} />);
+          }}
+        >
+          New Donation Request
+        </button>
         <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
-          Manage Requests
+          My Requests
         </Link>
         <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
           Our Heros 🌟
@@ -28,10 +35,9 @@ const Organization = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   );
-  console.log(userData);
   return (
     <div className="root-container">
-      <SideBar userData={userData} />
+      <SideBar userData={userData} setElement={setElement} />
       {element}
     </div>
   );
