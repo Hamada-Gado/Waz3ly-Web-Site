@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const Clothes = ({
+const MedicalCases = ({
   setFormData,
   labelClassName,
   inputClassName,
@@ -14,25 +14,24 @@ const Clothes = ({
       accepted: 0,
       pending: false,
       completed: false,
-      category: 'Clothing',
-      type: '',
+      category: 'Medical Cases',
+      patientName: '',
       age: '',
       gender: '',
-      season: '',
-      material: '',
-      quantity: '',
+      weight: '',
+      medicalSpecialty: '',
+      caseDescription: '',
     });
   }, []);
 
   return (
     <>
       <label className={labelClassName}>
-        Type:
+        Patient Name:
         <input
           type="text"
-          name="type"
+          name="patientName"
           className={inputClassName}
-          placeholder="Type of Clothing"
           onChange={handleChange}
           required
         />
@@ -73,42 +72,33 @@ const Clothes = ({
         </select>
       </label>
       <label className={labelClassName}>
-        Season:
-        <select
-          name="season"
-          defaultValue=""
-          className={selectClassName}
-          onChange={handleChange}
-          required
-        >
-          <option value="" disabled>
-            Choose
-          </option>
-          <option value="Winter">Winter</option>
-          <option value="Summer">Summer</option>
-          <option value="Spring">Spring</option>
-          <option value="Fall">Fall</option>
-        </select>
-      </label>
-      <label className={labelClassName}>
-        Material:
+        Weight:
         <input
-          type="text"
-          name="material"
+          type="number"
+          name="weight"
           className={inputClassName}
-          placeholder="Material"
           onChange={handleChange}
+          min={1}
           required
         />
       </label>
       <label className={labelClassName}>
-        Quantity:
+        Medical Specialty:
         <input
-          type="number"
-          name="quantity"
+          type="text"
+          name="medicalSpecialty"
           className={inputClassName}
-          placeholder="Quantity"
+          onChange={handleChange}
           min={1}
+          required
+        />
+      </label>
+      <label className={labelClassName}>
+        Case Description:
+        <textarea
+          name="caseDescription"
+          className={inputClassName}
+          placeholder="Short Description"
           onChange={handleChange}
           required
         />
@@ -117,4 +107,4 @@ const Clothes = ({
   );
 };
 
-export default Clothes;
+export default MedicalCases;

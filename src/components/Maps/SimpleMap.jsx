@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import GoogleMapReact from 'google-map-react';
+import React, { useState, useEffect } from "react";
+import GoogleMapReact from "google-map-react";
 
 const Marker = ({ maps, map, lat, lng, onDrag }) => {
   useEffect(() => {
@@ -9,7 +9,7 @@ const Marker = ({ maps, map, lat, lng, onDrag }) => {
       draggable: true,
     });
 
-    marker.addListener('dragend', (event) => {
+    marker.addListener("dragend", (event) => {
       onDrag(event.latLng.lat(), event.latLng.lng());
     });
 
@@ -21,15 +21,15 @@ const Marker = ({ maps, map, lat, lng, onDrag }) => {
   return null;
 };
 
-const SimpleMap = ({ onChange }) => {
+const SimpleMap = ({ onChange, lat, lng }) => {
   const [mapsLoaded, setMapsLoaded] = useState(false);
   const [map, setMap] = useState(null);
   const [maps, setMaps] = useState(null);
 
   const defaultProps = {
     center: {
-      lat: 29.9867332476986,
-      lng: 31.439458208084083,
+      lat: lat || 29.9867332476986,
+      lng: lng || 31.439458208084083,
     },
     zoom: 11,
   };
@@ -49,12 +49,12 @@ const SimpleMap = ({ onChange }) => {
     const data = await response.json();
 
     onChange({
-      target: { name: 'address', value: data.results[0].formatted_address },
+      target: { name: "address", value: data.results[0].formatted_address },
     });
   };
 
   return (
-    <div style={{ height: '400px', width: '400px', marginRight: '30px' }}>
+    <div style={{ height: "400px", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: import.meta.env.VITE_GOOGLE_MAPS_GEOCODING_API_KEY,
