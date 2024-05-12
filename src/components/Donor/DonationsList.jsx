@@ -165,16 +165,19 @@ const DonationsList = () => {
               !donation.pending &&
               !donation.completed &&
               donation.category === "Medical Supplies" &&
-              donation.subCategory === furtherFiltering?.subCategoryValue
+              (donation.subCategory === furtherFiltering?.subCategoryValue ||
+                donation.use === furtherFiltering?.useValue)
             );
           });
         case "Blood Donation":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+            console.log(org);
             return (
               donation.approved === 1 &&
               !donation.pending &&
               !donation.completed &&
+              donation.category === "Blood Donation" &&
               (org.organizationName === furtherFiltering?.organizationValue ||
                 org.governorate === furtherFiltering?.governorateValue ||
                 org.area === furtherFiltering?.areaValue)
@@ -193,6 +196,7 @@ const DonationsList = () => {
         case "Medical Cases":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+            console.log(org.area);
             return (
               donation.approved === 1 &&
               !donation.pending &&
@@ -207,6 +211,7 @@ const DonationsList = () => {
         case "Teaching Posts":
           return donations.filter((donation) => {
             const org = getOrg(donation, users);
+
             return (
               donation.approved === 1 &&
               !donation.pending &&
@@ -283,53 +288,56 @@ const DonationsList = () => {
                 setFilter={setFilter}
                 setFurtherFiltering={setFurtherFiltering}
               />
-                  
-            {filteredDonations().map((donation) => {
-              return (
-                <div
-                  key={donation.id}
-                  className={`w-full border border-accent bg-background-dark p-6 rounded-md ${
-                    selectedDonation === null
-                      ? "transform transition duration-500  ease-in-out hover:scale-105 hover:bg-accent"
-                      : ""
-                  }`}
-                >
-                  <h2 className="text-2xl text-black font-heading">
-                    {donation.title}
-                  </h2>
-                  {getDesc(donation, users)
-                    .split(",\n")
-                    .map((desc, index) => (
-                      <p key={index} className="text-base font-body text-black">
-                        <strong>
-                          {desc.split(":")[0].charAt(0).toUpperCase() +
-                            desc.split(":")[0].slice(1)}{" "}
-                          :{" "}
-                        </strong>
-                        {desc.split(":")[1].charAt(0).toUpperCase() +
-                          desc.split(":")[1].slice(1)}
-                      </p>
-                    ))}
 
-                  {donation.category === "Medical Supplies" && (
-                    <img
-                      className="rounded-lg mt-4"
-                      src={medicalDevice}
-                      alt="Medical Device"
-                    ></img>
-                  )}
-                  {donation.category === "School Supplies" &&
-                    donation.supplyType === "Books" && (
+              {filteredDonations().map((donation) => {
+                return (
+                  <div
+                    key={donation.id}
+                    className={`w-full border border-accent bg-background-dark p-6 rounded-md ${
+                      selectedDonation === null
+                        ? "transform transition duration-500  ease-in-out hover:scale-105 hover:bg-accent"
+                        : ""
+                    }`}
+                  >
+                    <h2 className="text-2xl text-black font-heading">
+                      {donation.title}
+                    </h2>
+                    {getDesc(donation, users)
+                      .split(",\n")
+                      .map((desc, index) => (
+                        <p
+                          key={index}
+                          className="text-base font-body text-black"
+                        >
+                          <strong>
+                            {desc.split(":")[0].charAt(0).toUpperCase() +
+                              desc.split(":")[0].slice(1)}{" "}
+                            :{" "}
+                          </strong>
+                          {desc.split(":")[1].charAt(0).toUpperCase() +
+                            desc.split(":")[1].slice(1)}
+                        </p>
+                      ))}
+
+                    {donation.category === "Medical Supplies" && (
                       <img
                         className="rounded-lg mt-4"
-                        src={Book}
-                        alt="Book"
+                        src={medicalDevice}
+                        alt="Medical Device"
                       ></img>
                     )}
-                  <p className="font-bold text-base font-body">
-                    Organization Location:
-                  </p>
-                  <div>{<SimpleMap onChange={() => {}} />}</div>
+                    {donation.category === "School Supplies" &&
+                      donation.supplyType === "Books" && (
+                        <img
+                          className="rounded-lg mt-4"
+                          src={Book}
+                          alt="Book"
+                        ></img>
+                      )}
+                    <p className="font-bold text-base font-body">
+                      Organization Location:
+                    </p>
+                    <div>{<SimpleMap onChange={() => {}} />}</div>
 
                     {donation.category !== "Medical Cases" &&
                       donation.category !== "Teaching Posts" && (
