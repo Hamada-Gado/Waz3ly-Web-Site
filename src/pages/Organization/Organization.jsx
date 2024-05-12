@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '/src/styles/dashboard.css';
 import Submission from '../../components/Organization/Submissions';
 import ShowSubmission from '../../components/Organization/ShowSubmission';
+import ListOfUsers from '../../components/Organization/ListOfUsers';
 
 function SideBar({ userData, setElement }) {
   return (
@@ -24,7 +25,14 @@ function SideBar({ userData, setElement }) {
         >
           My Donations
         </Link>
-        <Link className="sidebar-item" onClick={() => <p>TEST</p>}>
+        <Link
+          className="sidebar-item"
+          onClick={() =>
+            setElement(
+              <ListOfUsers setElement={setElement} endpoint={'users'} />
+            )
+          }
+        >
           Our Heros 🌟
         </Link>
       </div>

@@ -4,6 +4,7 @@ import '/src/pages/Admin/Dashboard.css';
 import DonationsList from './DonationsList';
 
 function ListOfDonations({ setElement }) {
+  console.log('SHOKRAAAAN YA GOBA :D');
   const [donations, setDonation] = useState(null);
   const [myDonations, setMyDonations] = useState(null);
   const userData = JSON.parse(localStorage.getItem('userData'));
@@ -25,7 +26,9 @@ function ListOfDonations({ setElement }) {
     <>
       {myDonations && (
         <div className="h-full w-full overflow-auto pl-8 space-y-4">
-          <div className="pr-4 text-primary text-2xl">List of Donations</div>
+          <div className="title text-primary text-2xl py-4">
+            List of Donations
+          </div>
           <DonationsList
             setElement={setElement}
             donations={myDonations}

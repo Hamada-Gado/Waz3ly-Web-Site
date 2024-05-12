@@ -39,9 +39,8 @@ function DonationItem({ setElement, donations, setDonations, donation }) {
           <button
             type="button"
             className={
-              donation.completed
-                ? 'bg-accepted'
-                : 'bg-warning' + ' rounded-md px-2 py-1'
+              (donation.completed ? 'bg-accept' : 'bg-warning') +
+              ' rounded-md px-2 py-1'
             }
             disabled
           >
