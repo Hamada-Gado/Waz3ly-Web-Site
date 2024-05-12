@@ -1,6 +1,6 @@
-import { useState, useEffect, React } from "react";
-import useFetch from "../useFetch";
-import { AccountType } from "../../enums/Enums";
+import { useState, useEffect, React } from 'react';
+import useFetch from '../useFetch';
+import { AccountType } from '../../enums/Enums';
 
 function useFilterUsers(endpoint) {
   /*
@@ -15,10 +15,10 @@ function useFilterUsers(endpoint) {
   const [users, setUsers] = useState([]);
 
   // init the filter state
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState('All');
 
   // init the search state
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   // init the filtered users state
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -32,7 +32,7 @@ function useFilterUsers(endpoint) {
   // construct a function to handle changes in the filter
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
-    if (newFilter === "All") {
+    if (newFilter === 'All') {
       setFilteredUsers(users);
       return;
     }
@@ -53,8 +53,13 @@ function useFilterUsers(endpoint) {
   const handleSearchChange = (newSearch) => {
     setSearch(newSearch);
     setFilteredUsers(
-      users.filter((user) =>
-        user.firstName.toLowerCase().includes(newSearch.toLowerCase())
+      users.filter(
+        (user) =>
+          user.firstName.toLowerCase().includes(newSearch.toLowerCase()) ||
+          (user.organizationName &&
+            user.organizationName
+              .toLowerCase()
+              .includes(newSearch.toLowerCase()))
       )
     );
   };

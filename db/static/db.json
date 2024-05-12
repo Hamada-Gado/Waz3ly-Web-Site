@@ -3,7 +3,7 @@
         {
             "id": "a180",
             "title": "LEBSSSSS",
-            "approved": 0,
+            "approved": 1,
             "accepted": 0,
             "pending": false,
             "completed": false,
@@ -19,7 +19,7 @@
         {
             "id": "931d",
             "title": "SYOT",
-            "approved": 0,
+            "approved": 1,
             "accepted": 0,
             "pending": false,
             "completed": false,
@@ -47,7 +47,7 @@
         {
             "id": "46a4",
             "title": "Chug Splash",
-            "approved": 0,
+            "approved": 1,
             "accepted": 0,
             "pending": false,
             "completed": false,
@@ -79,7 +79,7 @@
         {
             "id": "4ee4",
             "title": "VAMPIRESSSS",
-            "approved": 0,
+            "approved": 1,
             "accepted": 0,
             "pending": false,
             "completed": false,

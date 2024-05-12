@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import useFetch from "../useFetch";
-import { AccountType } from "../../enums/Enums";
+import { useState, useEffect, useRef } from 'react';
+import useFetch from '../useFetch';
+import { AccountType } from '../../enums/Enums';
 
 function useFilterOrgs(endpoint) {
   /*
@@ -16,10 +16,10 @@ function useFilterOrgs(endpoint) {
   const fetchedUsers = useRef(false);
 
   // init the filter state
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState('All');
 
   // init the search state
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   // init the filtered users state
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -44,51 +44,51 @@ function useFilterOrgs(endpoint) {
   // construct a function to handle changes in the filter
   const handleFilterChange = (newFilter) => {
     switch (newFilter) {
-      case "Naser City":
-        setFilteredUsers(users.filter((user) => user.area === "Naser City"));
+      case 'Naser City':
+        setFilteredUsers(users.filter((user) => user.area === 'Naser City'));
         break;
-      case "Dokki":
-        setFilteredUsers(users.filter((user) => user.area === "Dokki"));
+      case 'Dokki':
+        setFilteredUsers(users.filter((user) => user.area === 'Dokki'));
         break;
-      case "Sharm El-Sheikh":
+      case 'Sharm El-Sheikh':
         setFilteredUsers(
-          users.filter((user) => user.area === "Sharm El-Sheikh")
+          users.filter((user) => user.area === 'Sharm El-Sheikh')
         );
         break;
-      case "Cairo":
-        setFilteredUsers(users.filter((user) => user.governorate === "Cairo"));
+      case 'Cairo':
+        setFilteredUsers(users.filter((user) => user.governorate === 'Cairo'));
         break;
-      case "South Sinai":
+      case 'South Sinai':
         setFilteredUsers(
-          users.filter((user) => user.governorate === "South Sinai")
+          users.filter((user) => user.governorate === 'South Sinai')
         );
         break;
-      case "Giza":
-        setFilteredUsers(users.filter((user) => user.governorate === "Giza"));
+      case 'Giza':
+        setFilteredUsers(users.filter((user) => user.governorate === 'Giza'));
         break;
-      case "Charity":
+      case 'Charity':
         setFilteredUsers(
-          users.filter((user) => user.organizationType === "Charity")
+          users.filter((user) => user.organizationType === 'Charity')
         );
         break;
-      case "Hospital":
+      case 'Hospital':
         setFilteredUsers(
-          users.filter((user) => user.organizationType === "Hospital")
+          users.filter((user) => user.organizationType === 'Hospital')
         );
         break;
-      case "PlaceOfWorship":
+      case 'PlaceOfWorship':
         setFilteredUsers(
-          users.filter((user) => user.organizationType === "PlaceOfWorship")
+          users.filter((user) => user.organizationType === 'PlaceOfWorship')
         );
         break;
-      case "Orphanage":
+      case 'Orphanage':
         setFilteredUsers(
-          users.filter((user) => user.organizationType === "Orphanage")
+          users.filter((user) => user.organizationType === 'Orphanage')
         );
         break;
-      case "PublicSchool":
+      case 'PublicSchool':
         setFilteredUsers(
-          users.filter((user) => user.organizationType === "PublicSchool")
+          users.filter((user) => user.organizationType === 'PublicSchool')
         );
         break;
       default:
@@ -102,8 +102,13 @@ function useFilterOrgs(endpoint) {
     setSearch(newSearch);
 
     setFilteredUsers(
-      users.filter((user) =>
-        user.firstName.toLowerCase().includes(newSearch.toLowerCase())
+      users.filter(
+        (user) =>
+          user.firstName.toLowerCase().includes(newSearch.toLowerCase()) ||
+          (user.organizationName &&
+            user.organizationName
+              .toLowerCase()
+              .includes(newSearch.toLowerCase()))
       )
     );
   };

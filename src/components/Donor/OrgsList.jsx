@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function handleView(navigate, userId, user) {
-  navigate("/admin/view-user", { state: { userId, user } });
+  navigate('/admin/view-user', { state: { userId, user } });
 }
 
 function UserItem({ user }) {
@@ -10,7 +10,8 @@ function UserItem({ user }) {
     <div className="flex items-center justify-between px-4 py-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200">
       <div className="flex items-center space-x-3">
         <span className="text-lg font-medium">
-          {user.firstName} {user.lastName}
+          {user.firstName} {user.lastName}{' '}
+          {user.organizationName && `(${user.organizationName})`}
         </span>
         <span className="text-gray-500 text-sm">{user.accountType}</span>
       </div>

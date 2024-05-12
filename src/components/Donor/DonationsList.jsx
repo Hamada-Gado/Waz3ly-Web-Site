@@ -165,7 +165,8 @@ const DonationsList = () => {
               !donation.pending &&
               !donation.completed &&
               donation.category === "Medical Supplies" &&
-              donation.subCategory === furtherFiltering?.subCategoryValue
+              (donation.subCategory === furtherFiltering?.subCategoryValue ||
+                donation.use === furtherFiltering?.useValue)
             );
           });
         case "Blood Donation":
