@@ -13,7 +13,7 @@ const FilterCategory = ({ donations, setFilter, setFurtherFiltering }) => {
           setFurtherFiltering(null);
           setFilter(e.target.value);
         }}
-        className="border-2 border-black bg-white text-center text-black py-2 px-4 rounded-md shadow-md"
+        className="border-2 mb-6 border-black bg-white text-center text-black py-2 px-4 rounded-md shadow-md"
       >
         <option value="" className="text-base font-body" disabled={true}>
           CHOOSE A CATEGORY

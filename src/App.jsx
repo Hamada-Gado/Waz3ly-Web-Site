@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Admin from "./pages/Admin/Admin";
 import Organization from "./pages/Organization/Organization";
 import Donor from "./pages/Donor/Donor";
 import Header from "./components/Layout/Header";
@@ -14,6 +13,13 @@ import Settings from "./pages/Account/Settings";
 import SubmissionWindow from "./pages/Admin/SubmissionWindow";
 import RequestwWindow from "./pages/Admin/RequestManagement";
 
+// Admin imports
+import Admin from "./pages/Admin/Admin";
+import AdminListOfUsers from "./pages/Admin/ListOfUsers";
+import AdminRequests from "./components/Admin/NotFound";
+import AdminPasswords from "./components/Admin/NotFound";
+import AdminViewUser from "../src/pages/Admin/AdminViewUser";
+
 export default function App() {
   const ref = useFitDiv();
   return (
@@ -23,11 +29,18 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/settings" element={<Settings />}></Route>
-          <Route path="/admin/" element={<Admin />}></Route>
           <Route path="/organization" element={<Organization />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/admin/" element={<Admin />}></Route>
+          <Route
+            path="/admin/listofusers"
+            element={<AdminListOfUsers />}
+          ></Route>
+          <Route path="/admin/requests" element={<AdminRequests />}></Route>
+          <Route path="/admin/passwords" element={<AdminPasswords />}></Route>
+          <Route path="/admin/view-user" element={<AdminViewUser />}></Route>
           <Route
             path="/SubmissionWindow"
             element={<SubmissionWindow />}
