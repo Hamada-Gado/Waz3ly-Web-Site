@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import bellIcon from "../../assets/icons/bell.svg";
+import emptyBellIcon from "../../assets/icons/emptyBell.svg";
+
 function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [accountType, setAccountType] = useState(null);
 
   const [notifications, setNotifications] = useState([]);
   const toggleMenu = () => {
-    updateNotifications();
     setIsOpen(!isOpen);
+    // Clear notifications when the menu is closed
+    if (isOpen) {
+      setNotifications([]);
+      console.log(notifications);
+    }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateNotifications();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   const organizationNotificationsOptions = [
     {
@@ -38,7 +51,6 @@ function NotificationDropdown() {
 
   const updateNotifications = () => {
     setAccountType(JSON.parse(localStorage.getItem("userData")).accountType);
-    console.log(accountType);
     switch (accountType) {
       case "Organization":
         setNotifications(
@@ -48,6 +60,7 @@ function NotificationDropdown() {
               notification.id === Math.floor(Math.random() * 3) + 1
           )
         );
+        console.log(notifications);
         break;
       case "Donor":
       case "Teacher":
@@ -58,6 +71,7 @@ function NotificationDropdown() {
               notification.id === Math.floor(Math.random() * 2) + 1
           )
         );
+        console.log(notifications);
         break;
       default:
         setNotifications([]);
@@ -80,7 +94,11 @@ function NotificationDropdown() {
   return (
     <div className="notification">
       <button onClick={toggleMenu}>
-        <img src={bellIcon} />
+        {notifications.length === 0 ? (
+          <img src={emptyBellIcon} />
+        ) : (
+          <img src={bellIcon} />
+        )}
       </button>
       <div style={isOpen ? overlayStyle : { display: "none" }}>
         {isOpen && (
