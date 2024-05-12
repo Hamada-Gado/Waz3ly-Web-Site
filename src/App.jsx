@@ -25,7 +25,8 @@ import Submissions from "./pages/Admin/Submissions"
 // Admin imports
 import Admin from "./pages/Admin/Admin";
 import AdminListOfUsers from "./pages/Admin/ListOfUsers";
-import AdminRequests from "./components/Admin/NotFound";
+import RequestWindow from "./pages/Admin/RequestManagement";
+import SubmissionWindow from "./pages/Admin/SubmissionWindow";
 import AdminPasswords from "./components/Admin/NotFound";
 import AdminViewUser from "../src/pages/Admin/AdminViewUser";
 import AdminSettings from "./pages/Account/AdminSettings";
