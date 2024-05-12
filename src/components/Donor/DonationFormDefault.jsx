@@ -27,7 +27,28 @@ const DonationFormDefault = ({ selectedDonation, setSelectedDonations }) => {
       <h2 className="text-xl font-heading font-bold">
         {selectedDonation.title}
       </h2>
-
+      <label className="text-base font-body block">
+        Item:
+        <input
+          onChange={(e) => setItem(e.target.value)}
+          value={item}
+          type="text"
+          name="item"
+          required
+          className="mt-1 p-2 border rounded-md w-full"
+        />
+      </label>
+      <label className="text-base font-body block">
+        Quantity:
+        <input
+          onChange={(e) => setQuantity(e.target.value)}
+          value={quantity}
+          type="number"
+          name="quantity"
+          required
+          className="mt-1 p-2 border rounded-md w-full"
+        />
+      </label>
       <label className="text-base font-body block">
         Pickup Date:
         <input
